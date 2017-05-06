@@ -21,8 +21,8 @@ window.Event = new Vue();
 
 Vue.component('text-editor', require('./components/TextEditor.vue'));
 Vue.component('preview-panel', require('./components/Preview.vue'));
-Vue.component('left-sidebar-tabs', require('./components/LeftSidebarTabs.vue'));
-Vue.component('left-sidebar-tab', require('./components/LeftSidebarTab.vue'));
+Vue.component('left-sidebar-tabs', require('./components/LeftSidebar/Tabs.vue'));
+Vue.component('left-sidebar-tab', require('./components/LeftSidebar/Tab.vue'));
 Vue.component('page-info-panel', require('./components/RightSidebar/PageInfo.vue'));
 Vue.component('source-panel', require('./components/RightSidebar/Source.vue'));
 
@@ -50,6 +50,7 @@ const app = new Vue({
 
         Event.$on('page_updated', function($event) {
             vm[$event.setting] = $event.value;
+            vm.updatePreview();
         });
     },
     methods: {

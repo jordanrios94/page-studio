@@ -6,9 +6,11 @@
 
                 <li role="presentation"><a href="#styles" aria-controls="styles" role="tab" data-toggle="tab"> <span class="icon s7-paint-bucket"></span></a></li>
 
-                <li role="presentation"><a href="#tab2" aria-controls="profile" role="tab" data-toggle="tab"> <span class="icon s7-chat"></span></a></li>
+                <li role="presentation"><a href="#scripts" aria-controls="scripts" role="tab" data-toggle="tab"> <span class="icon s7-file"></span></a></li>
 
-                <li role="presentation"><a href="#tab3" aria-controls="messages" role="tab" data-toggle="tab"> <span class="icon s7-help2"></span></a></li>
+                <!--
+                <li role="presentation"><a href="#tab2" aria-controls="profile" role="tab" data-toggle="tab"> <span class="icon s7-chat"></span></a></li>
+                -->
             </ul>
         </div>
         <div class="tab-panel">
@@ -17,10 +19,11 @@
                 
                 <page-info-panel></page-info-panel>
 
-                <!--TODO: MAKE THIS COMPONENT HAVE COMPUTED PROPERTIES-->
                 <source-panel type="styles" title="Styles" placeholder="Add new style link..."></source-panel>
 
-                <!--TODO: MAKE THES INTO COMPONENTS-->
+                <source-panel type="scripts" title="Scripts" placeholder="Add new script link..."></source-panel>
+
+                <!--
                 <div id="tab2" role="tabpanel" class="tab-pane chat">
                     <div class="chat-contacts">
                         <div class="chat-sections">
@@ -87,54 +90,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="tab3" role="tabpanel" class="tab-pane faqs am-scroller nano">
-                    <div class="nano-content">
-                        <div class="content">
-                            <h2>FAQs</h2>
-                            <div id="accordion" role="tablist" aria-multiselectable="true" class="panel-group accordion">
-                                <div class="panel">
-                                    <div role="tab" class="panel-heading">
-                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#faq1" aria-expanded="true" aria-controls="collapseOne">
-                                                <div class="icon"><span class="s7-angle-down"></span></div><span class="title">Under Error 352</span></a></h4>
-                                    </div>
-                                    <div id="faq1" role="tabpanel" aria-labelledby="headingOne" class="panel-collapse collapse in">
-                                        <div class="panel-body">Suspendisse nec leo tortor rhoncus tincidunt. Duis sit amet rutrum elit.</div>
-                                    </div>
-                                </div>
-                                <div class="panel">
-                                    <div role="tab" class="panel-heading">
-                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#faq2" aria-expanded="false" aria-controls="collapseTwo" class="collapsed">
-                                                <div class="icon"><span class="s7-angle-down"></span></div><span class="title">Failure platform</span></a></h4>
-                                    </div>
-                                    <div id="faq2" role="tabpanel" aria-labelledby="headingTwo" class="panel-collapse collapse">
-                                        <div class="panel-body">Suspendisse nec leo tortor rhoncus tincidunt. Duis sit amet rutrum elit.</div>
-                                    </div>
-                                </div>
-                                <div class="panel">
-                                    <div role="tab" class="panel-heading">
-                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#faq3" aria-expanded="false" aria-controls="collapseThree" class="collapsed">
-                                                <div class="icon"><span class="s7-angle-down"></span></div><span class="title">Error 404</span></a></h4>
-                                    </div>
-                                    <div id="faq3" role="tabpanel" aria-labelledby="headingThree" class="panel-collapse collapse">
-                                        <div class="panel-body">Suspendisse nec leo tortor rhoncus tincidunt. Duis sit amet rutrum elit.</div>
-                                    </div>
-                                </div>
-                                <div class="panel">
-                                    <div role="tab" class="panel-heading">
-                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#faq4" aria-expanded="false" aria-controls="collapseThree" class="collapsed">
-                                                <div class="icon"><span class="s7-angle-down"></span></div><span class="title">New workstation</span></a></h4>
-                                    </div>
-                                    <div id="faq4" role="tabpanel" aria-labelledby="headingThree" class="panel-collapse collapse">
-                                        <div class="panel-body">Suspendisse nec leo tortor rhoncus tincidunt. Duis sit amet rutrum elit.</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="search">
-                        <input type="text" placeholder="Search..." name="q"><span class="s7-search"></span>
-                    </div>
-                </div>
+                -->
 
             </div>
         </div>
