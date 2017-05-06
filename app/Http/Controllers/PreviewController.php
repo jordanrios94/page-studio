@@ -16,8 +16,13 @@ class PreviewController extends Controller
         $data = !empty($request->all()) ? $request->all() : [
             'html' => '',
             'css' => '',
-            'js' => ''
+            'js' => '',
+            'scripts' => '[]',
+            'styles' => '[]'
         ];
+
+        $data['scripts'] = json_decode($data['scripts']);
+        $data['styles'] = json_decode($data['styles']);
 
         return view('pages.preview', $data);
     }

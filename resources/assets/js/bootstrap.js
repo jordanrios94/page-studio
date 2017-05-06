@@ -10,6 +10,7 @@ window._ = require('lodash');
 window.$ = window.jQuery = require('jquery');
 
 require('bootstrap-sass');
+window.Sortable = require('sortablejs');
 require('./../lib/jquery/jquery.ui.min');
 require('./../lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.min');
 window.FastClick = require('./../lib/fast-click/fast-click.min');
@@ -30,8 +31,13 @@ require('./helpers/notification');
  * using reactive data binding and reusable components. Vue's API is clean
  * and simple, leaving you to focus on building your next great project.
  */
-
 window.Vue = require('vue');
+
+Vue.directive('sortable', {
+  inserted: function (el, binding) {
+    var sortable = new Sortable(el, binding.value || {});
+  }
+});
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

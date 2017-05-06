@@ -5,6 +5,8 @@
             <input type="hidden" name="html" :value="html" />
             <input type="hidden" name="css" :value="css" />
             <input type="hidden" name="js" :value="js" />
+            <input type="hidden" name="scripts" :value="scripts" />
+            <input type="hidden" name="styles" :value="styles" />
             <input type="hidden" name="_token" :value="csrfToken">
         </form>
     </div>
@@ -16,7 +18,9 @@
             return {
                 html: '',
                 css: '',
-                js: ''
+                js: '',
+                scripts: [],
+                styles: []
             };
         },
         created() {
@@ -34,15 +38,16 @@
         methods: {
             updateData($data) {
                 for (var key in this.$data) {
-                    this[key] = $data[key]
+                    switch (key) {
+                        case 'scripts':
+                        case 'styles':
+                            this[key] = JSON.stringify($data[key]);
+                            break;
+                        default:
+                            this[key] = $data[key];   
+                            break;
+                    }
                 }
-
-                /*
-                _.forEach(_this.$data, function(key, value) {
-                    console.log(key);
-                    console.log(value);
-                    });
-                 */
 
                 return this;
             },

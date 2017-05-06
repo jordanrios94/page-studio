@@ -3,10 +3,10 @@
         <div class="nano-content">
             <div class="content">
                 <h2>{{ title }}</h2>
-                <ul class="sources-list">
+                <ul class="sources-list" v-sortable="{ onEnd: reorder, handle: '.s7-menu' }">
                     <li v-for="item in items" class="source-item">
                         <div class="icon left"><span class="icon s7-menu"></span></div>
-                        <div class="content"><input type="text" v-model="item.value" class="form-control input-xs" name="source"></div>
+                        <div class="content"><input type="text" v-model="item.value" class="form-control input-xs" name="source" @change="updatePage"></div>
                         <div class="icon right"><span class="icon s7-close" @click="removeItem(item)"></span></div>
                     </li>
                 </ul>
@@ -38,7 +38,6 @@
         },
         mounted() {
             this.items = this.getItems();
-            this.reorderItems();
         },
         methods: {
             getItems() {
@@ -46,36 +45,32 @@
             },
             addItem($e) {
                 const value = this.$el.querySelector('input[name="q"]').value;
-
                 this.items.push({
                     value: value
                 });
-
                 this.source = '';
+                this.updatePage();
             },
             removeItem(item) {
                 this.items.splice(this.items.indexOf(item), 1);
+                this.updatePage();
             },
-            reorderItems() {
-                let vm = this;
+            reorder({oldIndex, newIndex}) {
+                const vm = this;
+                let clone = _.clone(vm.items);
+                const movedItem = clone.splice(oldIndex, 1)[0];
+                vm.items = [];
 
-                $('#' + this.type).find('.sources-list').sortable({
-                    handle: '.s7-menu',
-                    axis: 'y',
-                    containment: 'parent',
-                    stop: function(e, ui) {
-                        const $items = $(this).find('.source-item');
-                        const items = [];
-
-                        $items.each(function (index, element) {
-                             items.push({
-                                 value: $(element).find('input[name="source"]').val()
-                             });
-                        });
-
-                        // TODO: FIX - NOT WORKING
-                        //vm.items =  items;
-                    }
+                setTimeout(function() {
+                    clone.splice(newIndex, 0, movedItem);
+                    vm.items = clone;
+                    vm.updatePage();
+                }, 1);
+            },
+            updatePage() {
+                Event.$emit('page_updated', {
+                    setting: this.type,
+                    value: this.items
                 });
             }
         }
