@@ -41,7 +41,7 @@
         },
         methods: {
             getItems() {
-                return Page ? JSON.parse(Page.data.page[this.type]) : [];
+                return window.Page ? JSON.parse(Page.data.page[this.type]) : [];
             },
             addItem($e) {
                 const value = this.$el.querySelector('input[name="q"]').value;
