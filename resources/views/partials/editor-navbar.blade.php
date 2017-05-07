@@ -38,7 +38,7 @@
                     @elseif ($state === 'update')
 						@if (Auth::check() && $user->id == $data['page']->creator_user_id)
                     	<li><a href="#" @click="update($event)">Update</a></li>	
-						@elseif (!Auth::check() && $data['page']->creator_user_id == 0 && $data['page']->creator_ip == $ip)
+						@elseif (!Auth::check() && $data['page']->creator_user_id == 0 && $data['page']->sid == $session_id)
 						<li><a href="#" @click="update($event)">Update</a></li>
 						@endif
                     @endif

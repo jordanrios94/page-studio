@@ -46,6 +46,7 @@
 
     window.Laravel = <?php echo json_encode([
         'csrfToken' => csrf_token(),
+        'apiToken' => md5(Session::getId())
     ]); ?>;
     TogetherJSConfig_toolName = 'Collaboration';
 </script>

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Page;
 use App\PageHistory;
 use App\Http\Helpers\PageHelper;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class EditorController extends Controller
 {
@@ -34,7 +36,7 @@ class EditorController extends Controller
                 'state' => 'create',
                 'data' => [],
                 'user' => $request->user(),
-                'ip' => $request->ip()
+                'session_id' => md5(Session::getId())
             ]
         ]);
     }
@@ -50,6 +52,7 @@ class EditorController extends Controller
         $page = new Page;
         $version = new PageHistory;
         $user = $request->user();
+        $sessionId = !empty($user) ? md5($request->session()->getId()) : $request->header('API-TOKEN');
 
         $page->id = PageHelper::generateId();
         $page->title = !empty($request->title) ? $request->title : $page->id;
@@ -58,7 +61,7 @@ class EditorController extends Controller
         $page->scripts = json_encode($request->scripts);
         $page->styles = json_encode($request->styles);
         $page->creator_user_id = !empty($user) ? $user->id : 0;
-        $page->creator_ip = $request->ip();
+        $page->sid = $sessionId;
 
         $version->page_id = $page->id;
         $version->html = !empty($request->html) ? $request->html : '';
@@ -112,6 +115,8 @@ class EditorController extends Controller
 
         $page = new Page;
         $latestPage = $page->getLatestPage($id);
+
+        $latestPage['creator'] = $latestPage['page']->creator_user_id != 0 ? User::find($latestPage['page']->creator_user_id): [];
         $latestPage['version']->html = base64_encode($latestPage['version']->html);
         $latestPage['version']->css = base64_encode($latestPage['version']->css);
         $latestPage['version']->js = base64_encode($latestPage['version']->js);
@@ -122,7 +127,7 @@ class EditorController extends Controller
                 'state' => 'update',
                 'data' => $latestPage,
                 'user' => $request->user(),
-                'ip' => $request->ip()
+                'session_id' => md5(Session::getId())
             ]
         ]);
     }
@@ -139,8 +144,9 @@ class EditorController extends Controller
         $page = Page::findOrFail($request->id);
         $version = new PageHistory;
         $user = $request->user();
+        $sessionId = !empty($user) ? md5($request->session()->getId()) : $request->header('API-TOKEN');
 
-        if (($page->creator_user_id != $user->id)|| (empty($user) && $page->creator_ip != $request->ip())) {
+        if ((!empty($user) && $page->creator_user_id != $user->id)|| (empty($user) && $page->sid != $sessionId)) {
             App::abort(401, 'Forbidden!');
         }
 

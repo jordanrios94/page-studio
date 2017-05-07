@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Page Studio
+                    <img src="/assets/img/page-studio.png" alt="logo" class="logo-img" style="filter: brightness(0) invert(0);">
                 </div>
             </div>
         </div>
