@@ -7,6 +7,7 @@ use App\PageHistory;
 use App\Http\Helpers\PageHelper;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EditorController extends Controller
 {
@@ -32,7 +33,8 @@ class EditorController extends Controller
                 'page' => 'editor',
                 'state' => 'create',
                 'data' => [],
-                'user' => $request->user()
+                'user' => $request->user(),
+                'ip' => $request->ip()
             ]
         ]);
     }
@@ -55,7 +57,8 @@ class EditorController extends Controller
         $page->settings = json_encode($request->settings);
         $page->scripts = json_encode($request->scripts);
         $page->styles = json_encode($request->styles);
-        $page->creator_user_id = !empty($user) ? $user : 0;
+        $page->creator_user_id = !empty($user) ? $user->id : 0;
+        $page->creator_ip = $request->ip();
 
         $version->page_id = $page->id;
         $version->html = !empty($request->html) ? $request->html : '';
@@ -118,7 +121,8 @@ class EditorController extends Controller
                 'page' => 'editor',
                 'state' => 'update',
                 'data' => $latestPage,
-                'user' => $request->user()
+                'user' => $request->user(),
+                'ip' => $request->ip()
             ]
         ]);
     }
@@ -136,18 +140,21 @@ class EditorController extends Controller
         $version = new PageHistory;
         $user = $request->user();
 
+        if (($page->creator_user_id != $user->id)|| (empty($user) && $page->creator_ip != $request->ip())) {
+            App::abort(401, 'Forbidden!');
+        }
+
         $page->title = !empty($request->title) ? $request->title : $page->id;
         $page->description = !empty($request->description) ? $request->description : '';
         $page->settings = json_encode($request->settings);
         $page->scripts = json_encode($request->scripts);
         $page->styles = json_encode($request->styles);
-        $page->creator_user_id = !empty($user) ? $user : 0;
 
         $version->page_id = $page->id;
         $version->html = !empty($request->html) ? $request->html : '';
         $version->css = !empty($request->css) ? $request->css : '';
         $version->js = !empty($request->js) ? $request->js : '';
-        $version->editor_user_id = $page->creator_user_id;
+        $version->editor_user_id = !empty($user) ? $user->id : 0;
 
         $savedPage = $page->save();
         $savedVersion = $version->save();

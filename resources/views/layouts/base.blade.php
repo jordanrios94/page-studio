@@ -32,11 +32,18 @@
 @yield('page')
 
 <script>
+    @if (Auth::check())
+    window.User = <?php echo json_encode([
+        'data' => Auth::user(),
+    ]); ?>;
+    @endif
+    
     @if (!empty($data))
     window.Page = <?php echo json_encode([
         'data' => $data,
     ]); ?>;
     @endif
+
     window.Laravel = <?php echo json_encode([
         'csrfToken' => csrf_token(),
     ]); ?>;

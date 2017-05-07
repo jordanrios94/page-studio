@@ -62,25 +62,27 @@ const app = new Vue({
         },
         save(e) {
             e.preventDefault();
+            const endpoint = window.User ? '/api/page/create' : '/api/page/create/anon';
 
-            return axios.post('/api/editor/create', this.getData())
-            .then(function (response) {
-                window.location.href = '/editor/' + response.data.page_id;
-            })
-            .catch(function (error) {
-                Notification.addMessage('Error!', 'Page could not be saved.', 'danger');
-            });
+            return axios.post(endpoint, this.getData())
+                .then(function (response) {
+                    window.location.href = '/page/' + response.data.page_id;
+                })
+                .catch(function (error) {
+                    Notification.addMessage('Error!', 'Page could not be saved.', 'danger');
+                });
         },
         update(e) {
             e.preventDefault();
+            const endpoint = window.User ? '/api/page/update' : '/api/page/update/anon';
 
-            return axios.post('/api/editor/update', this.getData())
-            .then(function (response) {
-                Notification.addMessage('Success', 'Page has been successfully updated.', 'success');
-            })
-            .catch(function (error) {
-                Notification.addMessage('Error!', 'Page could not be updated.', 'danger');
-            });
+            return axios.post(endpoint, this.getData())
+                .then(function (response) {
+                    Notification.addMessage('Success', 'Page has been successfully updated.', 'success');
+                })
+                .catch(function (error) {
+                    Notification.addMessage('Error!', 'Page could not be updated.', 'danger');
+                });
         },
         updatePreview() {
             Event.$emit('update_preview', {

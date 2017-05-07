@@ -17,6 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::post('/editor/create', 'EditorController@store');
-Route::post('/editor/update', 'EditorController@update');
+Route::post('/page/create/anon', 'EditorController@store');
+Route::post('/page/update/anon', 'EditorController@update');
+Route::middleware('auth:api')->post('/page/create', 'EditorController@store');
+Route::middleware('auth:api')->post('/page/update', 'EditorController@update');
