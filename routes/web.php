@@ -30,5 +30,5 @@ Route::get('/collection', 'CollectionController@index');
 Route::match(['get', 'post'], '/editor/preview', 'PreviewController@index');
 
 /** EDITOR ROUTES **/
-Route::get('/editor/create', 'EditorController@create');
-Route::get('/editor/{id}', 'EditorController@edit');
+Route::get('/page/create', 'EditorController@create');
+Route::get('/page/{id}', 'EditorController@edit');

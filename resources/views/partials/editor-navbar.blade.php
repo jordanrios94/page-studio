@@ -30,13 +30,17 @@
 
             <ul class="nav navbar-nav am-nav-right">
                 @if ($page === 'editor')
-                    <li><a href="/editor/create">New Page</a></li>
+                    <li><a href="/page/create">New Page</a></li>
                     <li><a href="#" class="collaborate-btn" @click="startCallaborate($event)" data-end-togetherjs-html="End Calloboration">Collaborate</a></li>
 
                     @if ($state === 'create')
                     <li><a href="#" @click="save($event)">Save</a></li>
                     @elseif ($state === 'update')
-                    <li><a href="#" @click="update($event)">Update</a></li>
+						@if (Auth::check() && $user->id == $data['page']->creator_user_id)
+                    	<li><a href="#" @click="update($event)">Update</a></li>	
+						@elseif (!Auth::check() && $data['page']->creator_user_id == 0 && $data['page']->creator_ip == $ip)
+						<li><a href="#" @click="update($event)">Update</a></li>
+						@endif
                     @endif
 
                     <!--<li class="dropdown">
