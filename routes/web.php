@@ -18,14 +18,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/termsandconditions', function () {
+    return view('pages.termsandconditions');
+});
+
 /** COLLECTION ROUTES **/
 Route::get('/home', 'HomeController@index');
-
 Route::get('/collection', 'CollectionController@index');
 
 /** PREVIEW ROUTES **/
 Route::match(['get', 'post'], '/editor/preview', 'PreviewController@index');
-
 
 /** EDITOR ROUTES **/
 Route::get('/editor/create', 'EditorController@create');
