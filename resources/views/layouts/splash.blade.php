@@ -26,57 +26,7 @@
 
 </head>
 
-<!-- TODO: FINISH STYLING THE LOGIN, REGISTER, RESET PASSWORD, AND FORGOTTEN PASSWORD PAGES -->
 <body class="am-splash-screen">
-	<div class="am-wrapper am-login">
-		<div class="am-content">
-			<div class="main-content">
-				<div class="login-container">
-					<div class="panel panel-default">
-						<div class="panel-heading"><img src="assets/img/logo-full-retina.png" alt="logo" width="150px" height="39px" class="logo-img"><span>Please enter your user information.</span></div>
-						
-                        <div class="panel-body">
-							<form action="index.html" method="get" class="form-horizontal">
-								<div class="login-form">
-									<div class="form-group">
-										<div class="input-group"><span class="input-group-addon"><i class="icon s7-user"></i></span>
-											<input id="username" type="text" placeholder="Username" autocomplete="off" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="input-group"><span class="input-group-addon"><i class="icon s7-lock"></i></span>
-											<input id="password" type="password" placeholder="Password" class="form-control">
-										</div>
-									</div>
-									<div class="form-group login-submit">
-										<button data-dismiss="modal" type="submit" class="btn btn-primary btn-lg">Log me in</button>
-									</div>
-									<div class="form-group footer row">
-										<div class="col-xs-6"><a href="#">Forgot Password?</a></div>
-										<div class="col-xs-6 remember">
-											<label for="remember">Remember Me</label>
-											<div class="am-checkbox">
-												<input type="checkbox" id="remember">
-												<label for="remember"></label>
-											</div>
-										</div>
-									</div>
-								</div>
-							</form>
-						</div>
-                        
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-    
-    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
-    <script src="/js/app.js" type="text/javascript"></script>
-    <script src="/assets/lib/amaretti/amaretti.js" type="text/javascript"></script>
+	@yield('page')
 </body>
 </html>
