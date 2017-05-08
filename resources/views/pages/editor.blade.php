@@ -19,6 +19,6 @@
         </div>
     </div>
 
-    @include('partials.right-sidebar')
+    @include('partials.right-sidebar', $context)
 </div>
 @endsection

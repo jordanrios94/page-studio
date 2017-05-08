@@ -14,7 +14,7 @@
 
                 @if (Auth::check())
 				<li class="dropdown">
-					<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle"><img src="/assets/img/avatar9.jpg"><span class="user-name">Jordan Rios</span><span class="angle-down s7-angle-down"></span></a>
+					<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle"><img src="{{ $user->profile_url }}"><span class="user-name">Jordan Rios</span><span class="angle-down s7-angle-down"></span></a>
 					<ul role="menu" class="dropdown-menu">
 						<li><a href="#"> <span class="icon s7-user"></span>My profile</a></li>
 						<li><a href="#"> <span class="icon s7-config"></span>Settings</a></li>
