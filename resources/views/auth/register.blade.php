@@ -13,7 +13,7 @@
 						<form action="{{ route('register') }}" parsley-validate="" novalidate="" method="POST" class="form-horizontal">
                             {{ csrf_field() }}
 							<div class="sign-up-form">
-								<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+								<div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
 									<div id="nick-handler" class="input-group">
                                         <span class="input-group-addon">
                                             <i class="icon s7-user"></i>
@@ -21,15 +21,15 @@
 										<input
                                             id="name"
                                             type="text"
-                                            name="name"
-                                            value="{{ old('name') }}"
+                                            name="username"
+                                            value="{{ old('username') }}"
                                             placeholder="Username"
                                             class="form-control"
                                             required
                                             autofocus>
-                                        @if ($errors->has('name'))
+                                        @if ($errors->has('username'))
                                             <span class="help-block">
-                                                <strong>{{ $errors->first('name') }}</strong>
+                                                <strong>{{ $errors->first('username') }}</strong>
                                             </span>
                                         @endif
 									</div>
