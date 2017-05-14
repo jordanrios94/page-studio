@@ -21,10 +21,6 @@
 <script>
     export default {
         props: ['page'],
-        data() {
-            return {
-            };
-        },
         computed: {
             createdFrom() {
                 return moment(this.page.created_at, 'YYYY-MM-DD hh:mm:ss').fromNow();
