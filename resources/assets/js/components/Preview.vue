@@ -1,7 +1,7 @@
 <template>
     <div class="editor-panel preview-panel">
-        <iframe name="preview" src="/editor/preview" width="100%" height="100%" frameborder="0"></iframe>
-        <form id="preview-form" action="/editor/preview" method="post" target="preview">
+        <iframe id="preview-iframe" name="preview" src="/page/preview" width="100%" height="100%" frameborder="0"></iframe>
+        <form id="preview-form" action="/page/preview" method="post" target="preview">
             <input type="hidden" name="html" :value="html" />
             <input type="hidden" name="css" :value="css" />
             <input type="hidden" name="js" :value="js" />

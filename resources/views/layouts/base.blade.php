@@ -31,29 +31,7 @@
 
 @yield('page')
 
-<script>
-    @if (Auth::check())
-    window.User = <?php echo json_encode([
-        'data' => Auth::user(),
-    ]); ?>;
-    @endif
-    
-    @if (!empty($data))
-    window.Page = <?php echo json_encode([
-        'data' => $data,
-    ]); ?>;
-    @endif
-
-    window.Laravel = <?php echo json_encode([
-        'csrfToken' => csrf_token(),
-        'apiToken' => md5(Session::getId())
-    ]); ?>;
-    TogetherJSConfig_toolName = 'Collaboration';
-</script>
-<script src="https://togetherjs.com/togetherjs-min.js"></script>
-<script src="/assets/lib/ace/ace.js" type="text/javascript"></script>
-<script src="/js/app.js" type="text/javascript"></script>
+@stack('script-body')
 <script src="/assets/lib/amaretti/amaretti.js" type="text/javascript"></script>
-
 </body>
 </html>

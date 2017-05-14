@@ -22,3 +22,29 @@
     @include('partials.right-sidebar', $context)
 </div>
 @endsection
+
+@push('script-body')
+<script>
+    @if (Auth::check())
+    window.User = <?php echo json_encode([
+        'data' => Auth::user(),
+    ]); ?>;
+    @endif
+    
+    @if (!empty($context['data']))
+    window.Page = <?php echo json_encode([
+        'data' => $context['data'],
+    ]); ?>;
+    @endif
+
+    window.Laravel = <?php echo json_encode([
+        'csrfToken' => csrf_token(),
+        'apiToken' => md5(Session::getId())
+    ]); ?>;
+    
+    TogetherJSConfig_toolName = 'Collaboration';
+</script>
+<script src="https://togetherjs.com/togetherjs-min.js"></script>
+<script src="/assets/lib/ace/ace.js" type="text/javascript"></script>
+<script src="/js/app.js" type="text/javascript"></script>
+@endpush

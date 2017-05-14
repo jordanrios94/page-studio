@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Page;
-use App\PageHistory;
-use App\Http\Helpers\PageHelper;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -14,18 +11,9 @@ use Illuminate\Support\Facades\Session;
 class EditorController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
@@ -39,59 +27,6 @@ class EditorController extends Controller
                 'session_id' => md5(Session::getId())
             ]
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $page = new Page;
-        $version = new PageHistory;
-        $user = $request->user();
-        $sessionId = !empty($user) ? md5($request->session()->getId()) : $request->header('API-TOKEN');
-
-        $page->id = PageHelper::generateId();
-        $page->title = !empty($request->title) ? $request->title : $page->id;
-        $page->description = !empty($request->description) ? $request->description : '';
-        $page->settings = json_encode($request->settings);
-        $page->scripts = json_encode($request->scripts);
-        $page->styles = json_encode($request->styles);
-        $page->creator_user_id = !empty($user) ? $user->id : 0;
-        $page->sid = $sessionId;
-
-        $version->page_id = $page->id;
-        $version->html = !empty($request->html) ? $request->html : '';
-        $version->css = !empty($request->css) ? $request->css : '';
-        $version->js = !empty($request->js) ? $request->js : '';
-        $version->editor_user_id = $page->creator_user_id;
-
-        $savedPage = $page->save();
-        $savedVersion = $version->save();
-
-        if (!$savedPage || !$savedVersion) {
-            App::abort(500, 'Error creating the new page!');
-        } else {
-            return json_encode([
-                'page_id' => $page->id,
-                'status' => 'successful',
-                'message' => 'Page successfully created!'
-            ]);
-        }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -131,60 +66,4 @@ class EditorController extends Controller
             ]
         ]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
-    {
-        $page = Page::findOrFail($request->id);
-        $version = new PageHistory;
-        $user = $request->user();
-        $sessionId = !empty($user) ? md5($request->session()->getId()) : $request->header('API-TOKEN');
-
-        if ((!empty($user) && $page->creator_user_id != $user->id)|| (empty($user) && $page->sid != $sessionId)) {
-            App::abort(401, 'Forbidden!');
-        }
-
-        $page->title = !empty($request->title) ? $request->title : $page->id;
-        $page->description = !empty($request->description) ? $request->description : '';
-        $page->settings = json_encode($request->settings);
-        $page->scripts = json_encode($request->scripts);
-        $page->styles = json_encode($request->styles);
-
-        $version->page_id = $page->id;
-        $version->html = !empty($request->html) ? $request->html : '';
-        $version->css = !empty($request->css) ? $request->css : '';
-        $version->js = !empty($request->js) ? $request->js : '';
-        $version->editor_user_id = !empty($user) ? $user->id : 0;
-
-        $savedPage = $page->save();
-        $savedVersion = $version->save();
-
-        if (!$savedPage || !$savedVersion) {
-            App::abort(500, 'Error creating the new page!');
-        } else {
-            return json_encode([
-                'page_id' => $page->id,
-                'status' => 'successful',
-                'message' => 'Page successfully updated!'
-            ]);
-        }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-    
 }

@@ -27,4 +27,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get the pages created the user.
+     */
+    public function pages()
+    {
+        return $this->hasMany('App\Page', 'creator_user_id');
+    }
 }
