@@ -41,7 +41,7 @@ const app = new Vue({
     },
     created() {
         let vm = this;
-        this.initData();
+        vm.initData();
 
         Event.$on('editor_updated', function($event) {
             vm[$event.type] = $event.value;

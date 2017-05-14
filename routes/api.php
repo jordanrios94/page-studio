@@ -17,7 +17,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/page/create/anon', 'EditorController@store');
-Route::post('/page/update/anon', 'EditorController@update');
-Route::middleware('auth:api')->post('/page/create', 'EditorController@store');
-Route::middleware('auth:api')->post('/page/update', 'EditorController@update');
+Route::get('/pages/{username}', 'PageController@pages');
+
+Route::post('/page/create/anon', 'PageController@store');
+Route::post('/page/update/anon', 'PageController@update');
+
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::post('/page/create', 'PageController@store');
+    Route::post('/page/update', 'PageController@update');
+});

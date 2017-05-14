@@ -6,15 +6,17 @@ window._ = require('lodash');
  * for JavaScript based Bootstrap features such as modals and tabs. This
  * code may be modified to fit the specific needs of your application.
  */
-
 window.$ = window.jQuery = require('jquery');
-
-require('bootstrap-sass');
 window.Sortable = require('sortablejs');
-require('./../lib/jquery/jquery.ui.min');
-require('./../lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.min');
 window.FastClick = require('./../lib/fast-click/fast-click.min');
 window.tinycolor = require('./../lib/tiny-color/tiny-color.min');
+window.beautify_js = require('js-beautify');
+window.beautify_css = require('js-beautify').css;
+window.beautify_html = require('js-beautify').html;
+
+require('bootstrap-sass');
+require('./../lib/jquery/jquery.ui.min');
+require('./../lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.min');
 require('./../lib/touch-swipe/touch-swipe.min');
 require('./../lib/bootstrap-breakpoint/breakpoint.min');
 require('./../lib/jquery.gritter/js/jquery.gritter');

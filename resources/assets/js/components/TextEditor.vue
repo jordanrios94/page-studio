@@ -47,6 +47,14 @@
                 const _this = this;
                 const editor = ace.edit(_this.divID);
 
+                editor.commands.addCommand({
+                    name: 'beautify',
+                    exec: function() {
+                        _this.beautify(editor);
+                    },
+                    bindKey: {mac: "cmd-p", win: "ctrl-p"}
+                });
+
                 editor.getSession().setMode(_this.mode);
                 editor.getSession().setTabSize(2);
                 editor.getSession().setUseSoftTabs(true);
@@ -60,6 +68,23 @@
                     _this.value = editor.getValue();
                     Event.$emit('editor_updated', _this);
                 });
+            },
+            beautify(editor) {
+                let uglyCode = editor ? editor.getValue() : '';
+                switch(this.type) {
+                    case 'js':
+                        var sexyCode = beautify_js(uglyCode);
+                        break;
+                    case 'css':
+                        var sexyCode = beautify_css(uglyCode);
+                        break;
+                    case 'html':
+                        var sexyCode = beautify_html(uglyCode, {
+                            'indent_size': 2
+                        });
+                        break;
+                }
+                editor.setValue(sexyCode);
             }
         }
     }
