@@ -19,36 +19,8 @@
               </div>
             </div>
             </div>
-          <div class="gallery-container">
-
-            @foreach ($pages as $page)
-            <div class="item">
-              <div class="photo">
-                <div class="img"><iframe name="preview" src="/page/preview/{{ $page->id }}" height="100%" style="position: absolute;" frameborder="0"></iframe>
-                  <div class="over">
-                    <div class="func">
-                      <a href="#"><i class="icon s7-link"></i></a>
-                      <a href="/page/{{ $page->id }}" class="image-zoom"><i class="icon s7-monitor"></i></a></div>
-                  </div>
-                </div>
-                <div class="description">
-                  <div class="icon"><a href="#"><i class="s7-like"></i></a></div>
-                  <div class="desc">
-                    <h4>{{ $page->title }}</h4><span>{{ $page->created_at->diffForHumans() }}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            @endforeach
-
-          </div>
-          
-          @if ($pages->lastPage() > 1)
-          <div class="text-center">
-            <button class="btn btn-primary">Load more</button>
-          </div>
-          @endif
-        </div>
+            <pages></pages>
+      </div>
     </div>
 </div>
 @endsection
@@ -57,14 +29,15 @@
 @push('script-body')
 <script>
     @if (Auth::check())
-    window.User = <?php echo json_encode([
-        'data' => Auth::user(),
-    ]); ?>;
+    window.User = <?php echo json_encode(Auth::user()); ?>;
     @endif
 
-     
     window.Profile = <?php echo json_encode([
         'data' => $profile
+    ]); ?>;
+
+    window.Pages = <?php echo json_encode([
+      'data' => $pages
     ]); ?>;
 
     window.Laravel = <?php echo json_encode([
