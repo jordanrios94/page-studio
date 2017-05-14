@@ -5,7 +5,7 @@
         <div class="user-info">
             <img src="{{ $data['creator']->profile_url }}">
             <span class="position">A page by</span>
-            <span class="name">{{ $data['creator']->username }}</span>
+            <span class="name"><a href="/profile/{{ $data['creator']->username }}">{{ $data['creator']->username }}</a></span>
         </div>
         @endif
 

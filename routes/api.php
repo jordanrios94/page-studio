@@ -25,4 +25,7 @@ Route::post('/page/update/anon', 'PageController@update');
 Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/page/create', 'PageController@store');
     Route::post('/page/update', 'PageController@update');
+    Route::post('/profile/update', 'ProfileController@updateProfile');
+    Route::post('/profile/updateEmail', 'ProfileController@updateEmail');
+    Route::post('/profile/updatePassword', 'ProfileController@updatePassword');
 });

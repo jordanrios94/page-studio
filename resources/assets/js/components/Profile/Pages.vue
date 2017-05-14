@@ -17,7 +17,7 @@
     export default {
         components: {
             page: require('./Page.vue')
-        }, 
+        },
         data() {
             return {
                 username: '',
