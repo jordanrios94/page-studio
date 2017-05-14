@@ -7,31 +7,26 @@
 
     <div class="am-content">
         <div class="main-content">
-            <div class="user-profile">
-                <div class="user-display">
-              <div class="photo"><img src="{{ $profile->cover_url }}"></div>
-              <div class="bottom">
-                <div class="user-avatar"><img src="{{ $profile->profile_url }}"></div>
-                <div class="user-info">
-                  <h4>{{ $profile->name or $profile->username }} <small>{{ '@' . $profile->username }}</small></h4>
-                  <span>{{ $profile->bio }}</span>
+          <div class="user-profile">
+              <div class="user-display">
+                <div class="photo"><img src="{{ $profile->cover_url }}"></div>
+                <div class="bottom">
+                  <div class="user-avatar"><img src="{{ $profile->profile_url }}"></div>
+                  <div class="user-info">
+                    <h4>{{ $profile->name or $profile->username }} <small>{{ '@' . $profile->username }}</small></h4>
+                    <span>{{ $profile->bio }}</span>
+                  </div>
                 </div>
               </div>
             </div>
-            </div>
             <pages></pages>
+          </div>
       </div>
     </div>
-</div>
 @endsection
-
 
 @push('script-body')
 <script>
-    @if (Auth::check())
-    window.User = <?php echo json_encode(Auth::user()); ?>;
-    @endif
-
     window.Profile = <?php echo json_encode([
         'data' => $profile
     ]); ?>;

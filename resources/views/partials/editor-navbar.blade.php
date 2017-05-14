@@ -32,7 +32,7 @@
 					<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle"><img src="{{ $user->profile_url }}"><span class="user-name">Jordan Rios</span><span class="angle-down s7-angle-down"></span></a>
 					<ul role="menu" class="dropdown-menu">
 						<li><a href="/profile/{{ $user->username }}"> <span class="icon s7-user"></span>My profile</a></li>
-						<li><a href="#"> <span class="icon s7-config"></span>Settings</a></li>
+						<li><a href="/profile/settings"> <span class="icon s7-config"></span>Settings</a></li>
 						<li>
 							<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
 								<span class="icon s7-power"></span>Sign Out

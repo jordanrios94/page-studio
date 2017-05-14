@@ -36,5 +36,6 @@ Route::get('/page/{id}', 'EditorController@edit');
 /** PROFILE ROUTES **/
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', 'ProfileController@index');
+    Route::get('/profile/settings', 'ProfileController@edit');
 });
 Route::get('/profile/{username}', 'ProfileController@show');
