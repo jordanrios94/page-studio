@@ -19,6 +19,8 @@ window.Event = new Vue();
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('pages', require('./components/Profile/Pages.vue'));
+
 const app = new Vue({
     el: '#app',
     data: {
@@ -27,7 +29,7 @@ const app = new Vue({
         bio: '',
         email: '',
         profile_url: '',
-        cover_url: '',
+        cover_url: ''
     },
     created() {
         let vm = this;
@@ -36,7 +38,7 @@ const app = new Vue({
     methods: {
         initData() {
             const profile = window.Profile ? Profile.data : {};
-
+            
             this.name = profile.name || '';
             this.username = profile.username || '';
             this.bio = profile.bio || '';

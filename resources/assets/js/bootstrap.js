@@ -13,6 +13,7 @@ window.tinycolor = require('./../lib/tiny-color/tiny-color.min');
 window.beautify_js = require('js-beautify');
 window.beautify_css = require('js-beautify').css;
 window.beautify_html = require('js-beautify').html;
+window.moment = require('moment');
 
 require('bootstrap-sass');
 require('./../lib/jquery/jquery.ui.min');
