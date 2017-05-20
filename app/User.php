@@ -29,10 +29,18 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the pages created the user.
+     * Get the pages the user has created.
      */
     public function pages()
     {
         return $this->hasMany('App\Page', 'creator_user_id');
     }
+
+    /**
+     * Get the likes the user has made on the site.
+     */
+     public function likes()
+     {
+         return $this->hasMany('App\PageLike', 'user_id');
+     }
 }

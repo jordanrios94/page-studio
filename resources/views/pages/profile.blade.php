@@ -27,6 +27,12 @@
 
 @push('script-body')
 <script>
+    @if (Auth::check())
+    window.User = <?php echo json_encode([
+        'data' => Auth::user(),
+    ]); ?>;
+    @endif
+
     window.Profile = <?php echo json_encode([
         'data' => $profile
     ]); ?>;

@@ -38,10 +38,12 @@
         methods: {
             getPages() {
                 let vm = this;
+                const endpoint  = window.User  ? '/api/pages/' :  '/api/pages/anon/';
+                
                 vm.showMoreBtn = false;
                 vm.showLoadingBtn = true;
 
-                return axios.get('/api/pages/' + this.username, {
+                return axios.get(endpoint + this.username, {
                     params: {
                         page: ++this.page
                     }

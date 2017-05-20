@@ -22,9 +22,6 @@ Route::get('/termsandconditions', function () {
     return view('pages.termsandconditions');
 });
 
-/** TODO: GET RID OF HOME ROUTE **/
-Route::get('/home', 'HomeController@index');
-
 /** PREVIEW ROUTES **/
 Route::match(['get', 'post'], '/page/preview', 'PreviewController@index');
 Route::match(['get'], '/page/preview/{id}', 'PreviewController@show');

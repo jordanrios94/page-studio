@@ -13,6 +13,6 @@ class PageHistory extends Model
      */
     public function page()
     {
-        return $this->belongsTo('App\Page', 'id');
+        return $this->belongsTo('App\Page', 'page_id');
     }
 }

@@ -9,8 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!--TODO: CHANGE FAVICON-->
-    <link rel="shortcut icon" href="/assets/img/pi-icon.png">
+    <link rel="shortcut icon" href="/assets/img/page-studio-icon-white.png">
 
     <title>Page Studio</title>
 
@@ -23,7 +22,6 @@
     <link rel="stylesheet" type="text/css" href="/assets/lib/stroke-7/style.css"/>
     <link rel="stylesheet" type="text/css" href="/assets/lib/jquery.nanoscroller/css/nanoscroller.css"/>
     <link rel="stylesheet" href="/assets/css/app.css" type="text/css"/>
-
 </head>
 
 <body class="am-splash-screen">
