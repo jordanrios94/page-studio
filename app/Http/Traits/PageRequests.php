@@ -4,6 +4,14 @@ namespace App\Http\Traits;
 
 trait PageRequests
 {
+    /**
+     * This method is used to get the paginated pages.
+     *
+     * @param  App\User     $creator
+     * @param  App\User     $user
+     * @param  App\PageLike $pageLike
+     * @return Illuminate\Database\Eloquent\Collection
+     */
     public function getPaginatedPages($creator, $user, $pageLike)
     {
         $userID = empty($user) ? 0 : $user->id;
