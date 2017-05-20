@@ -37,8 +37,7 @@ class PreviewController extends Controller
     public function show($id, Request $request)
     {
         $page = new Page;
-        $page = $page->getPage($id);
-        $latestPage = $page->getLatestPage($page);
+        $latestPage = $page->getLatestPage($id);
 
         return view('pages.preview', [
             'html' => $latestPage['version']->html,

@@ -49,8 +49,7 @@ class EditorController extends Controller
         if (empty($id)) abort(404);
 
         $page = new Page;
-        $page = $page->getPage($id);
-        $latestPage = $page->getLatestPage($page);
+        $latestPage = $page->getLatestPage($id);
 
         $latestPage['creator'] = $latestPage['page']->creator_user_id != 0 ? User::find($latestPage['page']->creator_user_id): [];
         $latestPage['version']->html = base64_encode($latestPage['version']->html);

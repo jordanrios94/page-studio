@@ -41,8 +41,9 @@ class Page extends Model
      * @param string $id
      * @return array
      */
-    public function getLatestPage($page)
+    public function getLatestPage($id)
     {
+        $page = $this->getPage($id);
         $latestVersion = $page->versions()->orderBy('created_at', 'desc')->firstOrFail();
 
         return [
