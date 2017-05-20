@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
-     * Return the logged in user's profile.
+     * Return the authenticated user's profile.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
