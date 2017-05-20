@@ -101,8 +101,8 @@ const app = new Vue({
             );
         },
         showFieldMessages(field, key) {
-            _.forEach(field, function(message) {
-                Notification.addMessage('Error!', message, 'danger');
+            _.forEach(field, message => {
+                Notification.addMessage('', message, 'danger');
             });
         },
         getProfileData() {

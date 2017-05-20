@@ -17,14 +17,33 @@ class Page extends Model
     }
 
     /**
-     * Get the latest page details using an ID
+     * Get the likes for the page.
+     */
+    public function likes()
+    {
+        return $this->hasMany('App\PageLike', 'page_id');
+    }
+
+    /**
+     * Get the page using its ID.
+     *
+     * @param string $id
+     * @return App\Page
+     */
+    public function getPage($id)
+    {
+        return $this->where('id', $id)->withCount('likes')->firstOrFail();
+    }
+
+    /**
+     * Get the latest page details using its ID.
      *
      * @param string $id
      * @return array
      */
     public function getLatestPage($id)
     {
-        $page = $this->where('id', $id)->firstOrFail();
+        $page = $this->getPage($id);
         $latestVersion = $page->versions()->orderBy('created_at', 'desc')->firstOrFail();
 
         return [

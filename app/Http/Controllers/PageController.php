@@ -4,23 +4,58 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Page;
+use App\PageLike;
 use App\PageHistory;
 use App\Http\Helpers\PageHelper;
+use App\Http\Traits\PageRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class PageController extends Controller
 {
+    use PageRequests;
+
     /**
-     * API endpoint to return paginated list of pages based on the username
+     * API endpoint to return paginated list of pages based on the username.
      *
      * @param  string  $username
-     * @return App\Page
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function pages($username)
+    public function pages($username, Request $request)
     {
         $creator = User::where('username', '=', $username)->firstOrFail();
-        return $creator->pages()->orderBy('created_at', 'desc')->paginate(8);
+
+        return $this->getPaginatedPages($creator, $request->user(), new PageLike);
+    }
+
+    /**
+     * API endpoint for when an authenticated user likes a page.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function like(Request $request)
+    {
+        $pageID = $request->page_id;
+        $userID = $request->user()->id;
+
+        if (empty($pageID)) abort(422);
+
+        $pageLike = new PageLike;
+        $like = $pageLike->get($userID, $pageID);
+
+        if (empty($like)) {
+            $pageLike->page_id = $pageID;
+            $pageLike->user_id = $userID;
+            $pageLike->save();
+        } else {
+            $like->delete();
+        }
+
+        return [
+            'updated' => true
+        ];
     }
 
     /**

@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Page;
+use App\PageLike;
+use App\Http\Traits\PageRequests;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+
 class ProfileController extends Controller
 {
+    use PageRequests;
+
     /**
      * Redirect the logged in user to their profile
      *
@@ -33,15 +38,16 @@ class ProfileController extends Controller
      */
     public function show($username, Request $request)
     {
+        $user = $request->user();
         $creator = User::where('username', '=', $username)->firstOrFail();
-        $pages = $creator->pages()->orderBy('created_at', 'desc')->paginate(8);
+        $pages = $this->getPaginatedPages($creator, $user, new PageLike);
 
         return view('pages.profile', [
             'context' => [
                 'title' => $username,
                 'page' => 'profile',
                 'state' => 'none',
-                'user' => $request->user()
+                'user' => $user
             ],
             'profile' => $creator,
             'pages' => $pages

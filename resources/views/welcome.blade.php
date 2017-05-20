@@ -70,7 +70,7 @@
                 <div class="top-right links">
                     @if (Auth::check())
                         <a href="{{ url('/page/create') }}">New Page</a>
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/profile') }}">Profile</a>
                     @else
                         <a href="{{ url('/page/create') }}">New Page</a>
                         <a href="{{ url('/login') }}">Login</a>
