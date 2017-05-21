@@ -55,32 +55,32 @@
                         message = 'You must be logged in to like this page.';
                         break;
                     case 422:
+                        this.updateLike();
                         message = 'No page has been specified.';
                         break;
                     default:
+                        this.updateLike();
                         message = 'This action cannot be performed at thim moment.';
                         break;
                 }
 
                 Notification.addMessage('', message, 'danger');
             },
+            updateLike() {
+                if (!window.User) return false;
+
+                this.page.hasLiked = !this.page.hasLiked;
+
+                return !this.page.hasLiked && this.page.likes_count-- || this.page.likes_count++;
+            },
             like(e) {
                 e.preventDefault();
-                let vm = this;
+                this.updateLike();
 
                 return axios.post('/api/page/like', {
                         page_id: this.page.id
                     })
-                    .then(function (response) {
-                        if (vm.page.hasLiked) {
-                            vm.page.likes_count--;
-                        } else {
-                            vm.page.likes_count++;
-                        }
-
-                        vm.page.hasLiked = !vm.page.hasLiked;
-                    })
-                    .catch(vm.showError);
+                    .catch(this.showError);
             },
             copyToClipbard(e) {
                 e.preventDefault();
