@@ -15,4 +15,14 @@ class PageHistory extends Model
     {
         return $this->belongsTo('App\Page', 'page_id');
     }
+
+    /**
+     * Delete the history of the page.
+     *
+     * @param string $pageID
+     */
+    public function deleteHistory($pageID)
+    {
+        return $this->where('page_id', $pageID)->delete();
+    }
 }

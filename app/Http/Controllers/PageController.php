@@ -38,8 +38,8 @@ class PageController extends Controller
      */
     public function like(Request $request)
     {
-        $pageID = $request->page_id;
         $userID = $request->user()->id;
+        $pageID = $request->page_id;
 
         if (empty($pageID)) abort(422);
 
@@ -56,6 +56,33 @@ class PageController extends Controller
 
         return [
             'updated' => true
+        ];
+    }
+
+    /**
+     * API endpoint for when a user deletes a page.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request)
+    {
+        $like = new PageLike;
+        $history = new PageHistory;
+        $userID = $request->user()->id;
+        $pageID = $request->page_id;
+        $page = Page::findOrFail($pageID);
+
+        if ($page->creator_user_id != $userID) {
+            abort(401, 'This action is not allowed.');
+        }
+
+        $like->deleteLikes($pageID);
+        $history->deleteHistory($pageID);
+        $page->delete();
+
+        return [
+            'deleted' => true
         ];
     }
 
@@ -91,7 +118,7 @@ class PageController extends Controller
         $savedVersion = $version->save();
 
         if (!$savedPage || !$savedVersion) {
-            App::abort(500, 'Error creating the new page!');
+            abort(500, 'Error creating the new page!');
         } else {
             return json_encode([
                 'page_id' => $page->id,
@@ -116,7 +143,7 @@ class PageController extends Controller
         $sessionId = !empty($user) ? md5(Session::getId()) : $request->header('API-TOKEN');
 
         if ((!empty($user) && $page->creator_user_id != $user->id)|| (empty($user) && $page->sid != $sessionId)) {
-            App::abort(401, 'Forbidden!');
+            abort(401, 'Forbidden!');
         }
 
         $page->title = !empty($request->title) ? $request->title : $page->id;
@@ -135,7 +162,7 @@ class PageController extends Controller
         $savedVersion = $version->save();
 
         if (!$savedPage || !$savedVersion) {
-            App::abort(500, 'Error creating the new page!');
+            abort(500, 'Error creating the new page!');
         } else {
             return json_encode([
                 'page_id' => $page->id,

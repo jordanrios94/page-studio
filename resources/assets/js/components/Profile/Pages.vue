@@ -34,6 +34,8 @@
             this.pages = pagesData.data || [];
             this.showMoreBtn = pagesData.current_page < pagesData.last_page;
             this.username = profile.username;
+
+            Event.$on('delete_page', this.deletePage);
         },
         methods: {
             getPages() {
@@ -55,8 +57,11 @@
                     vm.showMoreBtn = pagesData.current_page < pagesData.last_page;
                 })
                 .catch(function (error) {
-                    Notification.addMessage('Error!', 'Something went wrong. Pages could not be loaded.', 'danger');
+                    Notification.addMessage('', 'Something went wrong. Pages could not be loaded.', 'danger');
                 });
+            },
+            deletePage(index) {
+                this.pages.splice(index, 1);
             }
         }
     }

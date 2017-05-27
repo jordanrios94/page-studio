@@ -22,6 +22,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/page/like', 'PageController@like');
     Route::post('/page/create', 'PageController@store');
     Route::post('/page/update', 'PageController@update');
+    Route::delete('/page/delete', 'PageController@delete');
     Route::get('/pages/{username}', 'PageController@pages');
     Route::post('/profile/update', 'ProfileController@updateProfile');
     Route::post('/profile/updateEmail', 'ProfileController@updateEmail');
