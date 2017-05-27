@@ -9,6 +9,7 @@
 		.photo{
 			max-height: 300px;
 			overflow: hidden;
+			position: relative;
 
 			img{
 				width: 100%;
@@ -17,6 +18,64 @@
 					min-height: 130px;
 				}
 			}
+
+			.over{
+				top: 0;
+				opacity: 0;
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				background: rgba(red(@primary-color), green(@primary-color), blue(@primary-color), 0.8);
+				transition: opacity 300ms ease;
+				-webkit-transition: opacity 300ms ease;
+
+				.func{
+					  margin-top: -80px;
+					  position: relative;
+					  top: 50%;
+					  text-align: center;
+					  transition: margin-top 200ms ease-in-out;
+
+					  a{
+					  	display: inline-block;
+					  	height: 50px;
+					  	width: 50px;
+					  	margin-right: 10px;
+					  	background: rgba(255,255,255,0.2);
+					  	border-radius: 50%;
+
+					   	&:hover{
+								background: rgba(255,255,255,0.3);
+							}
+
+							i{
+							  font-size: 20px;
+							  color: @light-color;
+							  line-height: 2.4;
+							}
+
+							@media @phone{
+								margin-right: 0px;
+							}
+						}
+					}
+			}
+
+			&:hover{	
+				.over{
+					opacity: 1;
+
+					.func{
+						margin-top: -25px;
+
+						@media @phone{
+							margin-top: -45px;
+						}
+					}
+				}
+			}
+
+
 		}
 
 		.bottom{
@@ -60,6 +119,61 @@
 					@media @phone{
 						width: 70px;
 						height: 70px;
+					}
+				}
+
+				.over{
+					top: 3px;
+					left: 3px;
+					opacity: 0;
+					position: absolute;
+					height: 129px;
+					width: 129px;
+					background: rgba(red(@primary-color), green(@primary-color), blue(@primary-color), 0.8);
+					transition: opacity 300ms ease;
+					-webkit-transition: opacity 300ms ease;
+					border-radius: 50%;
+
+					.func{
+					  margin-top: -80px;
+					  position: relative;
+					  top: 50%;
+					  text-align: center;
+					  transition: margin-top 200ms ease-in-out;
+
+					  a{
+					  	display: inline-block;
+					  	height: 50px;
+					  	margin-right: 0px;
+					  	width: 50px;
+					  	background: rgba(255,255,255,0.2);
+					  	border-radius: 50%;
+
+					   	&:hover{
+								background: rgba(255,255,255,0.3);
+							}
+
+							i{
+							  font-size: 20px;
+							  color: @light-color;
+							  line-height: 2.4;
+							}
+						}
+					}
+
+					@media @phone{
+						width: 64px;
+						height: 64px;
+					}
+				}
+
+				&:hover{	
+					.over{
+						opacity: 1;
+
+						.func{
+							margin-top: -25px;
+						}
 					}
 				}
 

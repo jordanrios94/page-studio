@@ -1,10 +1,16 @@
 <?php
 
-namespace App\Http\Helpers;
+namespace App\Http\Traits;
 
-class PageHelper
+trait ModelCreation
 {
-    public static function generateId($length = 10)
+    /**
+     * This method is used to generate a new ID for record.
+     *
+     * @param  int    $length
+     * @return string
+     */
+    public function generateId($length = 10)
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);

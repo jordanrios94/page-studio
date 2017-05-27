@@ -6,7 +6,7 @@ use App\User;
 use App\Page;
 use App\PageLike;
 use App\PageHistory;
-use App\Http\Helpers\PageHelper;
+use App\Http\Traits\ModelCreation;
 use App\Http\Traits\PageRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 class PageController extends Controller
 {
     use PageRequests;
+    use ModelCreation;
 
     /**
      * API endpoint to return paginated list of pages based on the username.
@@ -71,7 +72,7 @@ class PageController extends Controller
         $user = $request->user();
         $sessionId = !empty($user) ? md5(Session::getId()) : $request->header('API-TOKEN');
 
-        $page->id = PageHelper::generateId();
+        $page->id = $this->generateId();
         $page->title = !empty($request->title) ? $request->title : $page->id;
         $page->description = !empty($request->description) ? $request->description : '';
         $page->settings = json_encode($request->settings);

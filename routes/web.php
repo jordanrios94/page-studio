@@ -36,3 +36,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile/settings', 'ProfileController@edit');
 });
 Route::get('/profile/{username}', 'ProfileController@show');
+
+Route::get('/profile/{type}/{filename}', 'FileController@showProfileImage');

@@ -56,7 +56,7 @@
                 })
                 .catch(function (error) {
                     Notification.addMessage('Error!', 'Something went wrong. Pages could not be loaded.', 'danger');
-                });;
+                });
             }
         }
     }

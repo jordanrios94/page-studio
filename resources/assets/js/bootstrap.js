@@ -15,14 +15,13 @@ window.beautify_css = require('js-beautify').css;
 window.beautify_html = require('js-beautify').html;
 window.moment = require('moment');
 
+require('cropit');
 require('bootstrap-sass');
 require('./../lib/jquery/jquery.ui.min');
 require('./../lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.min');
 require('./../lib/touch-swipe/touch-swipe.min');
 require('./../lib/bootstrap-breakpoint/breakpoint.min');
 require('./../lib/jquery.gritter/js/jquery.gritter');
-// require('./../lib/amaretti/amaretti');
-
 
 /**
  * We'll load all helper classes created for the application to use.
