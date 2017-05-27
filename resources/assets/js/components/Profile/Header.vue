@@ -3,7 +3,7 @@
         <div class="user-display">
             <div class="photo">
                 <img :src="cover_url"/>
-                <div class="over">
+                <div class="over" v-if="edit">
                     <div class="func">
                         <a href="#" @click="showModal" data-image="cover_url" data-width="1500" data-height="300"><i class="icon s7-camera"></i></a>
                     </div>
@@ -12,7 +12,7 @@
             <div class="bottom">
                 <div class="user-avatar">
                     <img :src="profile_url" />
-                    <div class="over">
+                    <div class="over" v-if="edit">
                         <div class="func">
                             <a href="#" @click="showModal" data-image="profile_url" data-width="300" data-height="300"><i class="icon s7-camera"></i></a>
                         </div>
@@ -28,6 +28,12 @@
 </template>
 <script>
     export default {
+        props: {
+            'edit': {
+                type: Boolean,
+                required: true
+            }
+        },
         data() {
             return {
                 username: '',

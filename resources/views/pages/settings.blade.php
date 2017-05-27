@@ -7,9 +7,7 @@
 
     <div class="am-content">
         <div class="main-content">
-
-            <profile-header></profile-header>
-            
+            <profile-header :edit="true"></profile-header>
             <div class="tab-container">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
@@ -20,10 +18,10 @@
                     <account-tab></account-tab>
                 </div>
             </div>
-            
         </div>
     </div>
     <modal></modal>
+    
 </div>
 @endsection
 
