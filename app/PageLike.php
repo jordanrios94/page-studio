@@ -37,4 +37,14 @@ class PageLike extends Model
             ['page_id', '=', $pageID]
         ])->first();
     }
+
+    /**
+     * Delete the likes of the page.
+     *
+     * @param string $pageID
+     */
+    public function deleteLikes($pageID)
+    {
+        return $this->where('page_id', $pageID)->delete();
+    }
 }

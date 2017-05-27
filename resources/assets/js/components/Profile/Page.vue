@@ -4,9 +4,11 @@
             <div class="img">
                 <iframe name="preview" :src="previewUrl" height="100%" style="position: absolute;" frameborder="0"></iframe>
                 <div class="over">
-                <div class="func">
-                    <a href="#" @click="copyToClipbard"><i class="icon s7-link"></i></a>
-                    <a :href="pageUrl" class="image-zoom"><i class="icon s7-monitor"></i></a></div>
+                    <div class="func">
+                        <a href="#" @click="copyToClipbard"><i class="icon s7-link"></i></a>
+                        <a :href="pageUrl"><i class="icon s7-monitor"></i></a>
+                        <a href="#" @click="deletePage" v-if="belongsToUser"><i class="icon s7-trash"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="description">
@@ -40,13 +42,16 @@
             },
             previewUrl() {
                 return '/page/preview/' +  this.page.id;
+            },
+            belongsToUser() {
+                return window.User && window.Profile && window.User.data.id === window.Profile.data.id;
             }
         },
         created() {
             this.page.likes_count = parseInt(this.page.likes_count);
         },
         methods: {
-            showError(error) {
+            showLikeError(error) {
                 const status = error.response.status;
                 let message = '';
 
@@ -78,9 +83,25 @@
                 this.updateLike();
 
                 return axios.post('/api/page/like', {
+                    page_id: this.page.id
+                })
+                .catch(this.showLikeError);
+            },
+            deletePage(e) {
+                e.preventDefault();
+
+                return axios.delete('/api/page/delete', {
+                    params: {
                         page_id: this.page.id
-                    })
-                    .catch(this.showError);
+                    }
+                })
+                .then(function(response) {
+                    Event.$emit('delete_page');
+                    Notification.addMessage('', 'Page has been successfully deleted.', 'success');
+                })
+                .catch(function(error) {
+                    Notification.addMessage('', 'Unable to delete the page.', 'danger');
+                });
             },
             copyToClipbard(e) {
                 e.preventDefault();
@@ -111,12 +132,12 @@
                 try {
                     var status = document.execCommand('copy');
                     if (!status) {
-                        Notification.addMessage('Error!', 'Cannot copy page link to clipboard.', 'danger');
+                        Notification.addMessage('', 'Cannot copy page link to clipboard.', 'danger');
                     } else {
                         Notification.addMessage('', 'Copied Page link to clipboard.', 'success');
                     }
                 } catch (err) {
-                    Notification.addMessage('Error!', 'Unable to copy page link to clipboard.', 'danger');
+                    Notification.addMessage('', 'Unable to copy page link to clipboard.', 'danger');
                 }
             }
         }
