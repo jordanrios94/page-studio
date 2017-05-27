@@ -37,15 +37,6 @@ class EditorController extends Controller
      */
     public function edit($id, Request $request)
     {
-        /**
-        * 1) Check ID isset
-        *      a) IF not set, show 404 page
-        *      b) ELSE proceed
-        * 2) Check if page exists
-        *      a) IF page does not exist, show 404 page
-        *      b_ ELSE proceed
-        * 3) Display page
-        */
         if (empty($id)) abort(404);
 
         $page = new Page;
