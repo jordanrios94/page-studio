@@ -20,11 +20,12 @@
     "gulp": "^3.8.8"
   },
   "dependencies": {
-    "laravel-elixir": "^4.0.0",
-    "sortablejs": "^1.5.1",
-    "node-sass": "^4.5.2",
+    "cropit": "^0.5.1",
     "js-beautify": "^1.6.14",
+    "laravel-elixir": "^4.0.0",
     "moment": "^2.18.1",
-    "cropit": "^0.5.1"
+    "node-sass": "^4.5.2",
+    "sortablejs": "^1.5.1",
+    "vuex": "^2.3.1"
   }
 }

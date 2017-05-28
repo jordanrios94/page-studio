@@ -11,9 +11,6 @@
             'mode': {
                 type: String
             },
-            'init-value': {
-                type: String
-            },
             'selected': {
                 type: Boolean,
                 default: false
@@ -21,16 +18,14 @@
         },
         data() {
             return {
-                value: '',
                 isActive: false
             };
         },
         created() {
-            let _this = this;
-            _this.value = atob(this.initValue);
+            const vm = this;
 
             Event.$on('editor-selected', function ($event) {
-                _this.isActive = (_this.type == $event.type);
+                vm.isActive = (vm.type == $event.type);
             });
         },
         mounted() {
@@ -40,33 +35,42 @@
         computed: {
             divID() {
                 return this.type + '-editor';
+            },
+            value() {
+                return this.$store.state[this.type];
             }
         },
         methods: {
+            update(value) {
+                this.$store.commit('update', {
+                    setting: this.type,
+                    value: value
+                });
+            },
             loadEditor() {
-                const _this = this;
-                const editor = ace.edit(_this.divID);
+                const vm = this;
+                const editor = ace.edit(vm.divID);
 
                 editor.commands.addCommand({
                     name: 'beautify',
                     exec: function() {
-                        _this.beautify(editor);
+                        vm.beautify(editor);
                     },
                     bindKey: {mac: "cmd-p", win: "ctrl-p"}
                 });
 
-                editor.getSession().setMode(_this.mode);
+                editor.getSession().setMode(vm.mode);
                 editor.getSession().setTabSize(2);
                 editor.getSession().setUseSoftTabs(true);
 
-                if (_this.value) {
-                    editor.setValue(_this.value);
-                    Event.$emit('editor_updated', _this);
+                if (vm.value) {
+                    editor.setValue(vm.value);
+                    Event.$emit('update_preview');
                 }
 
                 editor.getSession().on('change', function() {
-                    _this.value = editor.getValue();
-                    Event.$emit('editor_updated', _this);
+                    vm.update(editor.getValue());
+                    Event.$emit('update_preview');
                 });
             },
             beautify(editor) {

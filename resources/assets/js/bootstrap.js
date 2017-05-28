@@ -26,7 +26,7 @@ require('./../lib/jquery.gritter/js/jquery.gritter');
 /**
  * We'll load all helper classes created for the application to use.
  */
-require('./helpers/notification');
+window.Notification = require('./helpers/notification').default;
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -34,6 +34,9 @@ require('./helpers/notification');
  * and simple, leaving you to focus on building your next great project.
  */
 window.Vue = require('vue');
+window.Vuex = require('vuex');
+
+Vue.use(window.Vuex);
 
 Vue.directive('sortable', {
   inserted: function (el, binding) {

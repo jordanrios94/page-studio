@@ -19,26 +19,19 @@
 </template>
 <script>
     export default {
-        data() {
-            return {
-                title: '',
-                description: ''
-            };
-        },
-        mounted() {
-            const data = window.Page ? Page.data : {};
-            const page = data.page || {};
-
-            this.title = page.title || '';
-            this.description = page.description || '';
+        computed: {
+            title() {
+                return this.$store.state.title;
+            },
+            description() {
+                return this.$store.state.description;
+            }
         },
         methods: {
-            update($e, prop) {
-                this[prop] = $e.target.value;
-
-                Event.$emit('page_updated', {
-                    setting: prop,
-                    value: this[prop]
+            update($e, setting) {
+                this.$store.commit('update', {
+                    setting: setting,
+                    value: $e.target.value
                 });
             }
         }
