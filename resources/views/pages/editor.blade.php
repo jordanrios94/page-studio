@@ -11,9 +11,9 @@
     <div class="am-content">
         <div class="main-content editor-panels">
             <div class="editor-panel">
-                <text-editor type="html" mode="ace/mode/html" :selected="true" init-value="{!! !empty($context['data']) ? $context['data']['version']->html : '' !!}"></text-editor>
-                <text-editor type="css" mode="ace/mode/css" init-value="{!! !empty($context['data']) ? $context['data']['version']->css : '' !!}"></text-editor>
-                <text-editor type="js" mode="ace/mode/javascript" init-value="{!! !empty($context['data']) ? $context['data']['version']->js : '' !!}"></text-editor>
+                <text-editor type="html" mode="ace/mode/html" :selected="true"></text-editor>
+                <text-editor type="css" mode="ace/mode/css"></text-editor>
+                <text-editor type="js" mode="ace/mode/javascript"></text-editor>
             </div>
             <preview-panel></preview-panel>
         </div>

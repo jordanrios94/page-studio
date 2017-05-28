@@ -6,14 +6,14 @@
                 <ul class="sources-list" v-sortable="{ onEnd: reorder, handle: '.s7-menu' }">
                     <li v-for="item in items" class="source-item">
                         <div class="icon left"><span class="icon s7-menu"></span></div>
-                        <div class="content"><input type="text" v-model="item.value" class="form-control input-xs" name="source" @change="updatePage"></div>
-                        <div class="icon right"><span class="icon s7-close" @click="removeItem(item)"></span></div>
+                        <div class="content"><input type="text" :value="item.value" class="form-control input-xs" name="source" @change="update(item, $event)"></div>
+                        <div class="icon right"><span class="icon s7-close" @click="remove(item)"></span></div>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="search">
-            <input type="text" :placeholder="placeholder" v-model="source" name="q"><span class="s7-plus" @click="addItem($event)"></span>
+            <input type="text" :placeholder="placeholder" v-model="source" name="q"><span class="s7-plus" @click="add($event)"></span>
         </div>
     </div>
 </template>
@@ -21,9 +21,11 @@
     export default {
         props: {
             title: {
+                type: String,
                 required: true
             },
             type: {
+                type: String,
                 required: true
             },
             placeholder: {
@@ -32,45 +34,42 @@
         },
         data() {
             return {
-                items: [],
                 source: ''
             };
         },
-        mounted() {
-            this.items = this.getItems();
+        computed: {
+            items() {
+                return this.$store.state[this.type];
+            }
         },
         methods: {
-            getItems() {
-                return window.Page ? JSON.parse(Page.data.page[this.type]) : [];
-            },
-            addItem($e) {
-                const value = this.$el.querySelector('input[name="q"]').value;
-                this.items.push({
-                    value: value
+            commit(mutation, item, value = '') {
+                this.$store.commit(mutation, {
+                    setting: this.type,
+                    value: value,
+                    index: this.items.indexOf(item)
                 });
-                this.source = '';
-                this.updatePage();
             },
-            removeItem(item) {
-                this.items.splice(this.items.indexOf(item), 1);
-                this.updatePage();
+            add($e) {
+                this.commit('addSource', {}, this.source);
+                this.source = '';
+                Event.$emit('update_preview');
+            },
+            update(item, $e) {
+                this.commit('updateSource', item, $e.currentTarget.value);
+                Event.$emit('update_preview');
+            },
+            remove(item) {
+                this.commit('removeSource', item, item.value);
+                Event.$emit('update_preview');
             },
             reorder({oldIndex, newIndex}) {
-                const vm = this;
-                let clone = _.clone(vm.items);
-                const movedItem = clone.splice(oldIndex, 1)[0];
-                vm.items = [];
-
-                setTimeout(function() {
-                    clone.splice(newIndex, 0, movedItem);
-                    vm.items = clone;
-                    vm.updatePage();
-                }, 1);
-            },
-            updatePage() {
-                Event.$emit('page_updated', {
+                this.$store.dispatch('reorderSources', {
                     setting: this.type,
-                    value: this.items
+                    oldIndex: oldIndex,
+                    newIndex: newIndex
+                }).then(() => {
+                    Event.$emit('update_preview');
                 });
             }
         }

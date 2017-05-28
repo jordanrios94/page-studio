@@ -14,43 +14,34 @@
 
 <script>
     export default {
-        data() {
-            return {
-                html: '',
-                css: '',
-                js: '',
-                scripts: [],
-                styles: []
-            };
-        },
         created() {
-            var _this = this;
+            var vm = this;
             
             Event.$on('update_preview', function($event) {
-                _this.updateData($event.data).updatePreview();
+                vm.updatePreview();
             });
         },
         computed: {
             csrfToken() {
                 return window.Laravel.csrfToken;
+            },
+            html() {
+                return this.$store.state.html;
+            },
+            css() {
+                return this.$store.state.css;
+            },
+            js() {
+                return this.$store.state.js;
+            },
+            scripts() {
+                return JSON.stringify(this.$store.state.scripts);
+            },
+            styles() {
+                return JSON.stringify(this.$store.state.styles);
             }
         },
         methods: {
-            updateData($data) {
-                for (var key in this.$data) {
-                    switch (key) {
-                        case 'scripts':
-                        case 'styles':
-                            this[key] = JSON.stringify($data[key]);
-                            break;
-                        default:
-                            this[key] = $data[key];   
-                            break;
-                    }
-                }
-
-                return this;
-            },
             updatePreview() {
                 setTimeout(function() {
                     document.getElementById('preview-form').submit();

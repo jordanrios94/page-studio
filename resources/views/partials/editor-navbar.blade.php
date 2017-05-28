@@ -4,7 +4,7 @@
 			<div class="page-title">
 				<span>
 					@if ($page === 'editor')
-						@{{ title }}
+						@{{ pageName }}
 					@else
 						{{ $title }}
 					@endif
@@ -14,8 +14,8 @@
 			<a href="#" class="am-toggle-left-sidebar navbar-toggle collapsed">
 				<span class="icon-bar"><span></span><span></span><span></span></span>
 			</a>
-			<a href="/" class="navbar-brand"></a>
 			@endif
+			<a href="/" class="navbar-brand"></a>
 		</div>
     	@if ($page === 'editor')
 		<a href="#" class="am-toggle-right-sidebar">
@@ -29,7 +29,11 @@
 			<ul class="nav navbar-nav navbar-right am-user-nav">
                 @if (Auth::check())
 				<li class="dropdown">
-					<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle"><img src="{{ $user->profile_url }}"><span class="user-name">Jordan Rios</span><span class="angle-down s7-angle-down"></span></a>
+					<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">
+						<img src="{{ $user->profile_url }}">
+						<span class="user-name">{{ $user->name }}</span>
+						<span class="angle-down s7-angle-down"></span>
+					</a>
 					<ul role="menu" class="dropdown-menu">
 						<li><a href="/profile/{{ $user->username }}"> <span class="icon s7-user"></span>My profile</a></li>
 						<li><a href="/profile/settings"> <span class="icon s7-config"></span>Settings</a></li>

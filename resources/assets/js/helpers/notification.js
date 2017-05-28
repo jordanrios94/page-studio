@@ -1,4 +1,4 @@
-window.Notification = new class {
+export default new class {
     constructor() {
         this.gritter = $.gritter;
     }
@@ -10,7 +10,7 @@ window.Notification = new class {
     }
 
     addMessage(title, text, type) {
-        if (!this.validType(type)) return console.error('The type used is not valid');
+        if (!this.validType(type)) return console.error('The type for gritter is not valid');
 
         this.gritter.add({
             title: title,
