@@ -1,95 +1,12 @@
 <template>
     <div class="layout-panel" v-show="isActive">
-    <aside class="page-aside">
-        <div class="am-scroller nano">
-            <div id="dragitemslistcontainer" class="nano-content" style="margin-right: 0px;">
-                <div id="accordion4" class="panel-group accordion accordion-semi">
-
-                    <div class="panel panel-default">
-                    <div class="panel-heading primary">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion4" href="#ac4-1" aria-expanded="true" class="collapsed"><i class="icon s7-angle-down"></i> Grid</a>
-                        </h4>
-                    </div>
-                    <div id="ac4-1" class="panel-collapse collapse" aria-expanded="true">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item" draggable="true"><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Row</a>
-                            <a href="#" class="list-group-item" draggable="true"><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Row + 1 Column</a>
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="panel panel-default">
-                    <div class="panel-heading primary">
-                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion4" href="#ac4-3" class="collapsed" aria-expanded="false"><i class="icon s7-angle-down"></i> Sections</a></h4>
-                    </div>
-                    <div id="ac4-3" class="panel-collapse collapse" aria-expanded="false">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.loginForm'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Login Form</a>
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="panel panel-default">
-                    <div class="panel-heading primary">
-                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion4" href="#ac4-2" class="collapsed" aria-expanded="false"><i class="icon s7-angle-down"></i> Components</a></h4>
-                    </div>
-                    <div id="ac4-2" class="panel-collapse collapse" aria-expanded="false">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.media'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Media</a>
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.alert'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Alert</a>
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.jumbotron'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Jumbotron</a>
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.panel'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Panel</a>
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.progressBar'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Progress Bar</a>
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.thumbnails'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Thumbnails</a>
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.listGroup'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> List Group</a>
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="panel panel-default">
-                    <div class="panel-heading primary">
-                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion4" href="#ac4-4" class="collapsed" aria-expanded="false"><i class="icon s7-angle-down"></i> Typography</a></h4>
-                    </div>
-                    <div id="ac4-4" class="panel-collapse collapse" aria-expanded="false">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.header'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Header</a>
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.paragraph'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Paragraph</a>
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="panel panel-default">
-                    <div class="panel-heading primary">
-                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion4" href="#ac4-5" class="collapsed" aria-expanded="false"><i class="icon s7-angle-down"></i> Navigation</a></h4>
-                    </div>
-                    <div id="ac4-5" class="panel-collapse collapse" aria-expanded="false">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.pager'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Pager</a>
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.pagination'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Pagination</a>
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.breadcrumb'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Breadcrumb</a>
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.button'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Button</a>
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.buttonGroup'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Button Group</a>
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.buttonDropdown'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Button Dropdown</a>
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.navTabs'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Nav Tabs</a>
-                            <a href="#" class="list-group-item" draggable="true" :data-insert-html='this.$store.state.html.linkedListGroup'><span class="badge"><span class="glyphicon glyphicon-menu-hamburger"></span></span> Linked List Group</a>
-                        </div>
-                    </div>
-                    </div>
-            </div>
-        </div>
-        <div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 902px; transform: translate(0px, 0px);"></div></div></div>
-        </aside>
-
+        <left-aside></left-aside>
         <div class="main-content">
             <iframe id="clientframe" src="/page/layout/bootstrap" width="100%" height="100%" disablehistory="true" frameborder="0"></iframe>
         </div>
-
-
         <right-aside></right-aside>
     </div>
 </template>
-
 <script>
     export default {
         props: {
@@ -102,6 +19,7 @@
             }
         },
         components: {
+            'left-aside': require('./LeftAside.vue'),
             'right-aside': require('./RightAside.vue')
         },
         data() {
@@ -118,7 +36,6 @@
         },
         mounted() {
             this.isActive = this.selected;
-
             this.init();
         },
         methods: {

@@ -1,4 +1,5 @@
 const alert = require('./../../html/alert.html');
+const badge = require('./../../html/badge.html');
 const breadcrumb = require('./../../html/breadcrumb.html');
 const buttonDropdown = require('./../../html/button-dropdown.html');
 const buttonGroup = require('./../../html/button-group.html');
@@ -20,6 +21,7 @@ const thumbnails = require('./../../html/thumbnails.html');
 module.exports = {
     state: {
         alert,
+        badge,
         breadcrumb,
         buttonDropdown,
         buttonGroup,

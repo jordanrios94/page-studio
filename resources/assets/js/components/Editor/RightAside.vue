@@ -15,12 +15,6 @@
 </template>
 <script>
     export default {
-        props: {
-        },
-        data() {
-            return {
-            };
-        },
         created() {
             const vm = this;
 
@@ -67,8 +61,6 @@
 
                 return selector.join(' ');
             }
-        },
-        computed: {
         }
     }
 </script>

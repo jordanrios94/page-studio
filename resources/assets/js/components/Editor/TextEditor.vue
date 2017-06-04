@@ -1,7 +1,6 @@
 <template>
     <div :id="divID" class="ace-container" v-show="isActive"></div>
 </template>
-
 <script>
     export default {
         props: {
