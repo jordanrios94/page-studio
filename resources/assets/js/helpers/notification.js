@@ -1,4 +1,4 @@
-export default new class {
+module.exports = new class {
     constructor() {
         this.gritter = $.gritter;
     }

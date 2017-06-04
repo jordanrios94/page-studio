@@ -1,11 +1,4 @@
-
 window._ = require('lodash');
-
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
 window.$ = window.jQuery = require('jquery');
 window.Sortable = require('sortablejs');
 window.FastClick = require('./../lib/fast-click/fast-click.min');
@@ -16,42 +9,24 @@ window.beautify_html = require('js-beautify').html;
 window.moment = require('moment');
 
 require('cropit');
-require('bootstrap-sass');
-require('./../lib/jquery/jquery.ui.min');
+require('bootstrap-less');
 require('./../lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.min');
 require('./../lib/touch-swipe/touch-swipe.min');
 require('./../lib/bootstrap-breakpoint/breakpoint.min');
 require('./../lib/jquery.gritter/js/jquery.gritter');
 
-/**
- * We'll load all helper classes created for the application to use.
- */
-window.Notification = require('./helpers/notification').default;
-
-/**
- * Vue is a modern JavaScript library for building interactive web interfaces
- * using reactive data binding and reusable components. Vue's API is clean
- * and simple, leaving you to focus on building your next great project.
- */
+window.Notification = require('./helpers/notification');
 window.Vue = require('vue');
 window.Vuex = require('vuex');
 
 Vue.use(window.Vuex);
-
 Vue.directive('sortable', {
   inserted: function (el, binding) {
     var sortable = new Sortable(el, binding.value || {});
   }
 });
 
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-
 window.axios = require('axios');
-
 window.axios.defaults.headers.common = {
     'X-CSRF-TOKEN': window.Laravel.csrfToken,
     'API-TOKEN': window.Laravel.apiToken,

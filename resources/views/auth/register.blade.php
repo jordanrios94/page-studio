@@ -89,7 +89,7 @@
                                     @endif
 								</div>
 							</div>
-							<p class="conditions">By creating an account, you agree with the <a href="/termsandconditions">Terms and Conditions</a>.</p>
+							<p class="conditions">By creating an account, you agree with the <a href="/terms">Terms and Conditions</a>.</p>
 							<button type="submit" class="btn btn-block btn-primary btn-lg">Sign Up</button>
 						</form>
 					</div>

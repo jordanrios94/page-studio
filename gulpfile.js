@@ -13,6 +13,7 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.less('includes/themes/theme-google.less', 'public/assets/css/app.css');
+    mix.less('layout.less', 'public/assets/css/layout.css');
     mix.copy('resources/assets/lib', 'public/assets/lib');
     mix.copy('resources/assets/img', 'public/assets/img');
 });

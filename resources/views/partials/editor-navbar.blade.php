@@ -53,8 +53,14 @@
                 @endif
 			</ul>
             <ul class="nav navbar-nav am-nav-right">
+				<li class="dropdown">
+					<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">New <span class="angle-down s7-angle-down"></span></a>
+					<ul role="menu" class="dropdown-menu">
+						<li><a href="/page/create/basic">Basic Page</a></li>
+						<li><a href="/page/create/bootstrap">Bootstrap Page</a></li>
+					</ul>
+				</li>
                 @if ($page === 'editor')
-                    <li><a href="/page/create">New Page</a></li>
                     <li><a href="#" class="collaborate-btn" @click="startCallaborate($event)" data-end-togetherjs-html="End Calloboration">Collaborate</a></li>
 
                     @if ($state === 'create')
@@ -66,8 +72,6 @@
 						<li><a href="#" @click="update($event)">Update</a></li>
 						@endif
                     @endif
-                @else
-                    <li><a href="/page/create">New Page</a></li>
                 @endif
             </ul>
 		</div>

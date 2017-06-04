@@ -15,11 +15,11 @@ Auth::routes();
 
 /** SPLASH PAGE ROUTE **/
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.welcome');
 });
 
-Route::get('/termsandconditions', function () {
-    return view('pages.termsandconditions');
+Route::get('/terms', function () {
+    return view('pages.terms');
 });
 
 /** PREVIEW ROUTES **/
@@ -27,7 +27,9 @@ Route::match(['get', 'post'], '/page/preview', 'PreviewController@index');
 Route::match(['get'], '/page/preview/{id}', 'PreviewController@show');
 
 /** EDITOR ROUTES **/
-Route::get('/page/create', 'EditorController@create');
+Route::get('/page/layout/bootstrap', 'EditorController@layoutBootstrap');
+Route::get('/page/create/basic', 'EditorController@createBasic');
+Route::get('/page/create/bootstrap', 'EditorController@createBootstrap');
 Route::get('/page/{id}', 'EditorController@edit');
 
 /** PROFILE ROUTES **/
@@ -36,5 +38,4 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile/settings', 'ProfileController@edit');
 });
 Route::get('/profile/{username}', 'ProfileController@show');
-
 Route::get('/profile/{type}/{filename}', 'FileController@showProfileImage');

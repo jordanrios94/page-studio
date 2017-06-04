@@ -4,9 +4,14 @@
 
 @section('page')
 <div id="app" class="am-wrapper">
+    
     @include('partials.editor-navbar', $context)
 
-    @include('partials.left-sidebar')
+    @component('partials.left-sidebar')
+        <left-sidebar-tab type="html" icon="icon s7-browser" :selected="true">HTML</left-sidebar-tab>
+        <left-sidebar-tab type="css" icon="icon s7-paint-bucket">CSS</left-sidebar-tab>
+        <left-sidebar-tab type="js" icon="icon s7-file">JavaScript</left-sidebar-tab>
+    @endcomponent
 
     <div class="am-content">
         <div class="main-content editor-panels">
@@ -20,6 +25,7 @@
     </div>
 
     @include('partials.right-sidebar', $context)
+
 </div>
 @endsection
 

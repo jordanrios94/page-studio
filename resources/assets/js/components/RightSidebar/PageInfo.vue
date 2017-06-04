@@ -21,10 +21,10 @@
     export default {
         computed: {
             title() {
-                return this.$store.state.title;
+                return this.$store.state.page.title;
             },
             description() {
-                return this.$store.state.description;
+                return this.$store.state.page.description;
             }
         },
         methods: {
