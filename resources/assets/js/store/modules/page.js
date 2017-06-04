@@ -2,7 +2,7 @@ const data = window.Page ? Page.data : {};
 const page = data.page || {};
 const version = data.version || {};
 
-export default new Vuex.Store({
+module.exports = {
     state: {
         id: page.id || '',
         title: page.title || '',
@@ -52,4 +52,4 @@ export default new Vuex.Store({
             });
         }
     }
-});
+};

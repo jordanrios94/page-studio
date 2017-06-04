@@ -24,7 +24,7 @@
         created() {
             const vm = this;
 
-            Event.$on('editor-selected', function ($event) {
+            Event.$on('tab-selected', function ($event) {
                 vm.isActive = (vm.type == $event.type);
             });
         },
@@ -37,7 +37,7 @@
                 return this.type + '-editor';
             },
             value() {
-                return this.$store.state[this.type];
+                return this.$store.state.page[this.type];
             }
         },
         methods: {

@@ -1,5 +1,5 @@
 <template>
-    <div class="pages-container">
+    <div class="pages-container" v-if="hasPages">
         <div class="gallery-container">
                 <page
                     v-for="(page, index) in pages"
@@ -12,6 +12,7 @@
             <button class="btn btn-primary" disabled="disabled" v-show="showLoadingBtn">Loading...</button>
         </div>
     </div>
+     <h3 class="text-center" v-else>No pages has been created!</h3>
 </template>
 <script>
     export default {
@@ -26,6 +27,11 @@
                 showMoreBtn: false,
                 showLoadingBtn: false
             };
+        },
+        computed: {
+            hasPages() {
+                return !_.isEmpty(this.pages);
+            }
         },
         created() {
             const pagesData = window.Pages ? Pages.data : {};

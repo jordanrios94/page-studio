@@ -11,14 +11,14 @@ use Illuminate\Support\Facades\Session;
 class EditorController extends Controller
 {
     /**
-     * Show the form for creating a new resource.
+     * Show the page for creating a new basic page.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function createBasic(Request $request)
     {
-        return view('pages.editor', [
+        return view('pages.editor_basic', [
             'context' => [
                 'page' => 'editor',
                 'state' => 'create',
@@ -27,6 +27,36 @@ class EditorController extends Controller
                 'session_id' => md5(Session::getId())
             ]
         ]);
+    }
+
+    /**
+     * Show the page for creating a new bootstrap page.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function createBootstrap(Request $request)
+    {
+        return view('pages.editor_bootstrap', [
+            'context' => [
+                'page' => 'editor',
+                'state' => 'create',
+                'data' => [],
+                'user' => $request->user(),
+                'session_id' => md5(Session::getId())
+            ]
+        ]);
+    }
+
+    /**
+     * The iframe's content when editing using the bootstrap editor.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function layoutBootstrap(Request $request)
+    {
+        return view('pages.layout');
     }
 
     /**
@@ -47,7 +77,7 @@ class EditorController extends Controller
         $latestPage['version']->css = base64_encode($latestPage['version']->css);
         $latestPage['version']->js = base64_encode($latestPage['version']->js);
 
-        return view('pages.editor', [
+        return view('pages.editor_basic', [
             'context' => [
                 'page' => 'editor',
                 'state' => 'update',

@@ -39,7 +39,7 @@
         },
         computed: {
             items() {
-                return this.$store.state[this.type];
+                return this.$store.state.page[this.type];
             }
         },
         methods: {

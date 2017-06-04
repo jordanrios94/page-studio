@@ -1,11 +1,10 @@
-require('./bootstrap');
+require('./../bootstrap');
 
-
-Vue.component('pages', require('./components/Profile/Pages.vue'));
-Vue.component('profile-header', require('./components/Profile/Header.vue'));
-Vue.component('profile-tab', require('./components/Profile/ProfileTab.vue'));
-Vue.component('account-tab', require('./components/Profile/AccountTab.vue'));
-Vue.component('modal', require('./components/Profile/ProfileModal.vue'));
+Vue.component('pages', require('./../components/Profile/Pages.vue'));
+Vue.component('profile-header', require('./../components/Profile/Header.vue'));
+Vue.component('profile-tab', require('./../components/Profile/ProfileTab.vue'));
+Vue.component('account-tab', require('./../components/Profile/AccountTab.vue'));
+Vue.component('modal', require('./../components/Profile/ProfileModal.vue'));
 
 /**
  * Event dispatcher

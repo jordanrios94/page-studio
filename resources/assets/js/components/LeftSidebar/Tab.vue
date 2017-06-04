@@ -32,7 +32,7 @@
         methods: {
             selectTab($event) {
                 $event.preventDefault();
-                Event.$emit('editor-selected', {
+                Event.$emit('tab-selected', {
                     type: this.type
                 });
                 this.$parent.updateTabs(this);

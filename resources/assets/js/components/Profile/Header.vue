@@ -50,8 +50,8 @@
             this.username = profile.username || '';
             this.name = profile.name || '';
             this.bio = profile.bio || '';
-            this.profile_url = profile.profile_url || '';
-            this.cover_url = profile.cover_url || '';
+            this.profile_url = profile.profile_url || '/assets/img/avatar-placeholder.jpg';
+            this.cover_url = profile.cover_url || '/assets/img/reset.jpg';
             
             Event.$on('setting_updated', function($event) {
                 vm[$event.setting] = $event.value;

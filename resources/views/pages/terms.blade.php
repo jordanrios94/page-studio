@@ -10,7 +10,7 @@
                         'info' => ''
                     ])
                     <div class="panel-body">
-                        <h1>Terms and Conditions ("Terms")</h1>
+                        <h1>Terms of use ("Terms")</h1>
                         <p>Last updated: May 06, 2017</p>
                         <p>Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using the pagestudio.io website (the "Service") operated by Page Studio ("us", "we", or "our").</p>
                         <p>Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service.</p>

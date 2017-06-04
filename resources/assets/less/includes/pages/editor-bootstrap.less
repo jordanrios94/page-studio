@@ -1,0 +1,45 @@
+/*------------------------------------------------------------------
+  [Editor bootstrap]
+*/
+.bootstrap-editor {
+    .am-content,
+    .layout-panel {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+
+        .main-content {
+            background-color: @editor-main-content-color;
+            flex-grow: 1;
+            overflow: hidden;
+            padding: 0;
+        }
+    }
+
+    .am-content {
+        .layout-panel {
+            width: 100%;
+            min-height: 100%;
+
+            .page-aside.right {
+                border-left: 1px solid darken(@light-color, 10%);
+            }
+        }
+
+        .editor-panels {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            order: -1;
+
+            .editor-panel {
+                width: 100%;
+            }
+
+            .ace-container {
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+}
