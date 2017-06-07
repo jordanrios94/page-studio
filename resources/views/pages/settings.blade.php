@@ -36,5 +36,5 @@
         'apiToken' => md5(Session::getId())
     ]); ?>;
 </script>
-<script src="/js/profile.js" type="text/javascript"></script>
+<script src="/assets/js/profile.js" type="text/javascript"></script>
 @endpush
