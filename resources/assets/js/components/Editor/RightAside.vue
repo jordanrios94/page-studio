@@ -93,6 +93,35 @@
                         </div>
                     </div>
 
+                    <div class="form-group" v-if="editable.lead">
+                        <label>Lead</label>
+                        <div class="btn-group btn-group-justified">
+                            <a href="#" :class="hasClasses('btn btn-primary', ['lead'])" @click="changeClass($event, '', 'lead', '')">No</a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'lead', '')" @click="changeClass($event, 'lead', 'lead', '')">Yes</a>
+                        </div>
+                    </div>
+
+                    <div class="form-group" v-if="editable.alignment">
+                        <label>Alignment</label>
+                        <div class="btn-group btn-group-justified">
+                            <a href="#" :class="hasClass('btn btn-primary', 'left')" @click="changeClass($event, 'left', 'alignment')">
+                                <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+                            </a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'center')" @click="changeClass($event, 'center', 'alignment')">
+                                <span class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
+                            </a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'right')" @click="changeClass($event, 'right', 'alignment')">
+                                <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
+                            </a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'justify')" @click="changeClass($event, 'justify', 'alignment')">
+                                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                            </a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'nowrap')" @click="changeClass($event, 'nowrap', 'alignment')">
+                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+
                     <div class="form-group" v-if="editable.style">
                         <label>Style</label>
                         <div class="btn-group btn-group-vertical">
@@ -140,7 +169,9 @@
                     target: false,
                     state: false,
                     stripes: false,
-                    active: false
+                    active: false,
+                    lead: false,
+                    alignment:false
                 }
             };
         },
@@ -206,11 +237,13 @@
                 e.preventDefault();
                 const styles = {
                     standard: ['default','primary','success','info','warning','danger'],
+                    alignment: ['left','center','right','justify','nowrap'],
                     sizes: ['xs','sm','md','lg'],
                     btnWidth: ['block'],
                     btnState: ['active','disabled'],
                     progressBarAnimation: ['active'],
-                    progressBarStripes: ['striped']
+                    progressBarStripes: ['striped'],
+                    lead: ['lead']
                 };
 
                 this.updateBootstrapClass(styles[type], style, chosenStyle);
@@ -291,7 +324,7 @@
                     h5: { name: 'Heading', style: 'text', editable: ['id','class','style'] },
                     h6: { name: 'Heading', style: 'text', editable: ['id','class','style'] },
                     img: { name: 'Image', editable: ['id','class'] },
-                    p: { name: 'Paragraph', style: 'text', editable: ['id','class','style'] },
+                    p: { name: 'Paragraph', style: 'text', editable: ['id','class','style','lead','alignment'] },
                     ul: { name: 'Unordered List', editable: ['id','class'] },
                     ol: { name: 'Ordered List', editable: ['id','class'] },
                     li: { name:'List Item', style:'text', editable:['id','class','style'] },
