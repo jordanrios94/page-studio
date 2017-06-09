@@ -45,63 +45,64 @@
                     <div class="form-group" v-if="editable.target">
                         <label>Browser Target</label>
                         <div class="btn-group btn-group-justified">
-                            <a href="#" class="btn btn-primary" @click="changeAttribute($event, 'target', '_top')">Current Tab</a>
-                            <a href="#" class="btn btn-primary" @click="changeAttribute($event, 'target', '_blank')">New Tab</a>
+                            <a href="#" :class="hasAttribute('btn btn-primary', 'target', '_top')" class="btn btn-primary" @click="changeAttribute($event, 'target', '_top')">Current Tab</a>
+                            <a href="#" :class="hasAttribute('btn btn-primary', 'target', '_blank')" @click="changeAttribute($event, 'target', '_blank')">New Tab</a>
                         </div>
                     </div>
 
                     <div class="form-group" v-if="editable.size">
                         <label>Size</label>
                         <div class="btn-group btn-group-justified">
-                            <a href="#" class="btn btn-primary" @click="changeClass($event, 'xs', 'sizes')">xs</a>
-                            <a href="#" class="btn btn-primary" @click="changeClass($event, 'sm', 'sizes')">sm</a>
-                            <a href="#" class="btn btn-primary" @click="changeClass($event, 'md', 'sizes')">md</a>
-                            <a href="#" class="btn btn-primary" @click="changeClass($event, 'lg', 'sizes')">lg</a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'xs')" @click="changeClass($event, 'xs', 'sizes')">xs</a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'sm')" @click="changeClass($event, 'sm', 'sizes')">sm</a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'md')" @click="changeClass($event, 'md', 'sizes')">md</a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'lg')" @click="changeClass($event, 'lg', 'sizes')">lg</a>
                         </div>
                     </div>
 
                     <div class="form-group" v-if="editable.btnWidth">
                         <label>Full Width</label>
                         <div class="btn-group btn-group-justified">
-                            <a href="#" class="btn btn-primary" @click="changeClass($event, '', 'btnWidth')">No</a>
-                            <a href="#" class="btn btn-primary" @click="changeClass($event, 'block', 'btnWidth')">Yes</a>
+                            <a href="#" :class="hasClasses('btn btn-primary', ['btn-block'])" @click="changeClass($event, '', 'btnWidth')">No</a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'block')" @click="changeClass($event, 'block', 'btnWidth')">Yes</a>
                         </div>
                     </div>
 
                     <div class="form-group" v-if="editable.state">
                         <label>State</label>
                         <div class="btn-group btn-group-justified">
-                            <a href="#" class="btn btn-primary" @click="changeClass($event, '', 'btnState', '')">None</a>
-                            <a href="#" class="btn btn-primary" @click="changeClass($event, 'active', 'btnState', '')">Active</a>
-                            <a href="#" class="btn btn-primary" @click="changeClass($event, 'disabled', 'btnState', '')">Disabled</a>
+                            <a href="#" :class="hasClasses('btn btn-primary', ['active','disabled'])" @click="changeClass($event, '', 'btnState', '')">None</a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'active', '')" @click="changeClass($event, 'active', 'btnState', '')">Active</a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'disabled', '')" @click="changeClass($event, 'disabled', 'btnState', '')">Disabled</a>
                         </div>
                     </div>
 
                     <div class="form-group" v-if="editable.stripes">
                         <label>Striped</label>
                         <div class="btn-group btn-group-justified">
-                            <a href="#" class="btn btn-primary" @click="changeClass($event, '', 'progressBarStripes')">No</a>
-                            <a href="#" class="btn btn-primary" @click="changeClass($event, 'striped', 'progressBarStripes')">Yes</a>
+                            <a href="#" :class="hasClasses('btn btn-primary', ['progress-bar-striped'])" @click="changeClass($event, '', 'progressBarStripes')">No</a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'striped')" class="btn btn-primary" @click="changeClass($event, 'striped', 'progressBarStripes')">Yes</a>
                         </div>
                     </div>
 
                     <div class="form-group" v-if="editable.active">
                         <label>Animated</label>
                         <div class="btn-group btn-group-justified">
-                            <a href="#" class="btn btn-primary" @click="changeClass($event, '', 'progressBarAnimation', '')">No</a>
-                            <a href="#" class="btn btn-primary" @click="changeClass($event, 'active', 'progressBarAnimation', '')">Yes</a>
+                            <a href="#" :class="hasClasses('btn btn-primary', ['active'])" @click="changeClass($event, '', 'progressBarAnimation', '')">No</a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'active', '')" @click="changeClass($event, 'active', 'progressBarAnimation', '')">Yes</a>
                         </div>
                     </div>
 
                     <div class="form-group" v-if="editable.style">
                         <label>Style</label>
                         <div class="btn-group btn-group-vertical">
-                            <a href="#" class="btn btn-default" @click="changeClass($event, 'default', 'standard')">None</a>
-                            <a href="#" class="btn btn-primary" @click="changeClass($event, 'primary', 'standard')">Primary</a>
-                            <a href="#" class="btn btn-success" @click="changeClass($event, 'success', 'standard')">Success</a>
-                            <a href="#" class="btn btn-info" @click="changeClass($event, 'info', 'standard')">Info</a>
-                            <a href="#" class="btn btn-warning" @click="changeClass($event, 'warning', 'standard')">Warning</a>
-                            <a href="#" class="btn btn-danger" @click="changeClass($event, 'danger', 'standard')">Danger</a>
+                            <a href="#" :class="hasClass('btn btn-default', 'default')"  @click="changeClass($event, 'default', 'standard')">None</a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'primary')"  @click="changeClass($event, 'primary', 'standard')">Primary</a>
+                            <a href="#" :class="hasClass('btn btn-success', 'success')"  @click="changeClass($event, 'success', 'standard')">Success</a>
+                            <a href="#" :class="hasClass('btn btn-info', 'info')"  @click="changeClass($event, 'info', 'standard')">Info</a>
+                            <a href="#" :class="hasClass('btn btn-warning', 'warning')" @click="changeClass($event, 'warning', 'standard')">Warning</a>
+                            <a href="#" :class="hasClass('btn btn-danger', 'danger')" @click="changeClass($event, 'danger', 'standard')">Danger</a>
+                            
                         </div>
                     </div>
 
@@ -150,7 +151,6 @@
         },
         watch: {
             elementNode($element) {
-                console.log($element);
                 const element = this.getElement($element);
                 const attributes = ['id','class','href','target'];
 
@@ -166,7 +166,6 @@
                 }
             },
             tree(tree) {
-                console.log(tree);
                 let copy = _.clone(tree);
                 const element = copy.pop();
                 this.elementNode = $(element);
@@ -180,6 +179,24 @@
             });
         },
         methods: {
+            hasAttribute(style, attribute, value) {
+                return style + ((this.elementNode.attr(attribute) === value) ? ' active' : '');
+            },
+            hasClasses(style, classes) {
+                let hasClass = false;
+
+                classes.forEach(className => {
+                    if (this.elementNode.hasClass(className)) {
+                        hasClass = true;
+                    }
+                }, this);
+
+                return style + (!hasClass ? ' active' : '');
+            },
+            hasClass(style, className, baseStyle = this.element.style) {
+                const elementClass = baseStyle ? baseStyle + '-' + className : className;
+                return style + (this.elementNode.hasClass(elementClass) ? ' active' : '');
+            },
             changeAttribute(e, name, value) {
                 e.preventDefault();
                 this.elementNode.attr(name, value.trim());
@@ -195,6 +212,7 @@
                     progressBarAnimation: ['active'],
                     progressBarStripes: ['striped']
                 };
+
                 this.updateBootstrapClass(styles[type], style, chosenStyle);
             },
             updateBootstrapClass(classes, bootstrapClass, chosenClass) {
