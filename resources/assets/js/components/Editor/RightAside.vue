@@ -122,6 +122,21 @@
                         </div>
                     </div>
 
+                    <div class="form-group" v-if="editable.textTransform">
+                        <label>Transformation</label>
+                        <div class="btn-group btn-group-vertical">
+                            <a href="#" :class="hasClass('btn btn-primary', 'lowercase')" @click="changeClass($event, 'lowercase', 'textTransform')">
+                                Lowercase
+                            </a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'uppercase')" @click="changeClass($event, 'uppercase', 'textTransform')">
+                                Uppercase
+                            </a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'capitalize')" @click="changeClass($event, 'capitalize', 'textTransform')">
+                                Capitalize
+                            </a>
+                        </div>
+                    </div>
+
                     <div class="form-group" v-if="editable.style">
                         <label>Style</label>
                         <div class="btn-group btn-group-vertical">
@@ -171,14 +186,10 @@
                     stripes: false,
                     active: false,
                     lead: false,
-                    alignment:false
+                    alignment: false,
+                    textTransform: false
                 }
             };
-        },
-        computed: {
-            isOptionSelected() {
-                return this.elementNode ? this.elementNode.attr('class') : '';
-            }
         },
         watch: {
             elementNode($element) {
@@ -239,6 +250,7 @@
                     standard: ['default','primary','success','info','warning','danger'],
                     alignment: ['left','center','right','justify','nowrap'],
                     sizes: ['xs','sm','md','lg'],
+                    textTransform: ['lowercase','uppercase','capitalize'],
                     btnWidth: ['block'],
                     btnState: ['active','disabled'],
                     progressBarAnimation: ['active'],
@@ -317,16 +329,16 @@
                     'panel-heading': { name: 'Panel Heading', editable: ['id','class'] },
                     'panel-body': { name: 'Panel Body', editable: ['id','class'] },
                     'progress-bar': { name: 'Progress Bar', style: 'progress-bar', editable: ['id','class','style','stripes','active'] },
-                    h1: { name: 'Heading', style: 'text', editable: ['id','class','style'] },
-                    h2: { name: 'Heading', style: 'text', editable: ['id','class','style'] },
-                    h3: { name: 'Heading', style: 'text', editable: ['id','class','style'] },
-                    h4: { name: 'Heading', style: 'text', editable: ['id','class','style'] },
-                    h5: { name: 'Heading', style: 'text', editable: ['id','class','style'] },
-                    h6: { name: 'Heading', style: 'text', editable: ['id','class','style'] },
-                    img: { name: 'Image', editable: ['id','class'] },
-                    p: { name: 'Paragraph', style: 'text', editable: ['id','class','style','lead','alignment'] },
-                    ul: { name: 'Unordered List', editable: ['id','class'] },
-                    ol: { name: 'Ordered List', editable: ['id','class'] },
+                    h1: { name:'Heading', style:'text', editable:['id','class','style'] },
+                    h2: { name:'Heading', style:'text', editable:['id','class','style'] },
+                    h3: { name:'Heading', style:'text', editable:['id','class','style'] },
+                    h4: { name:'Heading', style:'text', editable:['id','class','style'] },
+                    h5: { name:'Heading', style:'text', editable:['id','class','style'] },
+                    h6: { name:'Heading', style:'text', editable:['id','class','style'] },
+                    img: { name:'Image', editable:['id','class'] },
+                    p: { name:'Paragraph', style: 'text', editable:['id','class','style','lead','alignment','textTransform'] },
+                    ul: { name:'Unordered List', editable:['id','class'] },
+                    ol: { name:'Ordered List', editable: ['id','class'] },
                     li: { name:'List Item', style:'text', editable:['id','class','style'] },
                     a: { name: 'Link', style:'text', editable: ['id','class','style'] },
                     div: { name: 'Div', editable: ['id','class'] },
