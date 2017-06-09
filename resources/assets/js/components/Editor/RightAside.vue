@@ -125,6 +125,9 @@
                     <div class="form-group" v-if="editable.textTransform">
                         <label>Transformation</label>
                         <div class="btn-group btn-group-vertical">
+                            <a href="#" :class="hasClasses('btn btn-primary', ['text-lowercase','text-uppercase','text-capitalize'])" @click="changeClass($event, '', 'textTransform')">
+                                None
+                            </a>
                             <a href="#" :class="hasClass('btn btn-primary', 'lowercase')" @click="changeClass($event, 'lowercase', 'textTransform')">
                                 Lowercase
                             </a>
