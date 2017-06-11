@@ -18,211 +18,25 @@
                 <h2>{{ element.name }}</h2>
                 <br>
                 <form role="form">
-
-                    <div class="form-group" v-if="editable.id">
-                        <label>ID</label>
-                        <input 
-                            type="text"
-                            class="form-control"
-                            name="id"
-                            :value="element.id"
-                            @change="changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)" />
-                    </div>
-
-                    <div class="form-group"  v-if="editable.id">
-                        <label>Class</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="class"
-                            :value="element.class"
-                            @change="changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)" />
-                    </div>
-
-                    <div class="form-group"  v-if="editable.action">
-                        <label>Action</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="action"
-                            :value="element.action"
-                            @change="changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)" />
-                    </div>
-
-                    <div class="form-group"  v-if="editable.src">
-                        <label>Source</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="src"
-                            :value="element.src"
-                            @change="changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)" />
-                    </div>
-
-                    <div class="form-group"  v-if="editable.alt">
-                        <label>Alt Text</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="alt"
-                            :value="element.alt"
-                            @change="changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)" />
-                    </div>
-
-                    <div class="form-group"  v-if="editable.href && element.tag === 'a'">
-                        <label>URL</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="href"
-                            :value="element.href"
-                            @change="changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)" />
-                    </div>
-
-                    <div class="form-group" v-if="editable.target">
-                        <label>Browser Target</label>
-                        <div class="btn-group btn-group-justified">
-                            <a href="#" :class="hasAttribute('btn btn-primary', 'target', '_top')" class="btn btn-primary" @click="changeAttribute($event, 'target', '_top')">Current Tab</a>
-                            <a href="#" :class="hasAttribute('btn btn-primary', 'target', '_blank')" @click="changeAttribute($event, 'target', '_blank')">New Tab</a>
-                        </div>
-                    </div>
-
-                    <div class="form-group" v-if="editable.size">
-                        <label>Size</label>
-                        <div class="btn-group btn-group-justified">
-                            <a href="#" :class="hasClass('btn btn-primary', 'xs')" @click="changeClass($event, 'xs', 'sizes')">xs</a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'sm')" @click="changeClass($event, 'sm', 'sizes')">sm</a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'md')" @click="changeClass($event, 'md', 'sizes')">md</a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'lg')" @click="changeClass($event, 'lg', 'sizes')">lg</a>
-                        </div>
-                    </div>
-
-                    <div class="form-group" v-if="editable.btnWidth">
-                        <label>Full Width</label>
-                        <div class="btn-group btn-group-justified">
-                            <a href="#" :class="hasClasses('btn btn-primary', ['btn-block'])" @click="changeClass($event, '', 'btnWidth')">No</a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'block')" @click="changeClass($event, 'block', 'btnWidth')">Yes</a>
-                        </div>
-                    </div>
-
-                    <div class="form-group" v-if="editable.state">
-                        <label>State</label>
-                        <div class="btn-group btn-group-justified">
-                            <a href="#" :class="hasClasses('btn btn-primary', ['active','disabled'])" @click="changeClass($event, '', 'btnState', '')">None</a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'active', '')" @click="changeClass($event, 'active', 'btnState', '')">Active</a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'disabled', '')" @click="changeClass($event, 'disabled', 'btnState', '')">Disabled</a>
-                        </div>
-                    </div>
-
-                    <div class="form-group" v-if="editable.stripes">
-                        <label>Striped</label>
-                        <div class="btn-group btn-group-justified">
-                            <a href="#" :class="hasClasses('btn btn-primary', ['progress-bar-striped'])" @click="changeClass($event, '', 'progressBarStripes')">No</a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'striped')" class="btn btn-primary" @click="changeClass($event, 'striped', 'progressBarStripes')">Yes</a>
-                        </div>
-                    </div>
-
-                    <div class="form-group" v-if="editable.active">
-                        <label>Animated</label>
-                        <div class="btn-group btn-group-justified">
-                            <a href="#" :class="hasClasses('btn btn-primary', ['active'])" @click="changeClass($event, '', 'progressBarAnimation', '')">No</a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'active', '')" @click="changeClass($event, 'active', 'progressBarAnimation', '')">Yes</a>
-                        </div>
-                    </div>
-
-                    <div class="form-group" v-if="editable.lead">
-                        <label>Lead</label>
-                        <div class="btn-group btn-group-justified">
-                            <a href="#" :class="hasClasses('btn btn-primary', ['lead'])" @click="changeClass($event, '', 'lead', '')">No</a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'lead', '')" @click="changeClass($event, 'lead', 'lead', '')">Yes</a>
-                        </div>
-                    </div>
-
-                    <div class="form-group" v-if="editable.alignment">
-                        <label>Alignment</label>
-                        <div class="btn-group btn-group-justified">
-                            <a href="#" :class="hasClass('btn btn-primary', 'text-left', '')" @click="changeClass($event, 'left', 'alignment', 'text')">
-                                <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-                            </a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'text-center', '')" @click="changeClass($event, 'center', 'alignment', 'text')">
-                                <span class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
-                            </a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'text-right', '')" @click="changeClass($event, 'right', 'alignment', 'text')">
-                                <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
-                            </a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'text-justify', '')" @click="changeClass($event, 'justify', 'alignment', 'text')">
-                                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-                            </a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'text-nowrap', '')" @click="changeClass($event, 'nowrap', 'alignment', 'text')">
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="form-group" v-if="editable.textTransform">
-                        <label>Transformation</label>
-                        <div class="btn-group btn-group-vertical">
-                            <a href="#" :class="hasClasses('btn btn-primary', ['text-lowercase','text-uppercase','text-capitalize'])" @click="changeClass($event, '', 'textTransform')">
-                                None
-                            </a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'lowercase')" @click="changeClass($event, 'lowercase', 'textTransform')">
-                                Lowercase
-                            </a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'uppercase')" @click="changeClass($event, 'uppercase', 'textTransform')">
-                                Uppercase
-                            </a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'capitalize')" @click="changeClass($event, 'capitalize', 'textTransform')">
-                                Capitalize
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="form-group" v-if="editable.reverse">
-                        <label>Reverse</label>
-                        <div class="btn-group btn-group-justified">
-                            <a href="#" :class="hasClasses('btn btn-primary', ['blockquote-reverse'])" @click="changeClass($event, '', 'reverse')">No</a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'reverse')" @click="changeClass($event, 'reverse', 'reverse')">Yes</a>
-                        </div>
-                    </div>
-
-                    <div class="form-group" v-if="editable.style">
-                        <label>Style</label>
-                        <div class="btn-group btn-group-vertical">
-                            <a href="#" :class="hasClass('btn btn-default', 'default')"  @click="changeClass($event, 'default', 'standard')">None</a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'primary')"  @click="changeClass($event, 'primary', 'standard')">Primary</a>
-                            <a href="#" :class="hasClass('btn btn-success', 'success')"  @click="changeClass($event, 'success', 'standard')">Success</a>
-                            <a href="#" :class="hasClass('btn btn-info', 'info')"  @click="changeClass($event, 'info', 'standard')">Info</a>
-                            <a href="#" :class="hasClass('btn btn-warning', 'warning')" @click="changeClass($event, 'warning', 'standard')">Warning</a>
-                            <a href="#" :class="hasClass('btn btn-danger', 'danger')" @click="changeClass($event, 'danger', 'standard')">Danger</a>
-                        </div>
-                    </div>
-
-                    <div class="form-group" v-if="editable.responsive">
-                        <label>Responsive</label>
-                        <div class="btn-group btn-group-justified">
-                            <a href="#" :class="hasClasses('btn btn-primary', ['img-responsive'])" @click="changeClass($event, '', 'responsive')">No</a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'responsive')" @click="changeClass($event, 'responsive', 'responsive')">Yes</a>
-                        </div>
-                    </div>
-
-                    <div class="form-group" v-if="editable.imgStyle">
-                        <label>Style</label>
-                        <div class="btn-group btn-group-vertical">
-                            <a href="#" :class="hasClasses('btn btn-primary', ['img-rounded','img-circle','img-thumbnail'])" @click="changeClass($event, '', 'imgStyle')">
-                                None
-                            </a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'rounded')" @click="changeClass($event, 'rounded', 'imgStyle')">
-                                Rounded
-                            </a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'circle')" @click="changeClass($event, 'circle', 'imgStyle')">
-                                Circle
-                            </a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'thumbnail')" @click="changeClass($event, 'thumbnail', 'imgStyle')">
-                                Thumbnail
-                            </a>
-                        </div>
-                    </div>
-
+                    <attribute-option label="ID" name="id" :value="element.id" v-if="editable.id"></attribute-option>
+                    <attribute-option label="Class" name="class" :value="element.class" v-if="editable.class"></attribute-option>
+                    <attribute-option label="Action" name="action" :value="element.action" v-if="editable.action"></attribute-option>
+                    <attribute-option label="Source" name="src" :value="element.src" v-if="editable.src"></attribute-option>
+                    <attribute-option label="Alt Text" name="alt" :value="element.alt" v-if="editable.alt"></attribute-option>
+                    <attribute-option label="URL" name="href" :value="element.href" v-if="editable.href && element.tag === 'a'"></attribute-option>
+                    <target-option label="Browser Target" v-if="editable.target"></target-option>
+                    <size-option label="Size" v-if="editable.size"></size-option>
+                    <btn-width-option label="Full Width" v-if="editable.btnWidth"></btn-width-option>
+                    <state-option label="State" v-if="editable.state"></state-option>
+                    <stripes-option label="Striped" v-if="editable.stripes"></stripes-option>
+                    <active-option label="Animated" v-if="editable.active"></active-option>
+                    <lead-option label="Lead" v-if="editable.lead"></lead-option>
+                    <alignment-option label="Alignment" v-if="editable.alignment"></alignment-option>
+                    <text-transform-option label="Transformation" v-if="editable.textTransform"></text-transform-option>
+                    <reverse-option label="Reverse" v-if="editable.reverse"></reverse-option>
+                    <option-style label="Style" v-if="editable.style"></option-style>
+                    <responsive-option label="Responsive" v-if="editable.responsive"></responsive-option>
+                    <image-style-option label="Style" v-if="editable.imgStyle"></image-style-option>
                 </form>
             </div>
 
@@ -233,6 +47,22 @@
 </template>
 <script>
     export default {
+        components: {
+            'attribute-option': require('./Options/Attribute.vue'),
+            'target-option': require('./Options/Target.vue'),
+            'size-option': require('./Options/Size.vue'),
+            'btn-width-option': require('./Options/BtnWidth.vue'),
+            'state-option': require('./Options/State.vue'),
+            'stripes-option': require('./Options/Stripes.vue'),
+            'active-option': require('./Options/Active.vue'),
+            'lead-option': require('./Options/Lead.vue'),
+            'alignment-option': require('./Options/Alignment.vue'),
+            'text-transform-option': require('./Options/TextTransform.vue'),
+            'reverse-option': require('./Options/Reverse.vue'),
+            'option-style': require('./Options/Style.vue'),
+            'responsive-option': require('./Options/Responsive.vue'),
+            'image-style-option': require('./Options/ImgStyle.vue')
+        },
         data() {
             return {
                 tree: [],
