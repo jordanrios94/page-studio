@@ -128,7 +128,7 @@
                         let e = event.isTrigger ? triggerEvent.originalEvent : event.originalEvent;
 
                         e.path.forEach(element => {
-                            const invalidNodes = ['','shadow','i','#document-fragment','html','#document','strong','em','br','hr'];
+                            const invalidNodes = ['','shadow','i','#document-fragment','html','#document','strong','em','br','hr','cite'];
                             const name = element.localName || element.nodeName || element.name;
 
                             if (!invalidNodes.includes(name)) {
@@ -271,7 +271,6 @@
                                         return $element;
                                     }
                                 }
-                                break;
                         }
                     },
                     addPlaceHolder($element, position, placeholder) {

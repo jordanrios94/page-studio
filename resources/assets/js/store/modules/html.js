@@ -1,10 +1,15 @@
 const alert = require('./../../html/alert.html');
 const badge = require('./../../html/badge.html');
+const basicPanel = require('./../../html/basicPanel.html');
+const blockquoteWithFooter = require('./../../html/blockquote-with-footer.html');
+const blockquote = require('./../../html/blockquote.html');
 const breadcrumb = require('./../../html/breadcrumb.html');
 const buttonDropdown = require('./../../html/button-dropdown.html');
 const buttonGroup = require('./../../html/button-group.html');
 const button = require('./../../html/button.html');
 const header = require('./../../html/header.html');
+const iframe = require('./../../html/iframe.html');
+const image = require('./../../html/image.html');
 const jumbotron = require('./../../html/jumbotron.html');
 const linkedListGroup = require('./../../html/linked-list-group.html');
 const listGroup = require('./../../html/list-group.html');
@@ -16,17 +21,23 @@ const pagination = require('./../../html/pagination.html');
 const panel = require('./../../html/panel.html');
 const paragraph = require('./../../html/paragraph.html');
 const progressBar = require('./../../html/progress-bar.html');
+const thumbnail = require('./../../html/thumbnail.html');
 const thumbnails = require('./../../html/thumbnails.html');
 
 module.exports = {
     state: {
         alert,
         badge,
+        basicPanel,
+        blockquoteWithFooter,
+        blockquote,
         breadcrumb,
         buttonDropdown,
         buttonGroup,
         button,
         header,
+        iframe,
+        image,
         jumbotron,
         linkedListGroup,
         listGroup,
@@ -38,6 +49,7 @@ module.exports = {
         panel,
         paragraph,
         progressBar,
+        thumbnail,
         thumbnails
     }
 };

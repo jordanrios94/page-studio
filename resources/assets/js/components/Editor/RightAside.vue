@@ -3,9 +3,16 @@
     <div class="am-scroller nano">
         <div class="nano-content" style="margin-right: 0px;">
         <div class="content">
+
+            <div v-if="!element.name">
+                <p class="text-center">No element has been selected.</p>
+            </div>
+
+            <div v-show="element.name">
             <h2>Tree</h2>
-            <div id="treeview" class="tree"></div>
+                <div id="treeview" class="tree"></div>
             <hr>
+            </div>
 
             <div v-if="element.name">
                 <h2>{{ element.name }}</h2>
@@ -19,7 +26,7 @@
                             class="form-control"
                             name="id"
                             :value="element.id"
-                            @change="changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)">
+                            @change="changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)" />
                     </div>
 
                     <div class="form-group"  v-if="editable.id">
@@ -29,17 +36,47 @@
                             class="form-control"
                             name="class"
                             :value="element.class"
-                            @change="changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)">
+                            @change="changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)" />
                     </div>
 
-                    <div class="form-group"  v-if="editable.href">
+                    <div class="form-group"  v-if="editable.action">
+                        <label>Action</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="action"
+                            :value="element.action"
+                            @change="changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)" />
+                    </div>
+
+                    <div class="form-group"  v-if="editable.src">
+                        <label>Source</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="src"
+                            :value="element.src"
+                            @change="changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)" />
+                    </div>
+
+                    <div class="form-group"  v-if="editable.alt">
+                        <label>Alt Text</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="alt"
+                            :value="element.alt"
+                            @change="changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)" />
+                    </div>
+
+                    <div class="form-group"  v-if="editable.href && element.tag === 'a'">
                         <label>URL</label>
                         <input
                             type="text"
                             class="form-control"
                             name="href"
                             :value="element.href"
-                            @change="changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)">
+                            @change="changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)" />
                     </div>
 
                     <div class="form-group" v-if="editable.target">
@@ -104,19 +141,19 @@
                     <div class="form-group" v-if="editable.alignment">
                         <label>Alignment</label>
                         <div class="btn-group btn-group-justified">
-                            <a href="#" :class="hasClass('btn btn-primary', 'left')" @click="changeClass($event, 'left', 'alignment')">
+                            <a href="#" :class="hasClass('btn btn-primary', 'text-left', '')" @click="changeClass($event, 'left', 'alignment', 'text')">
                                 <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
                             </a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'center')" @click="changeClass($event, 'center', 'alignment')">
+                            <a href="#" :class="hasClass('btn btn-primary', 'text-center', '')" @click="changeClass($event, 'center', 'alignment', 'text')">
                                 <span class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
                             </a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'right')" @click="changeClass($event, 'right', 'alignment')">
+                            <a href="#" :class="hasClass('btn btn-primary', 'text-right', '')" @click="changeClass($event, 'right', 'alignment', 'text')">
                                 <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
                             </a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'justify')" @click="changeClass($event, 'justify', 'alignment')">
+                            <a href="#" :class="hasClass('btn btn-primary', 'text-justify', '')" @click="changeClass($event, 'justify', 'alignment', 'text')">
                                 <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
                             </a>
-                            <a href="#" :class="hasClass('btn btn-primary', 'nowrap')" @click="changeClass($event, 'nowrap', 'alignment')">
+                            <a href="#" :class="hasClass('btn btn-primary', 'text-nowrap', '')" @click="changeClass($event, 'nowrap', 'alignment', 'text')">
                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                             </a>
                         </div>
@@ -140,6 +177,14 @@
                         </div>
                     </div>
 
+                    <div class="form-group" v-if="editable.reverse">
+                        <label>Reverse</label>
+                        <div class="btn-group btn-group-justified">
+                            <a href="#" :class="hasClasses('btn btn-primary', ['blockquote-reverse'])" @click="changeClass($event, '', 'reverse')">No</a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'reverse')" @click="changeClass($event, 'reverse', 'reverse')">Yes</a>
+                        </div>
+                    </div>
+
                     <div class="form-group" v-if="editable.style">
                         <label>Style</label>
                         <div class="btn-group btn-group-vertical">
@@ -149,14 +194,37 @@
                             <a href="#" :class="hasClass('btn btn-info', 'info')"  @click="changeClass($event, 'info', 'standard')">Info</a>
                             <a href="#" :class="hasClass('btn btn-warning', 'warning')" @click="changeClass($event, 'warning', 'standard')">Warning</a>
                             <a href="#" :class="hasClass('btn btn-danger', 'danger')" @click="changeClass($event, 'danger', 'standard')">Danger</a>
-                            
+                        </div>
+                    </div>
+
+                    <div class="form-group" v-if="editable.responsive">
+                        <label>Responsive</label>
+                        <div class="btn-group btn-group-justified">
+                            <a href="#" :class="hasClasses('btn btn-primary', ['img-responsive'])" @click="changeClass($event, '', 'responsive')">No</a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'responsive')" @click="changeClass($event, 'responsive', 'responsive')">Yes</a>
+                        </div>
+                    </div>
+
+                    <div class="form-group" v-if="editable.imgStyle">
+                        <label>Style</label>
+                        <div class="btn-group btn-group-vertical">
+                            <a href="#" :class="hasClasses('btn btn-primary', ['img-rounded','img-circle','img-thumbnail'])" @click="changeClass($event, '', 'imgStyle')">
+                                None
+                            </a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'rounded')" @click="changeClass($event, 'rounded', 'imgStyle')">
+                                Rounded
+                            </a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'circle')" @click="changeClass($event, 'circle', 'imgStyle')">
+                                Circle
+                            </a>
+                            <a href="#" :class="hasClass('btn btn-primary', 'thumbnail')" @click="changeClass($event, 'thumbnail', 'imgStyle')">
+                                Thumbnail
+                            </a>
                         </div>
                     </div>
 
                 </form>
             </div>
-
-
 
         </div>
     </div>
@@ -172,10 +240,7 @@
                 element: {
                     name: '',
                     style: '',
-                    id: '',
-                    class: '',
-                    href: '',
-                    target: ''
+                    tag: ''
                 },
                 editable: {
                     id: false,
@@ -190,17 +255,24 @@
                     active: false,
                     lead: false,
                     alignment: false,
-                    textTransform: false
+                    textTransform: false,
+                    alt: false,
+                    imgStyle: false,
+                    responsive: false,
+                    src: false,
+                    reverse: false,
+                    action: false
                 }
             };
         },
         watch: {
             elementNode($element) {
                 const element = this.getElement($element);
-                const attributes = ['id','class','href','target'];
+                const attributes = ['id','class','href','target','src','alt','action'];
 
                 this.element.name = element.name;
                 this.element.style = element.style;
+                this.element.tag = $element.prop('tagName').toLowerCase();
 
                 for (let i in attributes) {
                     this.element[attributes[i]] = $element.attr(attributes[i]) || '';
@@ -254,10 +326,13 @@
                     alignment: ['left','center','right','justify','nowrap'],
                     sizes: ['xs','sm','md','lg'],
                     textTransform: ['lowercase','uppercase','capitalize'],
+                    imgStyle: ['rounded','circle','thumbnail'],
                     btnWidth: ['block'],
                     btnState: ['active','disabled'],
                     progressBarAnimation: ['active'],
                     progressBarStripes: ['striped'],
+                    responsive: ['responsive'],
+                    reverse: ['reverse'],
                     lead: ['lead']
                 };
 
@@ -278,6 +353,7 @@
                 this.updateTree(_.clone(this.tree));
             },
             updateTree(tree) {
+                const vm = this;
                 let $tree;
                 this.tree = tree;
 
@@ -289,7 +365,14 @@
 
                     const $list = $('<ul></ul>');
                     const $item = $('<li></li>');
-                    const $text = $('<span></span>').text(nodeName + className);
+                    const $text = $('<span></span>').text(nodeName + className).data('index', i);
+
+                    $text.on('click', function (e) {
+                        e.preventDefault();
+                        const index = $(this).data('index');
+                        let tree = _.clone(vm.tree);
+                        vm.updateTree(tree.slice(0, (index + 1)));
+                    });
 
                     const $node = $list.append($item.append($text));
 
@@ -317,37 +400,44 @@
             },
             getElement($elem) {
                 const elements = {
-                    alert: { name: 'Alert', style: 'alert', editable: ['id','class','style'] },
-                    dropdown: { name: 'Dropdown', editable: ['id','class'] },
-                    btn: { name: 'Button', style: 'btn', editable: ['id','class','style','href','btnWidth','size','target','state'] },
-                    'btn-group': { name: 'Button Group', editable: ['id','class'] },
-                    panel: { name: 'Panel', editable: ['id','class'] },
-                    jumbotron: { name: 'Jumbotron', editable: ['id','class'] },
-                    breadcrumb: { name: 'Breadcrumb', editable: ['id','class'] },
-                    caption: { name: 'Caption', editable: ['id','class'] },
-                    thumbnail: { name: 'Thumbnail', editable: ['id','class'] },
-                    'list-group': { name: 'List Group', editable: ['id','class'] },
-                    'list-group-item': { name: 'List Group Item', editable: ['id','class'] },
-                    'page-header': { name: 'Page Header', editable: ['id','class'] },
-                    'panel-heading': { name: 'Panel Heading', editable: ['id','class'] },
-                    'panel-body': { name: 'Panel Body', editable: ['id','class'] },
-                    'progress-bar': { name: 'Progress Bar', style: 'progress-bar', editable: ['id','class','style','stripes','active'] },
+                    alert: { name:'Alert', style:'alert', editable:['id','class','style'] },
+                    dropdown: { name:'Dropdown', editable:['id','class'] },
+                    btn: { name:'Button', style: 'btn', editable:['id','class','style','href','btnWidth','size','target','state'] },
+                    'btn-group': { name:'Button Group', editable:['id','class'] },
+                    panel: { name:'Panel', style:'panel', editable:['id','class','style','alignment'] },
+                    jumbotron: { name:'Jumbotron', editable:['id','class'] },
+                    breadcrumb: { name:'Breadcrumb', editable:['id','class'] },
+                    caption: { name:'Caption', editable:['id','class'] },
+                    thumbnail: { name:'Thumbnail', editable:['id','class'] },
+                    'list-group': { name:'List Group', style:'text', editable:['id','class','style','alignment'] },
+                    'list-group-item': { name:'List Group Item', style:'list-group-item', editable:['id','class','style','href','state'] },
+                    'page-header': { name:'Page Header', editable:['id','class'] },
+                    'panel-heading': { name:'Panel Heading', style:'text', editable:['id','class'] },
+                    'panel-body': { name:'Panel Body', style:'text', editable:['id','class','style'] },
+                    'panel-footer': { name:'Panel Footer', style:'text', editable:['id','class','style'] },
+                    'progress-bar': { name:'Progress Bar', style:'progress-bar', editable:['id','class','style','stripes','active'] },
                     h1: { name:'Heading', style:'text', editable:['id','class','style'] },
                     h2: { name:'Heading', style:'text', editable:['id','class','style'] },
                     h3: { name:'Heading', style:'text', editable:['id','class','style'] },
                     h4: { name:'Heading', style:'text', editable:['id','class','style'] },
                     h5: { name:'Heading', style:'text', editable:['id','class','style'] },
                     h6: { name:'Heading', style:'text', editable:['id','class','style'] },
-                    img: { name:'Image', editable:['id','class'] },
-                    p: { name:'Paragraph', style: 'text', editable:['id','class','style','lead','alignment','textTransform'] },
+                    img: { name:'Image', style:'img', editable:['id','class','src','alt','imgStyle','responsive'] },
+                    p: { name:'Paragraph', style:'text', editable:['id','class','style','lead','alignment','textTransform'] },
                     ul: { name:'Unordered List', editable:['id','class'] },
-                    ol: { name:'Ordered List', editable: ['id','class'] },
+                    ol: { name:'Ordered List', editable:['id','class'] },
                     li: { name:'List Item', style:'text', editable:['id','class','style'] },
-                    a: { name: 'Link', style:'text', editable: ['id','class','style'] },
-                    div: { name: 'Div', editable: ['id','class'] },
-                    blockquote: { name:'Blockquote', editable: ['id','class'] },
-                    footer: { name:'Footer', editable: ['id','class'] },
-                    small: { name:'Small', style:'text', editable:['id','class','style'] }
+                    a: { name:'Link', style:'text', editable:['id','class','style'] },
+                    div: { name:'Div', editable:['id','class'] },
+                    blockquote: { name:'Blockquote', style:'blockquote', editable:['id','class','reverse'] },
+                    footer: { name:'Footer', style:'text', editable:['id','class','style'] },
+                    small: { name:'Small', style:'text', editable:['id','class','style'] },
+                    body: { name:'Body', editable:['id','class'] },
+                    span: { name:'Span', editable:['id','class'] },
+                    input: { name:'Input', editable:['id','class'] },
+                    form: { name:'Form', editable:['id','class','action'] },
+                    label: { name:'Label', editable:['id','class'] },
+                    legend: { name:'Legend', editable:['id','class'] }
                 };
 
                 for (let index in elements) {

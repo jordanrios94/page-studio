@@ -9,20 +9,26 @@
                     </panel>
                     <panel id="ac4-2" title="Sections">
                         <panel-item title="Login Form" :html="this.$store.state.html.loginForm"></panel-item>
+                        <panel-item title="Thumbnails" :html="this.$store.state.html.thumbnails"></panel-item>
                     </panel>
                     <panel id="ac4-3" title="Components">
                         <panel-item title="Alert" :html="this.$store.state.html.alert"></panel-item>
                         <panel-item title="Badge" :html="this.$store.state.html.badge"></panel-item>
                         <panel-item title="Media" :html="this.$store.state.html.media"></panel-item>
+                        <panel-item title="Iframe" :html="this.$store.state.html.iframe"></panel-item>
+                        <panel-item title="Image" :html="this.$store.state.html.image"></panel-item>
                         <panel-item title="Jumbotron" :html="this.$store.state.html.jumbotron"></panel-item>
+                        <panel-item title="Basic Panel" :html="this.$store.state.html.basicPanel"></panel-item>
                         <panel-item title="Panel" :html="this.$store.state.html.panel"></panel-item>
                         <panel-item title="Progress Bar" :html="this.$store.state.html.progressBar"></panel-item>
-                        <panel-item title="Thumbnails" :html="this.$store.state.html.thumbnails"></panel-item>
                         <panel-item title="List Group" :html="this.$store.state.html.listGroup"></panel-item>
+                        <panel-item title="Thumbnail" :html="this.$store.state.html.thumbnail"></panel-item>
                     </panel>
                     <panel id="ac4-4" title="Typography">
                         <panel-item title="Header" :html="this.$store.state.html.header"></panel-item>
                         <panel-item title="Paragraph" :html="this.$store.state.html.paragraph"></panel-item>
+                        <panel-item title="Blockquote" :html="this.$store.state.html.blockquote"></panel-item>
+                        <panel-item title="Blockquote with Footer" :html="this.$store.state.html.blockquoteWithFooter"></panel-item>
                     </panel>
                     <panel id="ac4-5" title="Navigation">
                         <panel-item title="Pager" :html="this.$store.state.html.pager"></panel-item>
