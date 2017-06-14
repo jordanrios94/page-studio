@@ -5,8 +5,8 @@
         type="text"
         class="form-control"
         :name="name"
-        :value="value"
-        @change="$parent.changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)" />
+        v-bind:value="value"
+        @change="changeAttribute($event, $event.currentTarget.name, $event.currentTarget.value)" />
 </div>
 </template>
 <script>
@@ -23,6 +23,13 @@
             value: {
                 type: String,
                 required: true
+            }
+        },
+        methods: {
+            changeAttribute(e, name, value) {
+                this.$emit('change', {
+                    name, value
+                });
             }
         }
     }

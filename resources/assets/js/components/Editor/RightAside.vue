@@ -18,12 +18,12 @@
                 <h2>{{ element.name }}</h2>
                 <br>
                 <form role="form">
-                    <attribute-option label="ID" name="id" :value="element.id" v-if="editable.id"></attribute-option>
-                    <attribute-option label="Class" name="class" :value="element.class" v-if="editable.class"></attribute-option>
-                    <attribute-option label="Action" name="action" :value="element.action" v-if="editable.action"></attribute-option>
-                    <attribute-option label="Source" name="src" :value="element.src" v-if="editable.src"></attribute-option>
-                    <attribute-option label="Alt Text" name="alt" :value="element.alt" v-if="editable.alt"></attribute-option>
-                    <attribute-option label="URL" name="href" :value="element.href" v-if="editable.href && element.tag === 'a'"></attribute-option>
+                    <attribute-option label="ID" name="id" :value="element.id" @change="changeAttribute" v-if="editable.id"></attribute-option>
+                    <attribute-option label="Class" name="class" :value="element.class" @change="changeAttribute" v-if="editable.class"></attribute-option>
+                    <attribute-option label="Action" name="action" :value="element.action" @change="changeAttribute" v-if="editable.action"></attribute-option>
+                    <attribute-option label="Source" name="src" :value="element.src" @change="changeAttribute" v-if="editable.src"></attribute-option>
+                    <attribute-option label="Alt Text" name="alt" :value="element.alt" @change="changeAttribute" v-if="editable.alt"></attribute-option>
+                    <attribute-option label="URL" name="href" :value="element.href" @change="changeAttribute" v-if="editable.href && element.tag === 'a'"></attribute-option>
                     <target-option label="Browser Target" v-if="editable.target"></target-option>
                     <size-option label="Size" v-if="editable.size"></size-option>
                     <btn-width-option label="Full Width" v-if="editable.btnWidth"></btn-width-option>
@@ -36,7 +36,7 @@
                     <reverse-option label="Reverse" v-if="editable.reverse"></reverse-option>
                     <option-style label="Style" v-if="editable.style"></option-style>
                     <responsive-option label="Responsive" v-if="editable.responsive"></responsive-option>
-                    <image-style-option label="Style" v-if="editable.imgStyle"></image-style-option>
+                    <image-option label="Style" v-if="editable.image"></image-option>
                 </form>
             </div>
 
@@ -48,20 +48,20 @@
 <script>
     export default {
         components: {
-            'attribute-option': require('./Options/Attribute.vue'),
-            'target-option': require('./Options/Target.vue'),
-            'size-option': require('./Options/Size.vue'),
-            'btn-width-option': require('./Options/BtnWidth.vue'),
-            'state-option': require('./Options/State.vue'),
-            'stripes-option': require('./Options/Stripes.vue'),
             'active-option': require('./Options/Active.vue'),
-            'lead-option': require('./Options/Lead.vue'),
             'alignment-option': require('./Options/Alignment.vue'),
-            'text-transform-option': require('./Options/TextTransform.vue'),
-            'reverse-option': require('./Options/Reverse.vue'),
+            'attribute-option': require('./Options/Attribute.vue'),
+            'btn-width-option': require('./Options/BtnWidth.vue'),
+            'image-option': require('./Options/Image.vue'),
+            'lead-option': require('./Options/Lead.vue'),
             'option-style': require('./Options/Style.vue'),
             'responsive-option': require('./Options/Responsive.vue'),
-            'image-style-option': require('./Options/ImgStyle.vue')
+            'reverse-option': require('./Options/Reverse.vue'),
+            'size-option': require('./Options/Size.vue'),
+            'state-option': require('./Options/State.vue'),
+            'stripes-option': require('./Options/Stripes.vue'),
+            'target-option': require('./Options/Target.vue'),
+            'text-transform-option': require('./Options/TextTransform.vue')
         },
         data() {
             return {
@@ -87,7 +87,7 @@
                     alignment: false,
                     textTransform: false,
                     alt: false,
-                    imgStyle: false,
+                    image: false,
                     responsive: false,
                     src: false,
                     reverse: false,
@@ -111,6 +111,8 @@
                 for (let key in this.editable) {
                     this.editable[key] = element.editable.includes(key)
                 }
+                
+                this.$forceUpdate();
             },
             tree(tree) {
                 let copy = _.clone(tree);
@@ -144,8 +146,7 @@
                 const elementClass = baseStyle ? baseStyle + '-' + className : className;
                 return style + (this.elementNode.hasClass(elementClass) ? ' active' : '');
             },
-            changeAttribute(e, name, value) {
-                e.preventDefault();
+            changeAttribute({ name, value }) {
                 this.elementNode.attr(name, value.trim());
                 this.updateTree(_.clone(this.tree));
             },
@@ -156,7 +157,7 @@
                     alignment: ['left','center','right','justify','nowrap'],
                     sizes: ['xs','sm','md','lg'],
                     textTransform: ['lowercase','uppercase','capitalize'],
-                    imgStyle: ['rounded','circle','thumbnail'],
+                    image: ['rounded','circle','thumbnail'],
                     btnWidth: ['block'],
                     btnState: ['active','disabled'],
                     progressBarAnimation: ['active'],
@@ -252,7 +253,7 @@
                     h4: { name:'Heading', style:'text', editable:['id','class','style'] },
                     h5: { name:'Heading', style:'text', editable:['id','class','style'] },
                     h6: { name:'Heading', style:'text', editable:['id','class','style'] },
-                    img: { name:'Image', style:'img', editable:['id','class','src','alt','imgStyle','responsive'] },
+                    img: { name:'Image', style:'img', editable:['id','class','src','alt','image','responsive'] },
                     p: { name:'Paragraph', style:'text', editable:['id','class','style','lead','alignment','textTransform'] },
                     ul: { name:'Unordered List', editable:['id','class'] },
                     ol: { name:'Ordered List', editable:['id','class'] },
