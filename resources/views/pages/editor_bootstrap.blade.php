@@ -51,5 +51,5 @@
 </script>
 <script src="https://togetherjs.com/togetherjs-min.js"></script>
 <script src="/assets/lib/ace/ace.js" type="text/javascript"></script>
-<script src="/js/editor-bootstrap.js" type="text/javascript"></script>
+<script src="/assets/js/editor-bootstrap.js" type="text/javascript"></script>
 @endpush

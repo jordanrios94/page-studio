@@ -4,7 +4,7 @@
             <div class="content">
                 <h2>{{ title }}</h2>
                 <ul class="sources-list" v-sortable="{ onEnd: reorder, handle: '.s7-menu' }">
-                    <li v-for="item in items" class="source-item">
+                    <li class="source-item" v-for="item in items">
                         <div class="icon left"><span class="icon s7-menu"></span></div>
                         <div class="content"><input type="text" :value="item.value" class="form-control input-xs" name="source" @change="update(item, $event)"></div>
                         <div class="icon right"><span class="icon s7-close" @click="remove(item)"></span></div>

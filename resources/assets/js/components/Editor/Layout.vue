@@ -125,10 +125,10 @@
                         event.stopPropagation();
 
                         let domTree = [];
-                        let e = event.isTrigger ? triggerEvent.originalEvent : event.originalEvent;
+                        let e = event.isTrigger ? event.triggerEvent : event.originalEvent;
 
                         e.path.forEach(element => {
-                            const invalidNodes = ['','shadow','i','#document-fragment','html','#document'];
+                            const invalidNodes = ['','shadow','i','#document-fragment','html','#document','strong','em','br','hr','cite'];
                             const name = element.localName || element.nodeName || element.name;
 
                             if (!invalidNodes.includes(name)) {
@@ -136,7 +136,7 @@
                             }
                         }, this);
 
-                        Event.$emit('update-tree', {
+                        Event.$emit('update-aside', {
                             tree: domTree.reverse()
                         });
                     });
@@ -271,7 +271,6 @@
                                         return $element;
                                     }
                                 }
-                                break;
                         }
                     },
                     addPlaceHolder($element, position, placeholder) {
@@ -340,7 +339,7 @@
 
                         if ($element.is('br')) {
                             inlinePlaceholder = false;
-                        } else if ($element.is('td, th')) {
+                        } else if ($element.is('td,th')) {
                             placeholder.addClass('horizontal').css('width', $element.width() + 'px');
                             return this.addPlaceHolder($element, 'inside-append', placeholder);
                         }

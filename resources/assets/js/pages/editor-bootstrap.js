@@ -13,7 +13,7 @@ const store = require('./../store/index.js');
 /**
  * Mixins
  */
-const apis = require('./../api/editor.js');
+const apis = require('./../mixins/api/editor.js');
 
 const app = new Vue({
     el: '#app',

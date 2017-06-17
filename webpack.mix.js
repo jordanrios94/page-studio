@@ -1,5 +1,5 @@
 const { mix } = require('laravel-mix');
 
-mix.js('resources/assets/js/pages/editor-basic.js', 'public/js/app.js');
-mix.js('resources/assets/js/pages/editor-bootstrap.js', 'public/js/editor-bootstrap.js');
-mix.js('resources/assets/js/pages/profile.js', 'public/js/profile.js');
+mix.js('resources/assets/js/pages/editor-basic.js', 'public/assets/js/app.js');
+mix.js('resources/assets/js/pages/editor-bootstrap.js', 'public/assets/js/editor-bootstrap.js');
+mix.js('resources/assets/js/pages/profile.js', 'public/assets/js/profile.js');
