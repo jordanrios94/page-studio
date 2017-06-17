@@ -13,12 +13,12 @@
                 <h2>{{ element.name }}</h2>
                 <br>
                 <form role="form">
-                    <attribute-option label="ID" name="id" :value="element.id" @change="changeAttribute" v-if="editable.id"></attribute-option>
-                    <attribute-option label="Class" name="class" :value="element.class" @change="changeAttribute" v-if="editable.class"></attribute-option>
-                    <attribute-option label="Action" name="action" :value="element.action" @change="changeAttribute" v-if="editable.action"></attribute-option>
-                    <attribute-option label="Source" name="src" :value="element.src" @change="changeAttribute" v-if="editable.src"></attribute-option>
-                    <attribute-option label="Alt Text" name="alt" :value="element.alt" @change="changeAttribute" v-if="editable.alt"></attribute-option>
-                    <attribute-option label="URL" name="href" :value="element.href" @change="changeAttribute" v-if="editable.href && element.tag === 'a'"></attribute-option>
+                    <attribute-option label="ID" name="id" :value="element.id" v-if="editable.id"></attribute-option>
+                    <attribute-option label="Class" name="class" :value="element.class" v-if="editable.class"></attribute-option>
+                    <attribute-option label="Action" name="action" :value="element.action" v-if="editable.action"></attribute-option>
+                    <attribute-option label="Source" name="src" :value="element.src" v-if="editable.src"></attribute-option>
+                    <attribute-option label="Alt Text" name="alt" :value="element.alt" v-if="editable.alt"></attribute-option>
+                    <attribute-option label="URL" name="href" :value="element.href" v-if="editable.href && element.tag === 'a'"></attribute-option>
                     <target-option label="Browser Target" v-if="editable.target"></target-option>
                     <size-option label="Size" v-if="editable.size"></size-option>
                     <btn-width-option label="Full Width" v-if="editable.btnWidth"></btn-width-option>
