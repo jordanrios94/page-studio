@@ -11,7 +11,7 @@ window.moment = require('moment');
 require('cropit');
 require('bootstrap-less');
 require('nanoscroller');
-require('./../lib/touch-swipe/touch-swipe.min');
+require('jquery-touchswipe');
 require('./../lib/jquery.gritter/js/jquery.gritter');
 
 window.Notification = require('./helpers/notification');
