@@ -18,7 +18,8 @@ module.exports = {
 
             return style + (!hasClass ? ' active' : '');
         },
-        changeAttribute({ name, value }) {
+        changeAttribute(e, name, value) {
+            e.preventDefault();
             this.elementNode.attr(name, value.trim());
             this.updateTree(_.clone(this.tree));
         },
