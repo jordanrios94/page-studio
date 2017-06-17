@@ -125,7 +125,7 @@
                         event.stopPropagation();
 
                         let domTree = [];
-                        let e = event.isTrigger ? triggerEvent.originalEvent : event.originalEvent;
+                        let e = event.isTrigger ? event.triggerEvent : event.originalEvent;
 
                         e.path.forEach(element => {
                             const invalidNodes = ['','shadow','i','#document-fragment','html','#document','strong','em','br','hr','cite'];

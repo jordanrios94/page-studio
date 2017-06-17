@@ -3,17 +3,12 @@
     <div class="am-scroller nano">
         <div class="nano-content" style="margin-right: 0px;">
         <div class="content">
-
-            <div v-if="!element.name">
-                <p class="text-center">No element has been selected.</p>
-            </div>
-
+            <p class="text-center" v-if="!element.name">No element has been selected.</p>
             <div v-show="element.name">
-            <h2>Tree</h2>
-                <div id="treeview" class="tree"></div>
-            <hr>
+                <h2>DOM Tree</h2>
+                    <div id="treeview" class="tree"></div>
+                <hr>
             </div>
-
             <div v-if="element.name">
                 <h2>{{ element.name }}</h2>
                 <br>
@@ -37,9 +32,9 @@
                     <option-style label="Style" v-if="editable.style"></option-style>
                     <responsive-option label="Responsive" v-if="editable.responsive"></responsive-option>
                     <image-option label="Style" v-if="editable.image"></image-option>
+                    <items-option label="Items" v-if="editable.items"></items-option>
                 </form>
             </div>
-
         </div>
     </div>
     <div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 902px; transform: translate(0px, 0px);"></div></div></div>
@@ -53,6 +48,7 @@
             'attribute-option': require('./Options/Attribute.vue'),
             'btn-width-option': require('./Options/BtnWidth.vue'),
             'image-option': require('./Options/Image.vue'),
+            'items-option': require('./Options/Items.vue'),
             'lead-option': require('./Options/Lead.vue'),
             'option-style': require('./Options/Style.vue'),
             'responsive-option': require('./Options/Responsive.vue'),
@@ -70,7 +66,9 @@
                 element: {
                     name: '',
                     style: '',
-                    tag: ''
+                    tag: '',
+                    item: '',
+                    items: []
                 },
                 editable: {
                     id: false,
@@ -91,7 +89,8 @@
                     responsive: false,
                     src: false,
                     reverse: false,
-                    action: false
+                    action: false,
+                    items: false
                 }
             };
         },
@@ -103,6 +102,8 @@
                 this.element.name = element.name;
                 this.element.style = element.style;
                 this.element.tag = $element.prop('tagName').toLowerCase();
+                this.element.item = element.item || '';
+                this.element.items = [];
 
                 for (let i in attributes) {
                     this.element[attributes[i]] = $element.attr(attributes[i]) || '';
@@ -110,6 +111,17 @@
 
                 for (let key in this.editable) {
                     this.editable[key] = element.editable.includes(key)
+                }
+
+                if (this.editable.items) {
+                    $(this.element.item, $element).each((i, item) => {
+                        const $item = $(item);
+                        this.element.items.push({ 
+                            text: $item.text(), 
+                            type: $item.prop('tagName').toLowerCase() === 'a' ? 'Link' : 'Item',
+                            node: $item
+                        });
+                    });
                 }
                 
                 this.$forceUpdate();
@@ -131,9 +143,13 @@
             hasAttribute(style, attribute, value) {
                 return style + ((this.elementNode.attr(attribute) === value) ? ' active' : '');
             },
+            hasClass(style, className, baseStyle = this.element.style) {
+                const elementClass = baseStyle ? baseStyle + '-' + className : className;
+                return style + (this.elementNode.hasClass(elementClass) ? ' active' : '');
+            },
             hasClasses(style, classes) {
                 let hasClass = false;
-
+                
                 classes.forEach(className => {
                     if (this.elementNode.hasClass(className)) {
                         hasClass = true;
@@ -141,10 +157,6 @@
                 }, this);
 
                 return style + (!hasClass ? ' active' : '');
-            },
-            hasClass(style, className, baseStyle = this.element.style) {
-                const elementClass = baseStyle ? baseStyle + '-' + className : className;
-                return style + (this.elementNode.hasClass(elementClass) ? ' active' : '');
             },
             changeAttribute({ name, value }) {
                 this.elementNode.attr(name, value.trim());
@@ -230,50 +242,9 @@
                 return selector.join(' ');
             },
             getElement($elem) {
-                const elements = {
-                    alert: { name:'Alert', style:'alert', editable:['id','class','style'] },
-                    dropdown: { name:'Dropdown', editable:['id','class'] },
-                    btn: { name:'Button', style: 'btn', editable:['id','class','style','href','btnWidth','size','target','state'] },
-                    'btn-group': { name:'Button Group', editable:['id','class'] },
-                    panel: { name:'Panel', style:'panel', editable:['id','class','style','alignment'] },
-                    jumbotron: { name:'Jumbotron', editable:['id','class'] },
-                    breadcrumb: { name:'Breadcrumb', editable:['id','class'] },
-                    caption: { name:'Caption', editable:['id','class'] },
-                    thumbnail: { name:'Thumbnail', editable:['id','class'] },
-                    'list-group': { name:'List Group', style:'text', editable:['id','class','style','alignment'] },
-                    'list-group-item': { name:'List Group Item', style:'list-group-item', editable:['id','class','style','href','state'] },
-                    'page-header': { name:'Page Header', editable:['id','class'] },
-                    'panel-heading': { name:'Panel Heading', style:'text', editable:['id','class'] },
-                    'panel-body': { name:'Panel Body', style:'text', editable:['id','class','style'] },
-                    'panel-footer': { name:'Panel Footer', style:'text', editable:['id','class','style'] },
-                    'progress-bar': { name:'Progress Bar', style:'progress-bar', editable:['id','class','style','stripes','active'] },
-                    h1: { name:'Heading', style:'text', editable:['id','class','style'] },
-                    h2: { name:'Heading', style:'text', editable:['id','class','style'] },
-                    h3: { name:'Heading', style:'text', editable:['id','class','style'] },
-                    h4: { name:'Heading', style:'text', editable:['id','class','style'] },
-                    h5: { name:'Heading', style:'text', editable:['id','class','style'] },
-                    h6: { name:'Heading', style:'text', editable:['id','class','style'] },
-                    img: { name:'Image', style:'img', editable:['id','class','src','alt','image','responsive'] },
-                    p: { name:'Paragraph', style:'text', editable:['id','class','style','lead','alignment','textTransform'] },
-                    ul: { name:'Unordered List', editable:['id','class'] },
-                    ol: { name:'Ordered List', editable:['id','class'] },
-                    li: { name:'List Item', style:'text', editable:['id','class','style'] },
-                    a: { name:'Link', style:'text', editable:['id','class','style'] },
-                    div: { name:'Div', editable:['id','class'] },
-                    blockquote: { name:'Blockquote', style:'blockquote', editable:['id','class','reverse'] },
-                    footer: { name:'Footer', style:'text', editable:['id','class','style'] },
-                    small: { name:'Small', style:'text', editable:['id','class','style'] },
-                    body: { name:'Body', editable:['id','class'] },
-                    span: { name:'Span', editable:['id','class'] },
-                    input: { name:'Input', editable:['id','class'] },
-                    form: { name:'Form', editable:['id','class','action'] },
-                    label: { name:'Label', editable:['id','class'] },
-                    legend: { name:'Legend', editable:['id','class'] }
-                };
-
-                for (let index in elements) {
+                for (let index in this.$store.state.elements) {
                     if ($elem.hasClass(index) || $elem.prop('tagName') === index.toUpperCase()) {
-                        return elements[index];
+                        return this.$store.state.elements[index];
                     }
                 }
             }
