@@ -1,8 +1,9 @@
 <template>
 <div class="form-group">
-    <label>{{ label }}</label>
+    <label :for="name">{{ label }}</label>
     <input 
         type="text"
+        :id="name"
         class="form-control"
         :name="name"
         v-bind:value="value"

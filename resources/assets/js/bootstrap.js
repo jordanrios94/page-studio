@@ -10,9 +10,8 @@ window.moment = require('moment');
 
 require('cropit');
 require('bootstrap-less');
-require('./../lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.min');
+require('nanoscroller');
 require('./../lib/touch-swipe/touch-swipe.min');
-require('./../lib/bootstrap-breakpoint/breakpoint.min');
 require('./../lib/jquery.gritter/js/jquery.gritter');
 
 window.Notification = require('./helpers/notification');
