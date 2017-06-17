@@ -70,34 +70,22 @@
                     item: '',
                     items: []
                 },
-                editable: {
-                    id: false,
-                    class: false,
-                    style: false,
-                    href: false,
-                    btnWidth: false,
-                    size: false,
-                    target: false,
-                    state: false,
-                    stripes: false,
-                    active: false,
-                    lead: false,
-                    alignment: false,
-                    textTransform: false,
-                    alt: false,
-                    image: false,
-                    responsive: false,
-                    src: false,
-                    reverse: false,
-                    action: false,
-                    items: false
-                }
+                editable: {}
             };
         },
+        mixins: [
+            require('./../../mixins/editor/options.js'),
+            require('./../../mixins/editor/tree.js')
+        ],
         watch: {
             elementNode($element) {
                 const element = this.getElement($element);
                 const attributes = ['id','class','href','target','src','alt','action'];
+                const editable = [
+                    'id','class','style','href','btnWidth','size','target',
+                    'state','stripes','active','lead','alignment', 'textTransform',
+                    'alt','image','responsive','src','reverse','action','items'
+                ];
 
                 this.element.name = element.name;
                 this.element.style = element.style;
@@ -109,8 +97,8 @@
                     this.element[attributes[i]] = $element.attr(attributes[i]) || '';
                 }
 
-                for (let key in this.editable) {
-                    this.editable[key] = element.editable.includes(key)
+                for (let i in editable) {
+                    this.editable[editable[i]] = element.editable.includes(editable[i]);
                 }
 
                 if (this.editable.items) {
@@ -133,114 +121,11 @@
             }
         },
         created() {
-            const vm = this;
-
-             Event.$on('update-aside', function ($event) {
-                vm.updateTree($event.tree);
+             Event.$on('update-aside', $event => {
+                this.updateTree($event.tree);
             });
         },
         methods: {
-            hasAttribute(style, attribute, value) {
-                return style + ((this.elementNode.attr(attribute) === value) ? ' active' : '');
-            },
-            hasClass(style, className, baseStyle = this.element.style) {
-                const elementClass = baseStyle ? baseStyle + '-' + className : className;
-                return style + (this.elementNode.hasClass(elementClass) ? ' active' : '');
-            },
-            hasClasses(style, classes) {
-                let hasClass = false;
-                
-                classes.forEach(className => {
-                    if (this.elementNode.hasClass(className)) {
-                        hasClass = true;
-                    }
-                }, this);
-
-                return style + (!hasClass ? ' active' : '');
-            },
-            changeAttribute({ name, value }) {
-                this.elementNode.attr(name, value.trim());
-                this.updateTree(_.clone(this.tree));
-            },
-            changeClass(e, chosenStyle, type, style = this.element.style) {
-                e.preventDefault();
-                const styles = {
-                    standard: ['default','primary','success','info','warning','danger'],
-                    alignment: ['left','center','right','justify','nowrap'],
-                    sizes: ['xs','sm','md','lg'],
-                    textTransform: ['lowercase','uppercase','capitalize'],
-                    image: ['rounded','circle','thumbnail'],
-                    btnWidth: ['block'],
-                    btnState: ['active','disabled'],
-                    progressBarAnimation: ['active'],
-                    progressBarStripes: ['striped'],
-                    responsive: ['responsive'],
-                    reverse: ['reverse'],
-                    lead: ['lead']
-                };
-
-                this.updateBootstrapClass(styles[type], style, chosenStyle);
-            },
-            updateBootstrapClass(classes, bootstrapClass, chosenClass) {
-                bootstrapClass = (!_.isEmpty(bootstrapClass)) ? bootstrapClass + '-' : '';
-                
-                for (let i = 0; i < classes.length; i++) {
-                    const className = bootstrapClass + classes[i];
-                    this.elementNode.removeClass(className);
-                }
-
-                if (!_.isEmpty(chosenClass)){
-                    this.elementNode.addClass(bootstrapClass + chosenClass);
-                }
-
-                this.updateTree(_.clone(this.tree));
-            },
-            updateTree(tree) {
-                const vm = this;
-                let $tree;
-                this.tree = tree;
-
-                for (let i = 0; i < tree.length; i++) {
-                    let element = tree[i];
-
-                    const nodeName = element.localName || element.nodeName || element.name;
-                    const className = element.className ? '.' + element.className.replace(' ', '.') : '';
-
-                    const $list = $('<ul></ul>');
-                    const $item = $('<li></li>');
-                    const $text = $('<span></span>').text(nodeName + className).data('index', i);
-
-                    $text.on('click', function (e) {
-                        e.preventDefault();
-                        const index = $(this).data('index');
-                        let tree = _.clone(vm.tree);
-                        vm.updateTree(tree.slice(0, (index + 1)));
-                    });
-
-                    const $node = $list.append($item.append($text));
-
-                    if (!$tree) {
-                        $tree = $list;
-                    } else {
-                        $tree.find(this.getTreeSelector(i)).append($list);
-                    }
-                }
-
-                $('#treeview').html('').append($tree);
-            },
-            getTreeSelector(treeIndex) {
-                let selector = [];
-
-                for (let i = 0; i < treeIndex; i++) {
-                    if (i === 0) {
-                        selector.push('li');
-                    } else {
-                        selector.push('> ul > li');
-                    }
-                }
-
-                return selector.join(' ');
-            },
             getElement($elem) {
                 for (let index in this.$store.state.elements) {
                     if ($elem.hasClass(index) || $elem.prop('tagName') === index.toUpperCase()) {
