@@ -12,6 +12,7 @@ require('cropit');
 require('bootstrap-less');
 require('nanoscroller');
 require('jquery-touchswipe');
+require('./helpers/breakpoint');
 require('./../lib/jquery.gritter/js/jquery.gritter');
 
 window.Notification = require('./helpers/notification');

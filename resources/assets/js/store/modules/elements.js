@@ -16,7 +16,9 @@ module.exports = {
         },
         'btn-group': {
             name:'Button Group',
-            editable:['id','class']
+            style: 'text',
+            item: '.btn',
+            editable:['id','class','items']
         },
         panel: {
             name:'Panel',
