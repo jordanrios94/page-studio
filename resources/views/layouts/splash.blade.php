@@ -18,10 +18,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- TODO: MOVE THE TWO THREE STYLE SHEETS TO ONE LOCATION-->
-    <link rel="stylesheet" type="text/css" href="/assets/lib/stroke-7/style.css"/>
-    <link rel="stylesheet" type="text/css" href="/assets/lib/jquery.nanoscroller/css/nanoscroller.css"/>
-    <link rel="stylesheet" href="/assets/css/app.css" type="text/css"/>
+    <link rel="stylesheet" href="/assets/css/site.css" type="text/css"/>
 </head>
 
 <body class="am-splash-screen">
