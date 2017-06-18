@@ -2,8 +2,9 @@
 <div class="form-group">
     <label>{{ label }}</label>
     <div class="btn-group btn-group-vertical">
-        <a href="#" class="btn btn-primary add-btn" @click="addItem($event, $store.state.html.listGroupItem)">Add List Group Item <span class="s7-plus"></span></a>
-        <a href="#" class="btn btn-primary add-btn" @click="addItem($event, $store.state.html.listGroupLink)">Add List Group Link <span class="s7-plus"></span></a>
+        <a href="#" class="btn btn-primary add-btn" @click="addItem($event, $store.state.html.listGroupItem)" v-if="$parent.element.item === '.list-group-item'">Add List Group Item <span class="s7-plus"></span></a>
+        <a href="#" class="btn btn-primary add-btn" @click="addItem($event, $store.state.html.listGroupLink)" v-if="$parent.element.item === '.list-group-item'">Add List Group Link <span class="s7-plus"></span></a>
+        <a href="#" class="btn btn-primary add-btn" @click="addItem($event, $store.state.html.button)" v-if="$parent.element.item === '.btn'">Add Button <span class="s7-plus"></span></a>
     </div>
     <div class="btn-group btn-group-vertical items-btn-group" v-sortable="{ onEnd: reorderItems, handle: '.btn-primary' }">
         <a href="#" class="btn btn-primary" v-for="item in $parent.element.items" @click="selectItem($event, item)">{{ item.type }} ({{ item.text }})</a>
