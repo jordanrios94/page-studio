@@ -1,8 +1,8 @@
 window._ = require('lodash');
 window.$ = window.jQuery = require('jquery');
 window.Sortable = require('sortablejs');
-window.FastClick = require('./../lib/fast-click/fast-click.min');
-window.tinycolor = require('./../lib/tiny-color/tiny-color.min');
+window.FastClick = require('fastclick');
+window.tinycolor = require('tinycolor2');
 window.beautify_js = require('js-beautify');
 window.beautify_css = require('js-beautify').css;
 window.beautify_html = require('js-beautify').html;
@@ -10,9 +10,8 @@ window.moment = require('moment');
 
 require('cropit');
 require('bootstrap-less');
-require('./../lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.min');
-require('./../lib/touch-swipe/touch-swipe.min');
-require('./../lib/bootstrap-breakpoint/breakpoint.min');
+require('nanoscroller');
+require('jquery-touchswipe');
 require('./../lib/jquery.gritter/js/jquery.gritter');
 
 window.Notification = require('./helpers/notification');
