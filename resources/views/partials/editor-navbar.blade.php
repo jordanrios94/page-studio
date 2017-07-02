@@ -61,8 +61,9 @@
 					</ul>
 				</li>
                 @if ($page === 'editor')
+					@if ($type !== 'bootstrap')
                     <li><a href="#" class="collaborate-btn" @click="startCallaborate($event)" data-end-togetherjs-html="End Calloboration">Collaborate</a></li>
-
+					@endif
                     @if ($state === 'create')
                     <li><a href="#" @click="save($event)">Save</a></li>
                     @elseif ($state === 'update')

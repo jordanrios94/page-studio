@@ -4,11 +4,11 @@
             <div id="dragitemslistcontainer" class="nano-content" style="margin-right: 0px;">
                 <accordion id="accordion4">
                     <panel id="ac4-1" title="Structure">
-                        <panel-item title="Row" html=""></panel-item>
-                        <panel-item title="Row + 1 Column" html=""></panel-item>
-                        <panel-item title="Row + 2 Columns" html=""></panel-item>
-                        <panel-item title="Row + 3 Columns" html=""></panel-item>
-                        <panel-item title="Row + 4 Columns" html=""></panel-item>
+                        <panel-item title="Row" :html="this.$store.state.html.row"></panel-item>
+                        <panel-item title="Row + 1 Column" :html="this.$store.state.html.rowOneColumn"></panel-item>
+                        <panel-item title="Row + 2 Columns" :html="this.$store.state.html.rowTwoColumns"></panel-item>
+                        <panel-item title="Row + 3 Columns" :html="this.$store.state.html.rowThreeColumns"></panel-item>
+                        <panel-item title="Row + 4 Columns" :html="this.$store.state.html.rowFourColumns"></panel-item>
                     </panel>
                     <panel id="ac4-2" title="Snippets">
                         <panel-item title="Jumbotron" :html="this.$store.state.html.jumbotron"></panel-item>

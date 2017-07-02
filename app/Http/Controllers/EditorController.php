@@ -24,7 +24,8 @@ class EditorController extends Controller
                 'state' => 'create',
                 'data' => [],
                 'user' => $request->user(),
-                'session_id' => md5(Session::getId())
+                'session_id' => md5(Session::getId()),
+                'type' => 'basic'
             ]
         ]);
     }
@@ -43,7 +44,8 @@ class EditorController extends Controller
                 'state' => 'create',
                 'data' => [],
                 'user' => $request->user(),
-                'session_id' => md5(Session::getId())
+                'session_id' => md5(Session::getId()),
+                'type' => 'bootstrap'
             ]
         ]);
     }
@@ -100,7 +102,8 @@ class EditorController extends Controller
                 'state' => 'update',
                 'data' => $latestPage,
                 'user' => $request->user(),
-                'session_id' => md5(Session::getId())
+                'session_id' => md5(Session::getId()),
+                'type' => $latestPage['page']->type
             ]
         ]);
     }
