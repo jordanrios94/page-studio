@@ -40,6 +40,13 @@
             }
         },
         methods: {
+            broadcast() {
+                Event.$emit('update_preview');
+                Event.$emit('update_iframe_inline_block', {
+                    type: this.type,
+                    value: this.value
+                });
+            },
             update(value) {
                 this.$store.commit('update', {
                     setting: this.type,
@@ -64,12 +71,12 @@
 
                 if (vm.value) {
                     editor.setValue(vm.value);
-                    Event.$emit('update_preview');
+                    vm.broadcast();
                 }
 
                 editor.getSession().on('change', function() {
                     vm.update(editor.getValue());
-                    Event.$emit('update_preview');
+                    vm.broadcast();
                 });
             },
             beautify(editor) {

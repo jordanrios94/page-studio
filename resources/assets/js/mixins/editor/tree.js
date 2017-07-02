@@ -8,7 +8,7 @@ module.exports = {
                 let element = tree[i];
 
                 const nodeName = element.localName || element.nodeName || element.name;
-                const className = element.className ? '.' + element.className.replace(' ', '.') : '';
+                const className = element.className && nodeName !== 'body' ? '.' + element.className.replace(' ', '.') : '';
 
                 const $list = $('<ul></ul>');
                 const $item = $('<li></li>');

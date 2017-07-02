@@ -54,9 +54,24 @@ class EditorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function layoutBootstrap(Request $request)
+    public function layoutBootstrap($id, Request $request)
     {
-        return view('pages.layout');
+        header('X-XSS-Protection: 0');
+
+        $html = '';
+        $css = '';
+
+        if (!empty($id) && $id !== 'new') {
+            $page = new Page;
+            $latestPage = $page->getLatestPage($id);
+            $html = $latestPage['version']->html;
+            $css = $latestPage['version']->css;
+        }
+
+        return view('pages.layout', [
+            'html' => $html,
+            'css' => $css
+        ]);
     }
 
     /**
@@ -77,7 +92,9 @@ class EditorController extends Controller
         $latestPage['version']->css = base64_encode($latestPage['version']->css);
         $latestPage['version']->js = base64_encode($latestPage['version']->js);
 
-        return view('pages.editor_basic', [
+        $view = $latestPage['page']->type === 'bootstrap' ? 'pages.editor_bootstrap' : 'pages.editor_basic';
+
+        return view($view, [
             'context' => [
                 'page' => 'editor',
                 'state' => 'update',

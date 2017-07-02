@@ -27,7 +27,7 @@ Route::match(['get', 'post'], '/page/preview', 'PreviewController@index');
 Route::match(['get'], '/page/preview/{id}', 'PreviewController@show');
 
 /** EDITOR ROUTES **/
-Route::get('/page/layout/bootstrap', 'EditorController@layoutBootstrap');
+Route::get('/page/layout/bootstrap/{id}', 'EditorController@layoutBootstrap');
 Route::get('/page/create/basic', 'EditorController@createBasic');
 Route::get('/page/create/bootstrap', 'EditorController@createBootstrap');
 Route::get('/page/{id}', 'EditorController@edit');

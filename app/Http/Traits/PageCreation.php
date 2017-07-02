@@ -2,13 +2,13 @@
 
 namespace App\Http\Traits;
 
-trait ModelCreation
+trait PageCreation
 {
     /**
      * This method is used to generate a new ID for record.
      *
-     * @param  int    $length
-     * @return string
+     * @param   int    $length
+     * @return  string
      */
     public function generateId($length = 10)
     {
@@ -21,5 +21,16 @@ trait ModelCreation
         }
 
         return $idString;
+    }
+
+    /**
+     * This method is used to determine the type of page
+     *
+     * @param   string  $route
+     * @return  string
+     */
+    public function getPageType($route)
+    {
+        return (strpos($route, 'bootstrap') !== false) ? 'bootstrap' : 'basic';
     }
 }

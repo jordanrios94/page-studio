@@ -14,12 +14,15 @@ class PreviewController extends Controller
      */
     public function index(Request $request)
     {
+        header('X-XSS-Protection: 0');
+
         $data = !empty($request->all()) ? $request->all() : [
             'html' => '',
             'css' => '',
             'js' => '',
             'scripts' => '[]',
-            'styles' => '[]'
+            'styles' => '[]',
+            'type' => 'basic'
         ];
 
         $data['scripts'] = json_decode($data['scripts']);
@@ -44,7 +47,8 @@ class PreviewController extends Controller
             'css' => $latestPage['version']->css,
             'js' => $latestPage['version']->js,
             'scripts' => json_decode($latestPage['page']->scripts),
-            'styles' => json_decode($latestPage['page']->styles)
+            'styles' => json_decode($latestPage['page']->styles),
+            'type' => $latestPage['page']->type
         ]);
     }
 }

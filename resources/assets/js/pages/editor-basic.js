@@ -27,6 +27,9 @@ const app = new Vue({
         'page-info-panel': require('./../components/RightSidebar/PageInfo.vue'),
         'source-panel': require('./../components/RightSidebar/Source.vue')
     },
+    data: {
+        pageType: 'basic'
+    },
     computed: {
         pageName() {
             const state = this.$store.state.page;
