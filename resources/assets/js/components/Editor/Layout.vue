@@ -548,7 +548,7 @@
                     },
                     getElementName($element) {
                         let tagName = $element.prop('tagName').toLowerCase();
-                        let className = $element.attr('class') ? '.' +  $element.attr('class') : '';
+                        let className = $element.attr('class') && tagName !== 'body' ? '.' +  $element.attr('class') : '';
 
                         return tagName + className;
                     }
