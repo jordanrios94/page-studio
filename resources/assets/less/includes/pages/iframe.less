@@ -1,6 +1,92 @@
-div {
-    &:focus {
-        outline: 0;
+body[data-editable] {
+    div {
+        &:focus {
+            outline: 0;
+        }
+    }
+
+    .container,
+    .row,
+    .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4,  .col-xs-5,  .col-xs-6,
+    .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12,
+    .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4,  .col-sm-5,  .col-sm-6,
+    .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12,
+    .col-md-1, .col-md-2, .col-md-3, .col-md-4,  .col-md-5,  .col-md-6,
+    .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12,
+    .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4,  .col-lg-5,  .col-lg-6,
+    .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12  {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        position: relative;
+    }
+
+    .container:before,
+    .row:before,
+    .col-xs-1:before, .col-xs-2:before, .col-xs-3:before, .col-xs-4:before,  .col-xs-5:before,  .col-xs-6:before,
+    .col-xs-7:before, .col-xs-8:before, .col-xs-9:before, .col-xs-10:before, .col-xs-11:before, .col-xs-12:before,
+    .col-sm-1:before, .col-sm-2:before, .col-sm-3:before, .col-sm-4:before,  .col-sm-5:before,  .col-sm-6:before,
+    .col-sm-7:before, .col-sm-8:before, .col-sm-9:before, .col-sm-10:before, .col-sm-11:before, .col-sm-12:before,
+    .col-md-1:before, .col-md-2:before, .col-md-3:before, .col-md-4:before,  .col-md-5:before,  .col-md-6:before,
+    .col-md-7:before, .col-md-8:before, .col-md-9:before, .col-md-10:before, .col-md-11:before, .col-md-12:before,
+    .col-lg-1:before, .col-lg-2:before, .col-lg-3:before, .col-lg-4:before,  .col-lg-5:before,  .col-lg-6:before,
+    .col-lg-7:before, .col-lg-8:before, .col-lg-9:before, .col-lg-10:before, .col-lg-11:before, .col-lg-12:before {
+        border: 1px solid #DDD;
+        border-radius: 3px 0;
+        font-weight: 700;
+        background-color: #4e91ff;
+        font-size: 12px;
+        left: -1px;
+        padding: 3px 7px;
+        color: #fff;
+        top: -1px;
+        height: 25px;
+        
+    }
+
+    .container {
+        padding: 30px;
+    }
+
+    .container:before {
+        content: "Container";
+        margin-top: -31px;
+        margin-left: -31px;
+    }
+
+    .row {
+        margin-top: 10px;
+        padding: 30px 15px 15px;
+    }
+
+    .row:before {
+        content: "Row";
+        margin-top: -31px;
+        margin-left: -16px;
+    }
+
+    .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4,  .col-xs-5,  .col-xs-6,
+    .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12,
+    .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4,  .col-sm-5,  .col-sm-6,
+    .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12,
+    .col-md-1, .col-md-2, .col-md-3, .col-md-4,  .col-md-5,  .col-md-6,
+    .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12,
+    .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4,  .col-lg-5,  .col-lg-6,
+    .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+        margin-top: 10px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .col-xs-1:before, .col-xs-2:before, .col-xs-3:before, .col-xs-4:before,  .col-xs-5:before,  .col-xs-6:before,
+    .col-xs-7:before, .col-xs-8:before, .col-xs-9:before, .col-xs-10:before, .col-xs-11:before, .col-xs-12:before,
+    .col-sm-1:before, .col-sm-2:before, .col-sm-3:before, .col-sm-4:before,  .col-sm-5:before,  .col-sm-6:before,
+    .col-sm-7:before, .col-sm-8:before, .col-sm-9:before, .col-sm-10:before, .col-sm-11:before, .col-sm-12:before,
+    .col-md-1:before, .col-md-2:before, .col-md-3:before, .col-md-4:before,  .col-md-5:before,  .col-md-6:before,
+    .col-md-7:before, .col-md-8:before, .col-md-9:before, .col-md-10:before, .col-md-11:before, .col-md-12:before,
+    .col-lg-1:before, .col-lg-2:before, .col-lg-3:before, .col-lg-4:before,  .col-lg-5:before,  .col-lg-6:before,
+    .col-lg-7:before, .col-lg-8:before, .col-lg-9:before, .col-lg-10:before, .col-lg-11:before, .col-lg-12:before {
+        content: "Column";
+        position: absolute;
     }
 }
 

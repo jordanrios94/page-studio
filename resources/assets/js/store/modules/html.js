@@ -25,6 +25,11 @@ module.exports = {
         panel: require('./../../html/panel.html'),
         paragraph: require('./../../html/paragraph.html'),
         progressBar: require('./../../html/progress-bar.html'),
+        rowOneColumn: require('./../../html/row-one-column.html'),
+        rowTwoColumns: require('./../../html/row-two-columns.html'),
+        rowThreeColumns: require('./../../html/row-three-columns.html'),
+        rowFourColumns: require('./../../html/row-four-columns.html'),
+        row: require('./../../html/row.html'),
         thumbnail: require('./../../html/thumbnail.html'),
         thumbnails: require('./../../html/thumbnails.html')
     }
