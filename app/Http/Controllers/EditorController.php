@@ -56,6 +56,8 @@ class EditorController extends Controller
      */
     public function layoutBootstrap(Request $request)
     {
+        header('X-XSS-Protection: 0');
+
         return view('pages.layout');
     }
 
@@ -77,7 +79,9 @@ class EditorController extends Controller
         $latestPage['version']->css = base64_encode($latestPage['version']->css);
         $latestPage['version']->js = base64_encode($latestPage['version']->js);
 
-        return view('pages.editor_basic', [
+        $view = $latestPage['page']->type === 'bootstrap' ? 'pages.editor_bootstrap' : 'pages.editor_basic';
+
+        return view($view, [
             'context' => [
                 'page' => 'editor',
                 'state' => 'update',

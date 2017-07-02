@@ -28,13 +28,24 @@ const app = new Vue({
         'source-panel': require('./../components/RightSidebar/Source.vue'),
         'layout-panel': require('./../components/Editor/Layout.vue')
     },
+    data: {
+        pageType: 'bootstrap'
+    },
     computed: {
         pageName() {
             const state = this.$store.state.page;
             return state.title || state.id || 'New Page';
         }
     },
+    mounted() {
+        Event.$on('update_html', this.updateHtml);
+    },
     methods: {
+        updateHtml($event) {
+            this.$store.dispatch('updateHtml', {
+                value: $event.value
+            })
+        },
         startCallaborate(e) {
             e.preventDefault();
             TogetherJS(this);

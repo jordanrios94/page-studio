@@ -132,7 +132,7 @@ module.exports = {
         a: {
             name: 'Link',
             style: 'text',
-            editable: ['id','class','style']
+            editable: ['id','class','style','href']
         },
         div: {
             name: 'Div',
@@ -155,7 +155,7 @@ module.exports = {
         },
         body: {
             name: 'Body',
-            editable: ['id','class']
+            editable: []
         },
         span: {
             name: 'Span',

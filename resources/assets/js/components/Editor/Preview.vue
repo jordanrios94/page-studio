@@ -7,7 +7,7 @@
             <input type="hidden" name="js" :value="js" />
             <input type="hidden" name="scripts" :value="scripts" />
             <input type="hidden" name="styles" :value="styles" />
-            <input type="hidden" name="_token" :value="csrfToken">
+            <input type="hidden" name="type" :value="pageType" />
         </form>
     </div>
 </template>
@@ -33,20 +33,21 @@
                 isActive: false
             };
         },
+        watch: {
+            isActive(active) {
+                if (this.pageType === 'bootstrap') {
+                    return active && this.updatePreview() || this.clearPreview();   
+                }
+            }
+        },
         created() {
-            var vm = this;
-
-            vm.isActive = this.selected;
-
+            this.isActive = this.selected;
             if (this.pageType === 'bootstrap') {
-                Event.$on('tab-selected', function ($event) {
-                    vm.isActive = (vm.type == $event.type);
+                Event.$on('tab-selected', $event => {
+                    this.isActive = (this.type == $event.type);
                 });
             }
-
-            Event.$on('update_preview', function($event) {
-                vm.updatePreview();
-            });
+            Event.$on('update_preview', this.updatePreview);
         },
         computed: {
             csrfToken() {
@@ -69,10 +70,11 @@
             }
         },
         methods: {
-            updatePreview() {
-                setTimeout(function() {
-                    document.getElementById('preview-form').submit();
-                }, 1000);
+            updatePreview: _.debounce($event => {
+                document.getElementById('preview-form').submit();
+            }, 500),
+            clearPreview() {
+                $('#preview-iframe').contents().find('html').html('');
             }
         }
     }

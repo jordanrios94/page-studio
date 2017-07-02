@@ -3,11 +3,15 @@
         <div class="am-scroller nano">
             <div id="dragitemslistcontainer" class="nano-content" style="margin-right: 0px;">
                 <accordion id="accordion4">
-                    <panel id="ac4-1" title="Grid">
+                    <panel id="ac4-1" title="Structure">
                         <panel-item title="Row" html=""></panel-item>
                         <panel-item title="Row + 1 Column" html=""></panel-item>
+                        <panel-item title="Row + 2 Columns" html=""></panel-item>
+                        <panel-item title="Row + 3 Columns" html=""></panel-item>
+                        <panel-item title="Row + 4 Columns" html=""></panel-item>
                     </panel>
-                    <panel id="ac4-2" title="Sections">
+                    <panel id="ac4-2" title="Snippets">
+                        <panel-item title="Jumbotron" :html="this.$store.state.html.jumbotron"></panel-item>
                         <panel-item title="Login Form" :html="this.$store.state.html.loginForm"></panel-item>
                         <panel-item title="Thumbnails" :html="this.$store.state.html.thumbnails"></panel-item>
                     </panel>
@@ -17,7 +21,6 @@
                         <panel-item title="Media" :html="this.$store.state.html.media"></panel-item>
                         <panel-item title="Iframe" :html="this.$store.state.html.iframe"></panel-item>
                         <panel-item title="Image" :html="this.$store.state.html.image"></panel-item>
-                        <panel-item title="Jumbotron" :html="this.$store.state.html.jumbotron"></panel-item>
                         <panel-item title="Basic Panel" :html="this.$store.state.html.basicPanel"></panel-item>
                         <panel-item title="Panel" :html="this.$store.state.html.panel"></panel-item>
                         <panel-item title="Progress Bar" :html="this.$store.state.html.progressBar"></panel-item>

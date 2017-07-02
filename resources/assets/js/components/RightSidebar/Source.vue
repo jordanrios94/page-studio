@@ -50,18 +50,25 @@
                     index: this.items.indexOf(item)
                 });
             },
+            broadcast() {
+                Event.$emit('update_preview');
+                Event.$emit('update_iframe_sources', {
+                    type: this.type,
+                    items: this.$store.state.page[this.type]
+                });
+            },
             add($e) {
                 this.commit('addSource', {}, this.source);
+                this.broadcast();
                 this.source = '';
-                Event.$emit('update_preview');
             },
             update(item, $e) {
                 this.commit('updateSource', item, $e.currentTarget.value);
-                Event.$emit('update_preview');
+                this.broadcast();
             },
             remove(item) {
                 this.commit('removeSource', item, item.value);
-                Event.$emit('update_preview');
+                this.broadcast();
             },
             reorder({oldIndex, newIndex}) {
                 this.$store.dispatch('reorderSources', {
@@ -69,7 +76,7 @@
                     oldIndex: oldIndex,
                     newIndex: newIndex
                 }).then(() => {
-                    Event.$emit('update_preview');
+                    this.broadcast();
                 });
             }
         }

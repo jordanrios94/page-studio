@@ -112,6 +112,7 @@
                     });
                 }
                 
+                this.broadcast();
                 this.$forceUpdate();
             },
             tree(tree) {
@@ -126,6 +127,9 @@
             });
         },
         methods: {
+            broadcast() {
+                Event.$emit('update_iframe_html');
+            },
             getElement($elem) {
                 for (let index in this.$store.state.elements) {
                     if ($elem.hasClass(index) || $elem.prop('tagName') === index.toUpperCase()) {

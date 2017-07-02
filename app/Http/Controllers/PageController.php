@@ -6,7 +6,7 @@ use App\User;
 use App\Page;
 use App\PageLike;
 use App\PageHistory;
-use App\Http\Traits\ModelCreation;
+use App\Http\Traits\PageCreation;
 use App\Http\Traits\PageRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Session;
 class PageController extends Controller
 {
     use PageRequests;
-    use ModelCreation;
+    use PageCreation;
 
     /**
      * API endpoint to return paginated list of pages based on the username.
@@ -107,7 +107,8 @@ class PageController extends Controller
         $page->styles = json_encode($request->styles);
         $page->creator_user_id = !empty($user) ? $user->id : 0;
         $page->sid = $sessionId;
-
+        $page->type = $this->getPageType($request->getPathInfo());
+        
         $version->page_id = $page->id;
         $version->html = !empty($request->html) ? $request->html : '';
         $version->css = !empty($request->css) ? $request->css : '';

@@ -13,14 +13,16 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('/page/create/anon', 'PageController@store');
+Route::post('/page/create/anon/basic', 'PageController@store');
+Route::post('/page/create/anon/bootstrap', 'PageController@store');
 Route::post('/page/update/anon', 'PageController@update');
 Route::get('/pages/anon/{username}', 'PageController@pages');
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/user', 'UserController@get');
     Route::post('/page/like', 'PageController@like');
-    Route::post('/page/create', 'PageController@store');
+    Route::post('/page/create/basic', 'PageController@store');
+    Route::post('/page/create/bootstrap', 'PageController@store');
     Route::post('/page/update', 'PageController@update');
     Route::delete('/page/delete', 'PageController@delete');
     Route::get('/pages/{username}', 'PageController@pages');

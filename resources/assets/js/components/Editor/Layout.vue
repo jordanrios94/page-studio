@@ -102,7 +102,7 @@
                         DragDropFunctions.addEntryToDragOverQueue(currentElement, elementRectangle, mousePosition)
                     });
 
-                    $(clientFrameWindow.document).find('body,html').on('drop',function(event) {
+                    $(clientFrameWindow.document).find('body,html').on('drop', event => {
                         event.preventDefault();
                         event.stopPropagation();
 
@@ -112,9 +112,10 @@
                             const textData = e.dataTransfer.getData('text');
                             const insertionPoint = $("#clientframe").contents().find(".drop-marker");
                             const checkDiv = $(textData);
-
                             insertionPoint.after(checkDiv);
                             insertionPoint.remove();
+                            Event.$emit('update_iframe_html');
+                            DragDropFunctions.clearContainerContext();
                         } catch(e) {
                             console.error(e);
                         }
@@ -125,20 +126,40 @@
                         event.stopPropagation();
 
                         let domTree = [];
+                        let validTree = true;
                         let e = event.isTrigger ? event.triggerEvent : event.originalEvent;
 
                         e.path.forEach(element => {
                             const invalidNodes = ['','shadow','i','#document-fragment','html','#document','strong','em','br','hr','cite'];
                             const name = element.localName || element.nodeName || element.name;
+                            const invalidClasses = ['mce-tinymce', 'mce-widget','mce-txt'];
+                            const elementClasses = element.className ? element.className.split(' ') : [];
+
+                            validTree = validTree ? !_.intersection(invalidClasses, elementClasses).length : validTree;
 
                             if (!invalidNodes.includes(name)) {
                                 domTree.push(element);
                             }
                         }, this);
 
-                        Event.$emit('update-aside', {
-                            tree: domTree.reverse()
-                        });
+                        if (validTree) {
+                            Event.$emit('update-aside', {
+                                tree: domTree.reverse()
+                            });
+                        }
+                    });
+
+                    /**
+                     * Broadcast iframe is loaded, in order to render the inline CSS and JS
+                     */
+                    Event.$emit('update_iframe_sources', {
+                        type: 'styles',
+                        items: vm.$store.state.page.styles
+                    });
+
+                    Event.$emit('update_iframe_sources', {
+                        type: 'scripts',
+                        items: vm.$store.state.page.scripts
                     });
                 });
 
@@ -179,7 +200,7 @@
                             } else if($tempelement.children().length == 0) {
                                 this.decideBeforeAfter($element,mousePercents);
                             } else if($tempelement.children().length == 1) {
-                                this.decideBeforeAfter($element.children(':not(.drop-marker,[data-dragcontext-marker])').first(),mousePercents);
+                                this.decideBeforeAfter($element.children(':not(.drop-marker,[data-dragcontext-marker])').first(), mousePercents);
                             } else {
                                 const positionAndElement = this.findNearestElement($element,mousePos.x,mousePos.y);
                                 this.decideBeforeAfter(positionAndElement.el,mousePercents,mousePos);

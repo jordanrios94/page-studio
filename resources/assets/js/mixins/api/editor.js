@@ -2,7 +2,7 @@ module.exports = {
     methods: {
         save(e) {
             e.preventDefault();
-            const endpoint = window.User ? '/api/page/create' : '/api/page/create/anon';
+            const endpoint = (window.User ? '/api/page/create' : '/api/page/create/anon') + '/' + this.pageType;
 
             return axios.post(endpoint, this.$store.state.page)
             .then(function (response) {

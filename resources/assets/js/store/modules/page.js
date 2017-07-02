@@ -15,41 +15,47 @@ module.exports = {
         styles: page.styles ? JSON.parse(page.styles) : []
     },
     mutations: {
-        update(state, payload) {
-            state[payload.setting] = payload.value;
+        update(state, { setting, value }) {
+            state[setting] = value;
         },
-        addSource(state, payload) {
-            state[payload.setting].push({
-                value: payload.value
+        addSource(state, { setting, value }) {
+            state[setting].push({
+                value: value
             });
         },
-        updateSource(state, payload) {
-            state[payload.setting][payload.index].value = payload.value;
+        updateSource(state, { setting, value, index }) {
+            state[setting][index].value = value;
         },
-        removeSource(state, payload) {
-            state[payload.setting].splice(payload.index, 1);
+        removeSource(state, { setting, index }) {
+            state[setting].splice(index, 1);
         }
     },
     actions: {
-        reorderSources({ commit, state }, payload) {
+        reorderSources({ commit, state }, { setting, oldIndex, newIndex }) {
             return new Promise((resolve, reject) => {
-                let clone = _.clone(state[payload.setting]);
-                const movedItem = clone.splice(payload.oldIndex, 1)[0];
+                let clone = _.clone(state[setting]);
+                const movedItem = clone.splice(oldIndex, 1)[0];
 
                 commit('update', {
-                    setting: payload.setting,
+                    setting: setting,
                     value: []
                 });
 
                 setTimeout(() => {
-                    clone.splice(payload.newIndex, 0, movedItem);
+                    clone.splice(newIndex, 0, movedItem);
                     commit('update', {
-                        setting: payload.setting,
+                        setting: setting,
                         value: clone
                     });
                     resolve();
                 }, 1);
             });
-        }
+        },
+        updateHtml: _.debounce(({ commit }, { value }) => {
+            commit('update', {
+                setting: 'html',
+                value: value
+            });
+        }, 100, this)
     }
 };

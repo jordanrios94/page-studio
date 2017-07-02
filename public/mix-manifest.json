@@ -1,5 +1,7 @@
 {
   "/assets/js/editor-bootstrap.js": "/assets/js/editor-bootstrap.js",
   "/assets/js/app.js": "/assets/js/app.js",
-  "/assets/js/profile.js": "/assets/js/profile.js"
+  "/assets/js/profile.js": "/assets/js/profile.js",
+  "/assets/js/page.js": "/assets/js/page.js",
+  "/assets/js/editor-page.js": "/assets/js/editor-page.js"
 }
