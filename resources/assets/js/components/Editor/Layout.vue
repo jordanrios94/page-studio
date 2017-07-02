@@ -2,7 +2,7 @@
     <div class="layout-panel" v-show="isActive">
         <left-aside></left-aside>
         <div class="main-content">
-            <iframe id="clientframe" src="/page/layout/bootstrap" width="100%" height="100%" disablehistory="true" frameborder="0"></iframe>
+            <iframe id="clientframe" :src="iframeSrc" width="100%" height="100%" disablehistory="true" frameborder="0"></iframe>
         </div>
         <right-aside></right-aside>
     </div>
@@ -37,6 +37,11 @@
         mounted() {
             this.isActive = this.selected;
             this.init();
+        },
+        computed: {
+            iframeSrc() {
+                return this.$store.state.page.id ? '/page/layout/bootstrap/' + this.$store.state.page.id : '/page/layout/bootstrap/new';
+            }
         },
         methods: {
             update(value) {
