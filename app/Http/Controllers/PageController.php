@@ -103,8 +103,6 @@ class PageController extends Controller
         $page->title = !empty($request->title) ? $request->title : $page->id;
         $page->description = !empty($request->description) ? $request->description : '';
         $page->settings = json_encode($request->settings);
-        $page->scripts = json_encode($request->scripts);
-        $page->styles = json_encode($request->styles);
         $page->creator_user_id = !empty($user) ? $user->id : 0;
         $page->sid = $sessionId;
         $page->type = $this->getPageType($request->getPathInfo());
@@ -113,6 +111,8 @@ class PageController extends Controller
         $version->html = !empty($request->html) ? $request->html : '';
         $version->css = !empty($request->css) ? $request->css : '';
         $version->js = !empty($request->js) ? $request->js : '';
+        $version->scripts = json_encode($request->scripts);
+        $version->styles = json_encode($request->styles);
         $version->editor_user_id = $page->creator_user_id;
 
         $savedPage = $page->save();
@@ -150,13 +150,13 @@ class PageController extends Controller
         $page->title = !empty($request->title) ? $request->title : $page->id;
         $page->description = !empty($request->description) ? $request->description : '';
         $page->settings = json_encode($request->settings);
-        $page->scripts = json_encode($request->scripts);
-        $page->styles = json_encode($request->styles);
 
         $version->page_id = $page->id;
         $version->html = !empty($request->html) ? $request->html : '';
         $version->css = !empty($request->css) ? $request->css : '';
         $version->js = !empty($request->js) ? $request->js : '';
+        $version->scripts = json_encode($request->scripts);
+        $version->styles = json_encode($request->styles);
         $version->editor_user_id = !empty($user) ? $user->id : 0;
 
         $savedPage = $page->save();

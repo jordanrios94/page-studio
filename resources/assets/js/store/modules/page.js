@@ -10,9 +10,9 @@ module.exports = {
         html: version.html ? atob(version.html) : '',
         css: version.css ? atob(version.css) : '',
         js: version.js ? atob(version.js) : '',
-        settings: page.settings ? JSON.parse(page.settings) : [],
-        scripts: page.scripts ? JSON.parse(page.scripts) : [],
-        styles: page.styles ? JSON.parse(page.styles) : []
+        styles: version.styles ? JSON.parse(version.styles) : [],
+        scripts: version.scripts ? JSON.parse(version.scripts) : [],
+        settings: page.settings ? JSON.parse(page.settings) : []
     },
     mutations: {
         update(state, { setting, value }) {

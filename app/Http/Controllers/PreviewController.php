@@ -46,8 +46,8 @@ class PreviewController extends Controller
             'html' => $latestPage['version']->html,
             'css' => $latestPage['version']->css,
             'js' => $latestPage['version']->js,
-            'scripts' => json_decode($latestPage['page']->scripts),
-            'styles' => json_decode($latestPage['page']->styles),
+            'scripts' => json_decode($latestPage['version']->scripts),
+            'styles' => json_decode($latestPage['version']->styles),
             'type' => $latestPage['page']->type
         ]);
     }
