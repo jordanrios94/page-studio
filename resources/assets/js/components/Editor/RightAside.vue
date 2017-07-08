@@ -33,6 +33,8 @@
                     <responsive-option label="Responsive" v-if="editable.responsive"></responsive-option>
                     <image-option label="Style" v-if="editable.image"></image-option>
                     <items-option label="Items" v-if="editable.items"></items-option>
+                    <column-slider-option id="col-width" label="Width" setting="colWidth" min="1" v-if="editable.colWidth"></column-slider-option>
+                    <column-slider-option id="col-offset" label="Offset" setting="colOffset" min="0" v-if="editable.colOffset"></column-slider-option>
                 </form>
             </div>
         </div>
@@ -47,6 +49,7 @@
             'alignment-option': require('./Options/Alignment.vue'),
             'attribute-option': require('./Options/Attribute.vue'),
             'btn-width-option': require('./Options/BtnWidth.vue'),
+            'column-slider-option': require('./Options/ColumnSlider.vue'),
             'image-option': require('./Options/Image.vue'),
             'items-option': require('./Options/Items.vue'),
             'lead-option': require('./Options/Lead.vue'),
@@ -84,7 +87,8 @@
                 const editable = [
                     'id','class','style','href','btnWidth','size','target',
                     'state','stripes','active','lead','alignment', 'textTransform',
-                    'alt','image','responsive','src','reverse','action','items'
+                    'alt','image','responsive','src','reverse','action','items','colWidth',
+                    'colOffset'
                 ];
 
                 this.element.name = element.name;
@@ -112,8 +116,8 @@
                     });
                 }
                 
-                this.broadcast();
                 this.$forceUpdate();
+                this.broadcast();
             },
             tree(tree) {
                 let copy = _.clone(tree);
@@ -122,12 +126,13 @@
             }
         },
         created() {
-             Event.$on('update-aside', $event => {
+            Event.$on('update-aside', $event => {
                 this.updateTree($event.tree);
             });
         },
         methods: {
             broadcast() {
+                if (this.element.name === 'Column') Event.$emit('update_slider');
                 Event.$emit('update_iframe_html');
             },
             getElement($elem) {

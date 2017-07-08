@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "bootstrap-less": "^3.3.8",
+    "bootstrap-slider": "^9.8.1",
     "cropit": "^0.5.1",
     "fastclick": "^1.0.6",
     "jquery-touchswipe": "^1.6.15",
