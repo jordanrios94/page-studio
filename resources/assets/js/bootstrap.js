@@ -12,6 +12,7 @@ require('cropit');
 require('bootstrap-less');
 require('nanoscroller');
 require('jquery-touchswipe');
+require('bootstrap-slider');
 require('./helpers/breakpoint');
 require('./../lib/jquery.gritter/js/jquery.gritter');
 

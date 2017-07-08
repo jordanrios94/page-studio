@@ -9,6 +9,7 @@ module.exports = {
         buttonDropdown: require('./../../html/button-dropdown.html'),
         buttonGroup: require('./../../html/button-group.html'),
         button: require('./../../html/button.html'),
+        container: require('./../../html/container.html'),
         header: require('./../../html/header.html'),
         iframe: require('./../../html/iframe.html'),
         image: require('./../../html/image.html'),

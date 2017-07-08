@@ -76,6 +76,76 @@ module.exports = {
             style: 'progress-bar',
             editable: ['id','class','style','stripes','active']
         },
+        'container': {
+            name: 'Container',
+            style: 'text',
+            editable: ['id','class']
+        },
+        'row': {
+            name: 'Row',
+            style: 'text',
+            editable: ['id','class']
+        },
+        'col-md-1': {
+            name: 'Column',
+            style: 'text',
+            editable: ['id','class','colWidth','colOffset']
+        },
+        'col-md-2': {
+            name: 'Column',
+            style: 'text',
+            editable: ['id','class','colWidth','colOffset']
+        },
+        'col-md-3': {
+            name: 'Column',
+            style: 'text',
+            editable: ['id','class','colWidth','colOffset']
+        },
+        'col-md-4': {
+            name: 'Column',
+            style: 'text',
+            editable: ['id','class','colWidth','colOffset']
+        },
+        'col-md-5': {
+            name: 'Column',
+            style: 'text',
+            editable: ['id','class','colWidth','colOffset']
+        },
+        'col-md-6': {
+            name: 'Column',
+            style: 'text',
+            editable: ['id','class','colWidth','colOffset']
+        },
+        'col-md-7': {
+            name: 'Column',
+            style: 'text',
+            editable: ['id','class','colWidth','colOffset']
+        },
+        'col-md-8': {
+            name: 'Column',
+            style: 'text',
+            editable: ['id','class','colWidth','colOffset']
+        },
+        'col-md-9': {
+            name: 'Column',
+            style: 'text',
+            editable: ['id','class','colWidth','colOffset']
+        },
+        'col-md-10': {
+            name: 'Column',
+            style: 'text',
+            editable: ['id','class','colWidth','colOffset']
+        },
+        'col-md-11': {
+            name: 'Column',
+            style: 'text',
+            editable: ['id','class','colWidth','colOffset']
+        },
+        'col-md-12': {
+            name: 'Column',
+            style: 'text',
+            editable: ['id','class','colWidth','colOffset']
+        },
         h1: {
             name: 'Heading',
             style: 'text',

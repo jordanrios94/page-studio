@@ -27,6 +27,14 @@ module.exports = {
             e.preventDefault();
             const styles = {
                 standard: ['default','primary','success','info','warning','danger'],
+                colWidth: [
+                    'col-md-1','col-md-2','col-md-3','col-md-4','col-md-5','col-md-6',
+                    'col-md-7','col-md-8','col-md-9','col-md-10','col-md-11','col-md-12'
+                ],
+                colOffset: [
+                    'col-md-offset-0','col-md-offset-1','col-md-offset-2','col-md-offset-3','col-md-offset-4','col-md-offset-5','col-md-offset-6',
+                    'col-md-offset-7','col-md-offset-8','col-md-offset-9','col-md-offset-10','col-md-offset-11','col-md-offset-12'
+                ],
                 alignment: ['left','center','right','justify','nowrap'],
                 sizes: ['xs','sm','md','lg'],
                 textTransform: ['lowercase','uppercase','capitalize'],

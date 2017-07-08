@@ -4,6 +4,7 @@
             <div id="dragitemslistcontainer" class="nano-content" style="margin-right: 0px;">
                 <accordion id="accordion4">
                     <panel id="ac4-1" title="Structure">
+                        <panel-item title="Container" :html="this.$store.state.html.container"></panel-item>
                         <panel-item title="Row" :html="this.$store.state.html.row"></panel-item>
                         <panel-item title="Row + 1 Column" :html="this.$store.state.html.rowOneColumn"></panel-item>
                         <panel-item title="Row + 2 Columns" :html="this.$store.state.html.rowTwoColumns"></panel-item>
