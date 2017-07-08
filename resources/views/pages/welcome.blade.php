@@ -68,11 +68,12 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
+                    <a href="{{ url('/page/create/basic') }}">New Page</a>
+                    <a href="{{ url('/page/create/bootstrap') }}">New Bootstrap Page</a>
+
                     @if (Auth::check())
-                        <a href="{{ url('/page/create/basic') }}">New Page</a>
                         <a href="{{ url('/profile') }}">Profile</a>
                     @else
-                        <a href="{{ url('/page/create/basic') }}">New Page</a>
                         <a href="{{ url('/login') }}">Login</a>
                         <a href="{{ url('/register') }}">Sign up</a>
                     @endif
