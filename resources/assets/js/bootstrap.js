@@ -10,7 +10,7 @@ window.moment = require('moment');
 
 require('cropit');
 require('bootstrap-less');
-require('nanoscroller');
+require('./../../../node_modules/nanoscroller/bin/javascripts/jquery.nanoscroller');
 require('jquery-touchswipe');
 require('bootstrap-slider');
 require('./helpers/breakpoint');
