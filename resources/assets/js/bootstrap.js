@@ -7,13 +7,13 @@ window.beautify_js = require('js-beautify');
 window.beautify_css = require('js-beautify').css;
 window.beautify_html = require('js-beautify').html;
 window.moment = require('moment');
-window.cropit = require('cropit');
 
 require('bootstrap-less');
 require('jquery-touchswipe');
 require('bootstrap-slider');
 require('./helpers/breakpoint');
 require('./../lib/jquery.gritter/js/jquery.gritter');
+require('./../lib/cropit/jquery.cropit');
 
 window.Notification = require('./helpers/notification');
 window.Vue = require('vue');
