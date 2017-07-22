@@ -7,8 +7,8 @@ window.beautify_js = require('js-beautify');
 window.beautify_css = require('js-beautify').css;
 window.beautify_html = require('js-beautify').html;
 window.moment = require('moment');
+window.cropit = require('cropit');
 
-require('cropit');
 require('bootstrap-less');
 require('jquery-touchswipe');
 require('bootstrap-slider');
