@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="/assets/img/page-studio-icon-white.png">
-    <title>Page Studio</title>
+    <title>PageStudio</title>
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -23,6 +23,7 @@
 @yield('page')
 
 @stack('script-body')
+<script src="/assets/lib/jquery.nanoscroller/js/jquery.nanoscroller.min.js" type="text/javascript"></script>
 <script src="/assets/lib/amaretti/amaretti.js" type="text/javascript"></script>
 </body>
 </html>
