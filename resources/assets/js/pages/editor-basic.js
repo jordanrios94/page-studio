@@ -3,7 +3,7 @@ require('./../bootstrap');
 /**
  * Event dispatcher
  */
-window.Event = new Vue();
+window.EventBus = new Vue();
 
 /**
  * Vuex store

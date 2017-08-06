@@ -51,8 +51,8 @@
                 });
             },
             broadcast() {
-                Event.$emit('update_preview');
-                Event.$emit('update_iframe_sources', {
+                EventBus.$emit('update_preview');
+                EventBus.$emit('update_iframe_sources', {
                     type: this.type,
                     items: this.$store.state.page[this.type]
                 });

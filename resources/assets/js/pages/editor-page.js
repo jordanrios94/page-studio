@@ -21,7 +21,7 @@ const editor = tinymce.init({
     paste_block_drop: true,
     custom_undo_redo_levels: 10,
     init_instance_callback(editor) {
-        window.parent.Event.$emit('update_html', {
+        window.parent.EventBus.$emit('update_html', {
             value: getHtml()
         });
     },
@@ -31,19 +31,19 @@ const editor = tinymce.init({
         });
 
         editor.on('NodeChange', e => {
-            window.parent.Event.$emit('update_html', {
+            window.parent.EventBus.$emit('update_html', {
                 value: getHtml()
             });
         });
 
         editor.on('keyup', e => {
-            window.parent.Event.$emit('update_html', {
+            window.parent.EventBus.$emit('update_html', {
                 value: getHtml()
             });
         });
 
-        window.parent.Event.$on('update_iframe_html', $event => {
-            window.parent.Event.$emit('update_html', {
+        window.parent.EventBus.$on('update_iframe_html', $event => {
+            window.parent.EventBus.$emit('update_html', {
                 value: getHtml()
             });
         });
@@ -71,9 +71,9 @@ const updateInlineBlock = _.debounce($event => {
     $('[data-block="' + $event.type + '"]').html($event.value)
 }, 1000);
 
-window.parent.Event.$on('update_iframe_sources', $event => {
+window.parent.EventBus.$on('update_iframe_sources', $event => {
     removeSources($event);
     addSources($event);
 });
 
-window.parent.Event.$on('update_iframe_inline_block', updateInlineBlock);
+window.parent.EventBus.$on('update_iframe_inline_block', updateInlineBlock);

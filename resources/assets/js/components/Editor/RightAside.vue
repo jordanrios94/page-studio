@@ -126,14 +126,14 @@
             }
         },
         created() {
-            Event.$on('update-aside', $event => {
+            EventBus.$on('update-aside', $event => {
                 this.updateTree($event.tree);
             });
         },
         methods: {
             broadcast() {
-                if (this.element.name === 'Column') Event.$emit('update_slider');
-                Event.$emit('update_iframe_html');
+                if (this.element.name === 'Column') EventBus.$emit('update_slider');
+                EventBus.$emit('update_iframe_html');
             },
             getElement($elem) {
                 for (let index in this.$store.state.elements) {

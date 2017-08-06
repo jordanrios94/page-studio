@@ -30,7 +30,7 @@
         created() {
             const vm = this;
 
-            Event.$on('tab-selected', function ($event) {
+            EventBus.$on('tab-selected', function ($event) {
                 vm.isActive = (vm.type == $event.type);
             });
         },
@@ -119,7 +119,7 @@
                             const checkDiv = $(textData);
                             insertionPoint.after(checkDiv);
                             insertionPoint.remove();
-                            Event.$emit('update_iframe_html');
+                            EventBus.$emit('update_iframe_html');
                             DragDropFunctions.clearContainerContext();
                         } catch(e) {
                             console.error(e);
@@ -148,7 +148,7 @@
                         }, this);
 
                         if (validTree) {
-                            Event.$emit('update-aside', {
+                            EventBus.$emit('update-aside', {
                                 tree: domTree.reverse()
                             });
                         }
@@ -157,12 +157,12 @@
                     /**
                      * Broadcast iframe is loaded, in order to render the inline CSS and JS
                      */
-                    Event.$emit('update_iframe_sources', {
+                    EventBus.$emit('update_iframe_sources', {
                         type: 'styles',
                         items: vm.$store.state.page.styles
                     });
 
-                    Event.$emit('update_iframe_sources', {
+                    EventBus.$emit('update_iframe_sources', {
                         type: 'scripts',
                         items: vm.$store.state.page.scripts
                     });

@@ -96,7 +96,7 @@
                     }
                 })
                 .then(function(response) {
-                    Event.$emit('delete_page');
+                    EventBus.$emit('delete_page');
                     Notification.addMessage('', 'Page has been successfully deleted.', 'success');
                 })
                 .catch(function(error) {

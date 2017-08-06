@@ -192,18 +192,18 @@ var App = (function () {
       });
   }
 
-  function rightSidebarInit(){
+  function rightSidebarInit() {
 
-    function oSidebar(){
+    function oSidebar() {
       body.addClass( config.openRightSidebarClass  + " " + config.transitionClass );
     }
 
-    function cSidebar(){
+    function cSidebar() {
       body.removeClass( config.openRightSidebarClass ).addClass( config.transitionClass );
       sidebarDelay();
     }
 
-    if( rightSidebar.length > 0 ){
+    if (rightSidebar.length > 0) {
       /*Open-Sidebar when click on topbar button*/
       $('.am-toggle-right-sidebar').on("click", function(e){
         if( openSidebar && body.hasClass( config.openRightSidebarClass ) ){

@@ -10,7 +10,7 @@ Vue.component('modal', require('./../components/Profile/ProfileModal.vue'));
  * Event dispatcher
  */
 
-window.Event = new Vue();
+window.EventBus = new Vue();
 
 const app = new Vue({
     el: '#app',

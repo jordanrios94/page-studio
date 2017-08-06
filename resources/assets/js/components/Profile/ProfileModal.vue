@@ -42,7 +42,7 @@
         created() {
             let vm = this;
 
-            Event.$on('show_modal', function($event) {
+            EventBus.$on('show_modal', function($event) {
                 vm.showModal = true;
                 vm.img = $event.img;
                 vm.name = $event.name;
@@ -115,7 +115,7 @@
                 .catch(this.putError);
             },
             putSucess(response) {
-                Event.$emit('setting_updated', {
+                EventBus.$emit('setting_updated', {
                     setting: this.name,
                     value: this.img
                 });
