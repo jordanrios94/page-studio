@@ -43,11 +43,11 @@
         created() {
             this.isActive = this.selected;
             if (this.pageType === 'bootstrap') {
-                Event.$on('tab-selected', $event => {
+                EventBus.$on('tab-selected', $event => {
                     this.isActive = (this.type == $event.type);
                 });
             }
-            Event.$on('update_preview', this.updatePreview);
+            EventBus.$on('update_preview', this.updatePreview);
         },
         computed: {
             csrfToken() {

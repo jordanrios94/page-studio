@@ -53,7 +53,7 @@
             this.profile_url = profile.profile_url || '/assets/img/avatar-placeholder.jpg';
             this.cover_url = profile.cover_url || '/assets/img/reset.jpg';
             
-            Event.$on('setting_updated', function($event) {
+            EventBus.$on('setting_updated', function($event) {
                 vm[$event.setting] = $event.value;
             });
         },
@@ -62,7 +62,7 @@
                 e.preventDefault();
                 const data = e.currentTarget.dataset;
                 
-                Event.$emit('show_modal', {
+                EventBus.$emit('show_modal', {
                     img: this[data.image],
                     name: data.image,
                     width: data.width,

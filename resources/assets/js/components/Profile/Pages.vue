@@ -41,7 +41,7 @@
             this.showMoreBtn = pagesData.current_page < pagesData.last_page;
             this.username = profile.username;
 
-            Event.$on('delete_page', this.deletePage);
+            EventBus.$on('delete_page', this.deletePage);
         },
         methods: {
             getPages() {

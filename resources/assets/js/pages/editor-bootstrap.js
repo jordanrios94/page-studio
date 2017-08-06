@@ -3,7 +3,7 @@ require('./../bootstrap');
 /**
  * Event dispatcher
  */
-window.Event = new Vue();
+window.EventBus = new Vue();
 
 /**
  * Vuex store
@@ -38,7 +38,7 @@ const app = new Vue({
         }
     },
     mounted() {
-        Event.$on('update_html', this.updateHtml);
+        EventBus.$on('update_html', this.updateHtml);
     },
     methods: {
         updateHtml($event) {

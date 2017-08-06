@@ -37,7 +37,7 @@
             };
         },
         created() {
-            Event.$on('update_slider', $event => {
+            EventBus.$on('update_slider', $event => {
                 this.initSlider();
             });
         },

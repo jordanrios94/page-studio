@@ -47,7 +47,7 @@
             emitChange(e) {
                 e.preventDefault();
 
-                Event.$emit('setting_updated', {
+                EventBus.$emit('setting_updated', {
                     setting: e.currentTarget.name,
                     value: e.currentTarget._value
                 });

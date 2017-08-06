@@ -23,7 +23,7 @@
         created() {
             const vm = this;
 
-            Event.$on('tab-selected', function ($event) {
+            EventBus.$on('tab-selected', function ($event) {
                 vm.isActive = (vm.type == $event.type);
             });
         },
@@ -41,8 +41,8 @@
         },
         methods: {
             broadcast() {
-                Event.$emit('update_preview');
-                Event.$emit('update_iframe_inline_block', {
+                EventBus.$emit('update_preview');
+                EventBus.$emit('update_iframe_inline_block', {
                     type: this.type,
                     value: this.value
                 });
