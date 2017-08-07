@@ -9,11 +9,19 @@
         height: 100%;
         padding: 0;
 
+        @media @phone {
+            flex-direction: column;
+        }
+        
         .editor-panel {
             display: flex;
             height: 100%;
             width: 50%;
             order: -1;
+
+            @media @phone {
+                width: 100%;
+            }
 
             #html-editor,
             #css-editor,
