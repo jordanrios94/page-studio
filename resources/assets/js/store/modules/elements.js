@@ -1,15 +1,27 @@
+const column = {
+    name: 'Column',
+    style: 'text',
+    editable: ['id','class','colWidth','colOffset']
+};
+
+const header = {
+    name: 'Heading',
+    style: 'text',
+    editable: ['id','class','style']
+};
+
 module.exports = {
     state: {
-        alert: { 
+        'alert': { 
             name: 'Alert',
             style: 'alert',
             editable: ['id','class','style'] 
         },
-        dropdown: { 
+        'dropdown': { 
             name: 'Dropdown',
             editable: ['id','class'] 
         },
-        btn: {
+        'btn': {
             name: 'Button',
             style: 'btn',
             editable: ['id','class','style','href','btnWidth','size','target','state']
@@ -20,24 +32,24 @@ module.exports = {
             item: '.btn',
             editable:['id','class','items']
         },
-        panel: {
+        'panel': {
             name:'Panel',
             style:'panel',
             editable: ['id','class','style','alignment']
         },
-        jumbotron: {
+        'jumbotron': {
             name: 'Jumbotron',
             editable: ['id','class']
         },
-        breadcrumb: {
+        'breadcrumb': {
             name:'Breadcrumb',
             editable:['id','class']
         },
-        caption: {
+        'caption': {
             name: 'Caption',
             editable: ['id','class']
         },
-        thumbnail: {
+        'thumbnail': {
             name: 'Thumbnail',
             editable: ['id','class']
         },
@@ -86,164 +98,128 @@ module.exports = {
             style: 'text',
             editable: ['id','class']
         },
-        'col-md-1': {
-            name: 'Column',
-            style: 'text',
-            editable: ['id','class','colWidth','colOffset']
-        },
-        'col-md-2': {
-            name: 'Column',
-            style: 'text',
-            editable: ['id','class','colWidth','colOffset']
-        },
-        'col-md-3': {
-            name: 'Column',
-            style: 'text',
-            editable: ['id','class','colWidth','colOffset']
-        },
-        'col-md-4': {
-            name: 'Column',
-            style: 'text',
-            editable: ['id','class','colWidth','colOffset']
-        },
-        'col-md-5': {
-            name: 'Column',
-            style: 'text',
-            editable: ['id','class','colWidth','colOffset']
-        },
-        'col-md-6': {
-            name: 'Column',
-            style: 'text',
-            editable: ['id','class','colWidth','colOffset']
-        },
-        'col-md-7': {
-            name: 'Column',
-            style: 'text',
-            editable: ['id','class','colWidth','colOffset']
-        },
-        'col-md-8': {
-            name: 'Column',
-            style: 'text',
-            editable: ['id','class','colWidth','colOffset']
-        },
-        'col-md-9': {
-            name: 'Column',
-            style: 'text',
-            editable: ['id','class','colWidth','colOffset']
-        },
-        'col-md-10': {
-            name: 'Column',
-            style: 'text',
-            editable: ['id','class','colWidth','colOffset']
-        },
-        'col-md-11': {
-            name: 'Column',
-            style: 'text',
-            editable: ['id','class','colWidth','colOffset']
-        },
-        'col-md-12': {
-            name: 'Column',
-            style: 'text',
-            editable: ['id','class','colWidth','colOffset']
-        },
-        h1: {
-            name: 'Heading',
-            style: 'text',
-            editable: ['id','class','style']
-        },
-        h2: {
-            name: 'Heading',
-            style: 'text',
-            editable: ['id','class','style']
-        },
-        h3: {
-            name: 'Heading',
-            style: 'text',
-            editable: ['id','class','style']
-        },
-        h4: {
-            name: 'Heading',
-            style: 'text',
-            editable: ['id','class','style']
-        },
-        h5: {
-            name: 'Heading',
-            style: 'text',
-            editable: ['id','class','style']
-        },
-        h6: {
-            name: 'Heading',
-            style: 'text',
-            editable: ['id','class','style']
-        },
-        img: {
+        'col-xs-1': column,
+        'col-xs-2': column,
+        'col-xs-3': column,
+        'col-xs-4': column,
+        'col-xs-5': column,
+        'col-xs-6': column,
+        'col-xs-7': column,
+        'col-xs-8': column,
+        'col-xs-9': column,
+        'col-xs-10': column,
+        'col-xs-11': column,
+        'col-xs-12': column,
+        'col-sm-1': column,
+        'col-sm-2': column,
+        'col-sm-3': column,
+        'col-sm-4': column,
+        'col-sm-5': column,
+        'col-sm-6': column,
+        'col-sm-7': column,
+        'col-sm-8': column,
+        'col-sm-9': column,
+        'col-sm-10': column,
+        'col-sm-11': column,
+        'col-sm-12': column,
+        'col-md-1': column,
+        'col-md-2': column,
+        'col-md-3': column,
+        'col-md-4': column,
+        'col-md-5': column,
+        'col-md-6': column,
+        'col-md-7': column,
+        'col-md-8': column,
+        'col-md-9': column,
+        'col-md-10': column,
+        'col-md-11': column,
+        'col-md-12': column,
+        'col-lg-1': column,
+        'col-lg-2': column,
+        'col-lg-3': column,
+        'col-lg-4': column,
+        'col-lg-5': column,
+        'col-lg-6': column,
+        'col-lg-7': column,
+        'col-lg-8': column,
+        'col-lg-9': column,
+        'col-lg-10': column,
+        'col-lg-11': column,
+        'col-lg-12': column,
+        'h1': header,
+        'h2': header,
+        'h3': header,
+        'h4': header,
+        'h5': header,
+        'h6': header,
+        'img': {
             name: 'Image',
             style: 'img',
             editable: ['id','class','src','alt','image','responsive']
         },
-        p: {
+        'p': {
             name: 'Paragraph',
             style: 'text',
             editable: ['id','class','style','lead','alignment','textTransform']
         },
-        ul: {
+        'ul': {
             name:'Unordered List',
             editable:['id','class']
         },
-        ol: {
+        'ol': {
             name:'Ordered List',
             editable:['id','class']
         },
-        li: {
+        'li': {
             name: 'List Item',
             style: 'text',
             editable: ['id','class','style']
         },
-        a: {
+        'a': {
             name: 'Link',
             style: 'text',
             editable: ['id','class','style','href']
         },
-        div: {
+        'div': {
             name: 'Div',
             editable: ['id','class']
         },
-        blockquote: {
+        'blockquote': {
             name: 'Blockquote',
             style: 'blockquote',
             editable: ['id','class','reverse']
         },
-        footer: {
+        'footer': {
             name: 'Footer',
             style: 'text',
             editable: ['id','class','style']
         },
-        small: {
+        'small': {
             name: 'Small',
             style: 'text',
             editable: ['id','class','style']
         },
-        body: {
+        'body': {
             name: 'Body',
             editable: []
         },
-        span: {
+        'span': {
             name: 'Span',
             editable: ['id','class']
         },
-        input: {
+        'input': {
             name: 'Input',
             editable: ['id','class']
         },
-        form: {
+        'form': {
             name: 'Form',
             editable: ['id','class','action']
         },
-        label: {
+        'label': {
             name: 'Label',
             editable:['id','class']
         },
-        legend: {
+        'legend': {
             name:'Legend',
             editable:['id','class']
         }

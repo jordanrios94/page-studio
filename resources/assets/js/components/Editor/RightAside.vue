@@ -2,44 +2,67 @@
 <aside class="page-aside right">
     <div class="am-scroller nano">
         <div class="nano-content" style="margin-right: 0px;">
-        <div class="content">
-            <p class="text-center" v-if="!element.name">No element has been selected.</p>
-            <div v-show="element.name">
-                <h2>DOM Tree</h2>
-                    <div id="treeview" class="tree"></div>
-                <hr>
-            </div>
-            <div v-if="element.name">
-                <h2>{{ element.name }}</h2>
-                <br>
-                <form role="form">
-                    <attribute-option label="ID" name="id" :value="element.id" v-if="editable.id"></attribute-option>
-                    <attribute-option label="Class" name="class" :value="element.class" v-if="editable.class"></attribute-option>
-                    <attribute-option label="Action" name="action" :value="element.action" v-if="editable.action"></attribute-option>
-                    <attribute-option label="Source" name="src" :value="element.src" v-if="editable.src"></attribute-option>
-                    <attribute-option label="Alt Text" name="alt" :value="element.alt" v-if="editable.alt"></attribute-option>
-                    <attribute-option label="URL" name="href" :value="element.href" v-if="editable.href && element.tag === 'a'"></attribute-option>
-                    <target-option label="Browser Target" v-if="editable.target"></target-option>
-                    <size-option label="Size" v-if="editable.size"></size-option>
-                    <btn-width-option label="Full Width" v-if="editable.btnWidth"></btn-width-option>
-                    <state-option label="State" v-if="editable.state"></state-option>
-                    <stripes-option label="Striped" v-if="editable.stripes"></stripes-option>
-                    <active-option label="Animated" v-if="editable.active"></active-option>
-                    <lead-option label="Lead" v-if="editable.lead"></lead-option>
-                    <alignment-option label="Alignment" v-if="editable.alignment"></alignment-option>
-                    <text-transform-option label="Transformation" v-if="editable.textTransform"></text-transform-option>
-                    <reverse-option label="Reverse" v-if="editable.reverse"></reverse-option>
-                    <option-style label="Style" v-if="editable.style"></option-style>
-                    <responsive-option label="Responsive" v-if="editable.responsive"></responsive-option>
-                    <image-option label="Style" v-if="editable.image"></image-option>
-                    <items-option label="Items" v-if="editable.items"></items-option>
-                    <column-slider-option id="col-width" label="Width" setting="colWidth" min="1" v-if="editable.colWidth"></column-slider-option>
-                    <column-slider-option id="col-offset" label="Offset" setting="colOffset" min="0" v-if="editable.colOffset"></column-slider-option>
-                </form>
+            <div class="content">
+                <p class="text-center" v-if="!element.name">No element has been selected.</p>
+                <div v-show="element.name">
+                    <h2>DOM Tree</h2>
+                        <div id="treeview" class="tree"></div>
+                    <hr>
+                </div>
+                <div v-if="element.name">
+                    <h2>{{ element.name }}</h2>
+                    <br>
+                    <form role="form">
+                        <attribute-option label="ID" name="id" :value="element.id" v-if="editable.id"></attribute-option>
+                        <attribute-option label="Class" name="class" :value="element.class" v-if="editable.class"></attribute-option>
+                        <attribute-option label="Action" name="action" :value="element.action" v-if="editable.action"></attribute-option>
+                        <attribute-option label="Source" name="src" :value="element.src" v-if="editable.src"></attribute-option>
+                        <attribute-option label="Alt Text" name="alt" :value="element.alt" v-if="editable.alt"></attribute-option>
+                        <attribute-option label="URL" name="href" :value="element.href" v-if="editable.href && element.tag === 'a'"></attribute-option>
+                        <target-option label="Browser Target" v-if="editable.target"></target-option>
+                        <size-option label="Size" v-if="editable.size"></size-option>
+                        <btn-width-option label="Full Width" v-if="editable.btnWidth"></btn-width-option>
+                        <state-option label="State" v-if="editable.state"></state-option>
+                        <stripes-option label="Striped" v-if="editable.stripes"></stripes-option>
+                        <active-option label="Animated" v-if="editable.active"></active-option>
+                        <lead-option label="Lead" v-if="editable.lead"></lead-option>
+                        <alignment-option label="Alignment" v-if="editable.alignment"></alignment-option>
+                        <text-transform-option label="Transformation" v-if="editable.textTransform"></text-transform-option>
+                        <reverse-option label="Reverse" v-if="editable.reverse"></reverse-option>
+                        <option-style label="Style" v-if="editable.style"></option-style>
+                        <responsive-option label="Responsive" v-if="editable.responsive"></responsive-option>
+                        <image-option label="Style" v-if="editable.image"></image-option>
+                        <items-option label="Items" v-if="editable.items"></items-option>
+                        <div class="panel panel-default panel-transparent panel-borders" v-if="editable.colWidth">
+                            <div class="panel-heading">
+                                <span class="title">Width</span>
+                            </div>
+                            <div class="panel-body">
+                                <column-slider-option id="col-phone-width" label="Phone" setting="colPhoneWidth" baseClass="col-xs-" min="1" v-if="editable.colWidth"></column-slider-option>
+                                <column-slider-option id="col-tablet-width" label="Tablet" setting="colTabletWidth" baseClass="col-sm-" min="1" v-if="editable.colWidth"></column-slider-option>
+                                <column-slider-option id="col-laptop-width" label="Laptop" setting="colLaptopWidth" baseClass="col-md-" min="1" v-if="editable.colWidth"></column-slider-option>
+                                <column-slider-option id="col-desktop-width" label="Desktop" setting="colDesktopWidth" baseClass="col-lg-" min="1" v-if="editable.colWidth"></column-slider-option>
+                            </div>
+                        </div>
+                        <div class="panel panel-default panel-transparent panel-borders" v-if="editable.colOffset">
+                            <div class="panel-heading">
+                                <span class="title">Offset</span>
+                            </div>
+                            <div class="panel-body">
+                                <column-slider-option id="col-phone-offset" label="Phone" setting="colPhoneOffset" baseClass="col-xs-offset-" min="0" v-if="editable.colOffset"></column-slider-option>
+                                <column-slider-option id="col-tablet-offset" label="Tablet" setting="colTabletOffset" baseClass="col-sm-offset-" min="0" v-if="editable.colOffset"></column-slider-option>
+                                <column-slider-option id="col-laptop-offset" label="Laptop" setting="colLaptopOffset" baseClass="col-md-offset-" min="0" v-if="editable.colOffset"></column-slider-option>
+                                <column-slider-option id="col-desktop-offset" label="Desktop" setting="colDesktopOffset" baseClass="col-lg-offset-" min="0" v-if="editable.colOffset"></column-slider-option>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
+        <div class="nano-pane" style="display: none;">
+            <div class="nano-slider" style="height: 902px; transform: translate(0px, 0px);"></div>
+        </div>
     </div>
-    <div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 902px; transform: translate(0px, 0px);"></div></div></div>
 </aside>
 </template>
 <script>
