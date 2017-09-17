@@ -25,7 +25,7 @@ const app = new Vue({
                 })
                 .catch(function (error) {
                     if (error.response.status === 422) {
-                        _.forEach(error.response.data, vm.showFieldMessages);
+                        _.forEach(error.response.data.errors, vm.showFieldMessages);
                     } else {
                         Notification.addMessage('Error!', errorMessage, 'danger');
                     }
