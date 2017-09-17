@@ -7,13 +7,20 @@ window.beautify_js = require('js-beautify');
 window.beautify_css = require('js-beautify').css;
 window.beautify_html = require('js-beautify').html;
 window.moment = require('moment');
+window.CodeMirror = require('codemirror');
 
 require('bootstrap-less');
 require('jquery-touchswipe');
 require('bootstrap-slider');
 require('./helpers/breakpoint');
-require('./../lib/jquery.gritter/js/jquery.gritter');
 require('./../lib/cropit/jquery.cropit');
+require('./../lib/jquery.gritter/js/jquery.gritter');
+require('./../../../node_modules/codemirror/mode/htmlmixed/htmlmixed');
+require('./../../../node_modules/codemirror/addon/selection/active-line');
+require('./../../../node_modules/codemirror/addon/edit/matchbrackets');
+require('./../../../node_modules/codemirror/addon/search/search');
+require('./../../../node_modules/codemirror/addon/search/searchcursor');
+require('./../../../node_modules/codemirror/addon/search/jump-to-line');
 
 window.Notification = require('./helpers/notification');
 window.Vue = require('vue');

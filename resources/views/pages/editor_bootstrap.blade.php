@@ -17,8 +17,9 @@
     <div class="am-content">
         <div class="editor-panels">
             <layout-panel type="layout" :selected="true"></layout-panel>
-            <text-editor type="css" mode="ace/mode/css"></text-editor>
-            <text-editor type="js" mode="ace/mode/javascript"></text-editor>
+
+            <text-editor initType="css" initMode="css"></text-editor>
+            <!-- <text-editor type="js" mode="ace/mode/javascript"></text-editor> -->
             <preview-panel type="preview" page-type="bootstrap" :selected="false"></preview-panel>
         </div>
     </div>
