@@ -134,7 +134,7 @@
                         let validTree = true;
                         let e = event.isTrigger ? event.triggerEvent : event.originalEvent;
 
-                        e.path.forEach(element => {
+                        e.composedPath().forEach(element => {
                             const invalidNodes = ['','shadow','i','#document-fragment','html','#document','strong','em','br','hr','cite'];
                             const name = element.localName || element.nodeName || element.name;
                             const invalidClasses = ['mce-tinymce', 'mce-widget','mce-txt'];
